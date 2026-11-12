@@ -22,6 +22,7 @@ implement these documents; none of them may redefine them.
 | [R7_ADDENDUM.md](R7_ADDENDUM.md) | TLS, live native window, Android library, PG server, WebSocket, measurement |
 | [R8_ADDENDUM.md](R8_ADDENDUM.md) | visual effects, browser matrix, Win32/X11, mTLS, MySQL, sync |
 | [R9_ADDENDUM.md](R9_ADDENDUM.md) | GPU effects, HTTP/2, IntelliJ plugin, marketplace, scheduler, DAP |
+| [R10_ADDENDUM.md](R10_ADDENDUM.md) | 100+ primitives, GPU presentation, tree shaking, plugins, OCSP/CRL, caching_sha2 |
 | [components.json](components.json) | 116 named components mapped to 32 primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
