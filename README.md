@@ -9,6 +9,12 @@ implement these documents; none of them may redefine them.
 | [IR_SCHEMA.md](IR_SCHEMA.md) | `*.opuir.json` interchange format, node kinds, actions |
 | [ADAPTER_CONTRACT.md](ADAPTER_CONTRACT.md) | Platform adapter ABI, event model, capability registry |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Four layers, target matrix, quality bar, roadmap |
+| [IR_R2_ADDENDUM.md](IR_R2_ADDENDUM.md) | R2 additive IR: multi-actions, conditionals, style, 24 kinds |
+| [LANG_R2_ADDENDUM.md](LANG_R2_ADDENDUM.md) | R2 language: if/for/theme/effects/state expressions |
+| [WASM_ABI.md](WASM_ABI.md) | 9th emitter: wasm32 C ABI + host |
+| [PLUGIN_PROTOCOL.md](PLUGIN_PROTOCOL.md) | Process-isolated plugin protocol v1 + local registry |
+| [LSP_SCOPE.md](LSP_SCOPE.md) | R2 language-server contract |
+| [FULLSTACK_SPEC.md](FULLSTACK_SPEC.md) | Single-file full-stack syntax, HTTP contract, backend rules |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
 Version rule: `ir: "0.1"` in every IR file. A consumer MUST reject other versions with a
