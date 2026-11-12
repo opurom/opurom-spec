@@ -17,6 +17,7 @@ implement these documents; none of them may redefine them.
 | [FULLSTACK_SPEC.md](FULLSTACK_SPEC.md) | Single-file full-stack syntax, HTTP contract, backend rules |
 | [R3_ADDENDUM.md](R3_ADDENDUM.md) | Component catalog, a11y, optimizer, scheduler, debugger, terminal adapter |
 | [R4_ADDENDUM.md](R4_ADDENDUM.md) | async/await, modules, packages, SVG backend, profiling, hardening |
+| [R5_ADDENDUM.md](R5_ADDENDUM.md) | Metal GPU, AppKit window, animation, language, PostgreSQL, HTTP features |
 | [components.json](components.json) | 116 named components mapped to 32 primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
