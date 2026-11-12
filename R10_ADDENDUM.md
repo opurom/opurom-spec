@@ -62,9 +62,11 @@ stay green. No invented numbers. New dependencies must be pinned and justified.
 
 ## 6. MySQL caching_sha2_password (`opurom-db`)
 
-- Implement `caching_sha2_password` full authentication (scramble with SHA-256, full-auth path
-  with RSA public-key encryption of the password when requested) against the existing mock server,
-  plus `COM_STMT_PREPARE`/`COM_STMT_EXECUTE` framing with bounded parameter parsing.
+- Implement `caching_sha2_password` full authentication with the REAL MySQL 8.0 fast-auth
+  scramble `XOR(SHA256(p), SHA256(SHA256(SHA256(p)) || nonce))` and, for the full-auth path,
+  RSA-OAEP (or a documented UNSUPPORTED error if pure-Rust OAEP is not feasible), against the
+  existing mock server, plus `COM_STMT_PREPARE`/`COM_STMT_EXECUTE` framing with bounded parameter
+  parsing.
 - Honest scope: no real MySQL server tested, no TLS-wrapped full-auth key exchange over a real
   socket, no binary protocol result decoding, no connection pooling.
 
