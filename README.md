@@ -20,6 +20,7 @@ implement these documents; none of them may redefine them.
 | [R5_ADDENDUM.md](R5_ADDENDUM.md) | Metal GPU, AppKit window, animation, language, PostgreSQL, HTTP features |
 | [R6_ADDENDUM.md](R6_ADDENDUM.md) | GPU raster, browser hybrid, mobile artifacts, components, minify, signing |
 | [R7_ADDENDUM.md](R7_ADDENDUM.md) | TLS, live native window, Android library, PG server, WebSocket, measurement |
+| [R8_ADDENDUM.md](R8_ADDENDUM.md) | visual effects, browser matrix, Win32/X11, mTLS, MySQL, sync |
 | [components.json](components.json) | 116 named components mapped to 32 primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
