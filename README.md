@@ -15,6 +15,8 @@ implement these documents; none of them may redefine them.
 | [PLUGIN_PROTOCOL.md](PLUGIN_PROTOCOL.md) | Process-isolated plugin protocol v1 + local registry |
 | [LSP_SCOPE.md](LSP_SCOPE.md) | R2 language-server contract |
 | [FULLSTACK_SPEC.md](FULLSTACK_SPEC.md) | Single-file full-stack syntax, HTTP contract, backend rules |
+| [R3_ADDENDUM.md](R3_ADDENDUM.md) | Component catalog, a11y, optimizer, scheduler, debugger, terminal adapter |
+| [components.json](components.json) | 108 named components mapped to the 24 primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
 Version rule: `ir: "0.1"` in every IR file. A consumer MUST reject other versions with a
