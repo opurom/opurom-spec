@@ -18,6 +18,7 @@ implement these documents; none of them may redefine them.
 | [R3_ADDENDUM.md](R3_ADDENDUM.md) | Component catalog, a11y, optimizer, scheduler, debugger, terminal adapter |
 | [R4_ADDENDUM.md](R4_ADDENDUM.md) | async/await, modules, packages, SVG backend, profiling, hardening |
 | [R5_ADDENDUM.md](R5_ADDENDUM.md) | Metal GPU, AppKit window, animation, language, PostgreSQL, HTTP features |
+| [R6_ADDENDUM.md](R6_ADDENDUM.md) | GPU raster, browser hybrid, mobile artifacts, components, minify, signing |
 | [components.json](components.json) | 116 named components mapped to 32 primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
