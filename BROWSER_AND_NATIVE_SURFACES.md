@@ -66,4 +66,16 @@ stay green. All work must be verifiable on this host or explicitly SKIP with a c
   delivery times per client. N defaults to 2, capped at 8.
 - A client that misses the delta is a FAIL. Missing hub reports `n/a (reason)`; never fabricate.
 
+## 7. One source, pixel-consistent render
+
+The shared software renderer is the single pixel source for the native, canvas and mobile
+paths, so one IR file MUST produce byte-identical frames on every run and at every viewport
+density. `scripts/parity.mjs` in this repository checks that mechanically: it compiles one
+example source once, asserts the IR digest is unchanged across all steps, renders the same IR
+twice at one viewport and requires both frame digests to be equal, renders a second viewport
+class and requires its digest to differ, and lowers the same IR to the `web-dom` target to
+assert the emitted DOM carries a tag for every content-bearing IR node. The script reports
+`SKIP` and exits 0 when the shared toolchain or the DOM emitter is absent, and exits nonzero on
+any failed check. Run it with `npm run parity`; `npm test` covers the same proof.
+
 
