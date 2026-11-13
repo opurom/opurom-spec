@@ -4,7 +4,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdtempSync, rmSync } from 'node:fs';
+import { existsSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -50,11 +50,14 @@ test('the same IR renders byte-identical frames and the DOM mirrors the tree', (
 });
 
 test('a missing toolchain SKIPs with exit 0 instead of a fake pass', async () => {
+  // A self-contained source in an empty workspace: with no sibling toolchain
+  // the probe must report a concrete SKIP, not a pass or a failure. This does
+  // not depend on the example project being checked out.
   const empty = mkdtempSync(join(tmpdir(), 'opurom-parity-skip-'));
-  const chosen = selectSource(WORKSPACE);
+  const source = join(empty, 'app.opu');
+  writeFileSync(source, 'app Probe {\n  state n = 0\n  Column { Text("{n}") }\n}\n');
   try {
-    assert.ok(chosen && existsSync(chosen.path), 'a real source is required for this case');
-    const result = await runParity({ root: empty, source: chosen.path });
+    const result = await runParity({ root: empty, source });
     assert.equal(result.ok, true, JSON.stringify(result.checks));
     assert.equal(result.skipped, true, 'the probe must report the skip');
     const skip = result.checks.find((check) => String(check.detail).startsWith('SKIP'));
