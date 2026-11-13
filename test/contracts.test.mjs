@@ -72,18 +72,20 @@ const CORRUPTIONS = [
     writeFileSync(path, readFileSync(path, 'utf8').replace(/^\| `kuaishou` \|.+\n/m, ''));
   }],
   ['README.md index links resolve', dir => editText(dir, 'README.md', '(ARCHITECTURE.md)', '(MISSING.md)')],
+  ['fontScale contract is documented without changing golden IR', dir =>
+    editText(dir, 'LANG_SPEC.md', 'A local prop always wins.', 'A theme value always wins.')],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 12 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 13 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 12);
+  assert.equal(checks.length, 13);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {

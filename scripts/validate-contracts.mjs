@@ -8,7 +8,10 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 export const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
-const SOURCES = ['components.json', 'counter.opuir.json', 'IR_SCHEMA.md', 'LANG_SPEC.md', 'README.md'];
+const SOURCES = [
+  'components.json', 'counter.opuir.json', 'IR_SCHEMA.md', 'LANG_SPEC.md',
+  'COMPONENTS_AND_A11Y.md', 'README.md',
+];
 
 // The mini-program package section states its target count in words, so the
 // check maps the word instead of pinning a numeral.
@@ -181,6 +184,20 @@ export function validateContracts(root = REPO_ROOT) {
               `table lists ${miniProgramRows.length} mini-program targets, package section states ${statedCount}` :
               null,
     `${targets.length} targets, ${miniProgramRows.length} mini-program`);
+
+  // A declared `fontScale` is optional: the golden program has none, so the
+  // checked-in IR must stay free of the key while all three documents agree
+  // that the key exists and that a local prop takes precedence.
+  const schema = files['IR_SCHEMA.md'];
+  const language = files['LANG_SPEC.md'];
+  const docsAgree = /optional `fontScale`/.test(schema)
+    && /theme\.fontScale/.test(files['COMPONENTS_AND_A11Y.md'] ?? '')
+    && /A `theme \{ \.\.\. \}` block/.test(language)
+    && /local prop always wins/.test(language);
+  check('fontScale contract is documented without changing golden IR',
+    !docsAgree ? 'IR_SCHEMA, LANG_SPEC and COMPONENTS_AND_A11Y disagree on theme.fontScale' :
+      'fontScale' in (golden?.theme ?? {}) ? 'golden IR must omit theme.fontScale' : null,
+    'optional key documented, golden IR unchanged');
 
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])

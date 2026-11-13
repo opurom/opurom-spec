@@ -35,6 +35,9 @@ otherwise. No layer may require fields beyond this document.
 
 - `theme`: compiler-emitted defaults when the source omits theme syntax. `mode` ∈
   `light|dark|system`, `accent` is `#RRGGBB`, `radius` is a number in logical pixels.
+  The optional `fontScale` is a JSON number in 0.5..3.0 and sets a global text scale;
+  a node's own `props.fontScale` takes precedence over it. Programs without a
+  `fontScale` declaration emit no such key, so existing IR stays byte-identical.
 
 ## Golden pair
 

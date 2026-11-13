@@ -94,7 +94,13 @@ token and the expected alternative; no internal panics, no stack traces for user
 Node ids are assigned in pre-order starting at 0. Props keep source spelling as string keys,
 numeric literals stay JSON numbers where typed as such (see schema). State order is source order.
 Event handler `count += 1` lowers to `{"op":"add","target":"count","value":1}`;
-`-=` lowers to `add` with a negative value; `=` lowers to `set`; `toggle()` lowers to `toggle`.
+`-=` with a literal lowers to `add` with a negative value, and with a state name lowers
+to `{"op":"sub", ..., "valueFrom":"<name>"}`; `=` lowers to `set`; `toggle()` lowers to `toggle`.
+
+A `theme { ... }` block accepts `mode`, `accent`, `radius` and `fontScale`.
+`fontScale` is a number in 0.5..3.0 and lowers to the optional `theme.fontScale` IR key,
+which sets the text scale for every node that does not declare its own `fontScale` prop.
+A local prop always wins. The key is emitted only when the source declares it.
 
 ## Language levels
 

@@ -29,6 +29,7 @@ Optional props/theme keys, all deterministic:
 | Key | Type | Effect |
 | --- | --- | --- |
 | `fontScale` | number 0.5..3.0 | scales text size in integer logical pixels |
+| `theme.fontScale` | number 0.5..3.0 | global text scale for nodes without a local `fontScale` |
 | `highContrast` | bool | forces black/white text and stronger borders |
 | `label` | string | accessible name for non-text nodes |
 | `role` | string | `button`, `text`, `image`, `checkbox`, `slider`, `heading`, `none` |
