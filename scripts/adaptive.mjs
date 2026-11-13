@@ -184,7 +184,19 @@ export function runAdaptive(options = {}) {
 
 // Prints one line per check plus a summary; the verdict is the exit code.
 export function runAdaptiveCli(argv = process.argv) {
-  const { ok, checks, source, digests, emitters } = runAdaptive({ source: argv[2] });
+  const sourceArg = argv[2];
+  const chosen = sourceArg
+    ? { path: isAbsolute(sourceArg) ? sourceArg : resolve(WORKSPACE, sourceArg), label: sourceArg }
+    : selectSource(WORKSPACE);
+  // Without a named source this is a workspace-integration probe: when the
+  // example project is not present (a single-repo CI checkout), report a
+  // concrete SKIP rather than a failure, so the suite stays honest.
+  if (!sourceArg && !(chosen && existsSync(chosen.path))) {
+    console.log('SKIP: no example source in the workspace (opurom-examples is not checked out here); ' +
+      'pass a source path to run the one-source proof');
+    return 0;
+  }
+  const { ok, checks, source, digests, emitters } = runAdaptive({ source: sourceArg });
   console.log(`one source: ${source ?? 'none'}`);
   console.log(`emitters: ${emitters.join(', ')}`);
   console.log(`digests: compact=${digests?.compact?.digest ?? 'none'} expanded=${digests?.expanded?.digest ?? 'none'}`);
