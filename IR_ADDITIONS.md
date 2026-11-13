@@ -24,10 +24,12 @@ An action may use `"valueFrom": "<otherState>"` instead of `"value"`:
 ```json
 { "op": "set", "target": "a", "valueFrom": "b" }
 { "op": "add",  "target": "a", "valueFrom": "b" }
+{ "op": "sub",  "target": "a", "valueFrom": "b" }
 ```
 
 `valueFrom` reads the current value of that state at execution time. Both states must have the
-same declared type; `add` requires `int`. `toggle` never has a value field.
+same declared type; `add` and `sub` require `int`. `sub` subtracts the `value` or `valueFrom`
+from the target where `add` adds it. `toggle` never has a value field.
 
 ## 3. Conditional nodes
 

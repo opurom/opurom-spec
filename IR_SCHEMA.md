@@ -26,12 +26,12 @@ otherwise. No layer may require fields beyond this document.
 - `events` maps event name (`tap`, `input`) to exactly one action:
 
   ```json
-  { "op": "set" | "add" | "toggle", "target": "count", "value": 1 }
+  { "op": "set" | "add" | "sub" | "toggle", "target": "count", "value": 1 }
   ```
 
-  `toggle` has no `value`. `add` requires numeric `value` and `int` target. `set` requires the
-  value type to match the target's declared type. `input` actions are `set` with `value` omitted:
-  the runtime supplies the input string.
+  `toggle` has no `value`. `add` and `sub` require numeric `value` and `int` target; `sub`
+  subtracts instead of adding. `set` requires the value type to match the target's declared
+  type. `input` actions are `set` with `value` omitted: the runtime supplies the input string.
 
 - `theme`: compiler-emitted defaults when the source omits theme syntax. `mode` ∈
   `light|dark|system`, `accent` is `#RRGGBB`, `radius` is a number in logical pixels.
