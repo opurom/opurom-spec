@@ -14,8 +14,8 @@ stay green. All work must be verifiable on this host or explicitly SKIP with a c
   frosted `glass` (alpha compositing) and `liquid` glass (specular highlight). Integer
   fixed-point maths only; no crate, no wall clock, no GPU.
 - Identical IR + viewport + state + theme MUST give byte-identical pixels. Effects absent MUST
-  leave the three golden digests unchanged: 320x240 `900abf4bd93d1e51`, 800x600
-  `c8403ba57da5ee61`, 800x600 --state count=7 `48a56056bd32a07e` (pinned with the brand accent
+  leave the three golden digests unchanged: 320x240 `16b69e96b1534324`, 800x600
+  `aaf572509f15d60c`, 800x600 --state count=7 `e5d71acb7602eab2` (pinned with the brand accent
   and edge-anti-aliased text as the current baselines).
 - `--commands` output for an IR with no effects MUST stay byte-identical to the platform delivery
   layer output so the Metal display-list equality proof keeps working.

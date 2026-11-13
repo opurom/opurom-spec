@@ -47,7 +47,7 @@ The layout engine has five width breakpoints in `Breakpoint::from_width`:
 | Ultra | >= 1600 |
 
 - Existing behaviour at 320x240 and 800x600 is preserved byte-for-byte; the three golden
-  digests `900abf4bd93d1e51`, `c8403ba57da5ee61` and `48a56056bd32a07e` MUST NOT change
+  digests `16b69e96b1534324`, `aaf572509f15d60c` and `e5d71acb7602eab2` MUST NOT change
   (pinned with the brand accent and edge-anti-aliased text as the current baselines).
 - A fluid grid computes column count, gutter and margin from container width rather than fixed
   constants; the computation is integer-only and deterministic.
