@@ -291,6 +291,37 @@ export function validateContracts(root = REPO_ROOT) {
   check('responsive layout and project contract is documented', responsiveContract,
     'LANG_SPEC.md quotes the five shipped width tiers and the import syntax');
 
+  // The built-in icon names are a compile-time contract shared with the
+  // renderer's icon module, so the published spec must list every name and
+  // state the validation. A dropped name or a missing validation is a regression.
+  const EXPECTED_ICONS = [
+    'home', 'settings', 'star', 'search', 'plus', 'minus', 'check', 'close',
+    'arrow_back', 'arrow_forward', 'refresh', 'lock', 'user', 'bell', 'heart',
+    'info', 'warning', 'chevron_right', 'chevron_down', 'download', 'upload',
+    'play', 'pause', 'edit', 'delete', 'eye', 'calendar', 'location', 'folder',
+    'mail', 'chat',
+  ];
+  const iconContract = (() => {
+    const text = files['LANG_SPEC.md'];
+    // Scope the assertions to the icon section so a stray "compile time"
+    // elsewhere cannot satisfy the check by accident.
+    const section = text.split('## Icon names')[1]?.split('\n## ')[0] ?? '';
+    if (section.length === 0) return 'LANG_SPEC.md has no icon names section';
+    for (const name of EXPECTED_ICONS) {
+      if (!section.includes(`\`${name}\``)) return `LANG_SPEC.md does not list the icon \`${name}\``;
+    }
+    if (!/has 31 names/.test(section)) return 'LANG_SPEC.md does not state the icon set has 31 names';
+    if (!/compile time/.test(section)) return 'LANG_SPEC.md does not state icon validation happens at compile time';
+    if (!/unknown name/.test(section)) return 'LANG_SPEC.md does not state the unknown-name diagnostic';
+    if (!/requires a `name` prop/.test(section)) return 'LANG_SPEC.md does not state the Icon name prop is required';
+    if (!/IconButton/.test(section) || !/SVGIcon/.test(section) || !/MaterialIcon/.test(section)) {
+      return 'LANG_SPEC.md does not state the icon-lowering kinds';
+    }
+    return null;
+  })();
+  check('icon name contract is documented and complete', iconContract,
+    'LANG_SPEC.md lists all 31 built-in icon names and the compile-time validation');
+
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])
     .filter(target => !/^(https?:|mailto:|#)/.test(target))

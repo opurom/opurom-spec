@@ -144,6 +144,21 @@ state, model, api, theme and imports; the compiler merges those declarations int
 before lowering. Viewport width is a render-time input: the same IR reflows at every tier and
 lowers to each emitter without changes to the source tree.
 
+## Icon names
+
+`Icon` requires a `name` prop. The compiler checks a literal `name` against the built-in icon
+set at compile time and rejects an unknown name with a diagnostic that names the node and the
+valid set; the renderer's icon module mirrors the same set so the compiler and the renderer agree
+on every accepted name. The set has 31 names: `home`, `settings`, `star`, `search`, `plus`,
+`minus`, `check`, `close`, `arrow_back`, `arrow_forward`, `refresh`, `lock`, `user`, `bell`,
+`heart`, `info`, `warning`, `chevron_right`, `chevron_down`, `download`, `upload`, `play`,
+`pause`, `edit`, `delete`, `eye`, `calendar`, `location`, `folder`, `mail`, `chat`.
+
+`IconButton` lowers to `Button` and carries no icon name. `SVGIcon` and `MaterialIcon` lower to
+`Icon` and are validated against the same set. `color` and `border` are generic props accepted on
+every node; `size` is not a prop of `Icon`. A name that interpolates state is resolved by the
+emitter at view time and is passed through unchanged.
+
 ## Language levels
 
 `v0.1` defines the core declarative syntax: app, state, component tree, events and actions.

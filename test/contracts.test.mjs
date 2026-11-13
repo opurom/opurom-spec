@@ -87,18 +87,25 @@ const CORRUPTIONS = [
     editText(dir, 'LANG_SPEC.md', '`< 600`', '`< 601`')],
   ['responsive layout and project contract is documented', dir =>
     editText(dir, 'LANG_SPEC.md', 'import "models/todo.opu"', 'import models/todo.opu')],
+  ['icon name contract is documented and complete', dir =>
+    editText(dir, 'LANG_SPEC.md', 'The set has 31 names', 'The set has 30 names')],
+  ['icon name contract is documented and complete', dir =>
+    editText(dir, 'LANG_SPEC.md', 'at compile time and rejects an unknown name',
+      'at view time and rejects an unknown name')],
+  ['icon name contract is documented and complete', dir =>
+    editText(dir, 'LANG_SPEC.md', '`chat`', '`chaat`')],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 16 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 17 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 16);
+  assert.equal(checks.length, 17);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {
