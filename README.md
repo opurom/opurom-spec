@@ -23,8 +23,26 @@ implement these documents; none of them may redefine them.
 | [R8_ADDENDUM.md](R8_ADDENDUM.md) | visual effects, browser matrix, Win32/X11, mTLS, MySQL, sync |
 | [R9_ADDENDUM.md](R9_ADDENDUM.md) | GPU effects, HTTP/2, IntelliJ plugin, marketplace, scheduler, DAP |
 | [R10_ADDENDUM.md](R10_ADDENDUM.md) | 100+ primitives, GPU presentation, tree shaking, plugins, OCSP/CRL, caching_sha2 |
-| [components.json](components.json) | 116 named components mapped to 32 primitives |
+| [components.json](components.json) | 216 named components mapped to 100 distinct primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
 Version rule: `ir: "0.1"` in every IR file. A consumer MUST reject other versions with a
 clear diagnostic. Breaking changes bump the version and are a new round's work, not a quiet edit.
+
+## R10 component catalog (R10_ADDENDUM section 1)
+
+[components.json](components.json) is the single source of truth for the
+component catalog. R10 extends it from 116 names / 32 primitives to **216 named
+components mapped onto 100 DISTINCT primitive kinds** (32 R1-R9 + 68 R10). It is
+vendored byte-for-byte by `opurom-lang/src/catalog.json` (enforced by CI), and
+`opuromc components` prints `216 components`.
+
+Every new primitive kind has a real, deterministic software drawing, a
+documented prop schema and a default a11y role in `opurom-render`. The three V0.1
+golden digests and plain counter/profile/todo IR are unchanged.
+
+Honest scope: one deterministic software drawing per kind; no real font shaping,
+no image decoding, no platform-native widgets and no frame-rate / 120fps claim.
+The other six R10 workstreams (GPU presentation, tree shaking, native plugins,
+certificate status, MySQL caching_sha2_password) are specified in
+[R10_ADDENDUM.md](R10_ADDENDUM.md) and implemented in their own repositories.
