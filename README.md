@@ -28,6 +28,7 @@ implement these documents; none of them may redefine them.
 | [ANIMATION_AND_PHYSICS.md](ANIMATION_AND_PHYSICS.md) | integer-only inertia curve, restitution, contact and determinism contract |
 | [components.json](components.json) | 216 named components mapped to 100 distinct primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
+| [scripts/validate.mjs](scripts/validate.mjs) | Contract validator: catalog, golden IR, emitter table, index links |
 
 Version rule: `ir: "0.1"` in every IR file. A consumer MUST reject other versions with a
 clear diagnostic. Breaking changes bump the version and are a new round's work, not a quiet edit.
@@ -47,3 +48,13 @@ golden digests and plain counter/profile/todo IR are unchanged.
 The other six component-library workstreams (GPU presentation, tree shaking, native plugins,
 certificate status, MySQL caching_sha2_password) are specified in
 [COMPONENT_LIBRARY_HARDENING.md](COMPONENT_LIBRARY_HARDENING.md) and implemented in their own repositories.
+
+## Contract validator
+
+[scripts/validate.mjs](scripts/validate.mjs) checks the published contract files against each
+other: `components.json` counts, entry shape and name uniqueness; the golden IR's version, node
+ids, children, node kinds and event ops against [IR_SCHEMA.md](IR_SCHEMA.md) and
+[LANG_SPEC.md](LANG_SPEC.md); the target emitter table against the mini-program package section;
+and the relative links in this index. `node scripts/validate.mjs` exits 0 with a summary line or
+1 with a diagnostic for each violation; `npm test` runs the checks and a corruption test for
+each of them.
