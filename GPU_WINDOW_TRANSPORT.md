@@ -67,6 +67,8 @@ A genuine GPU compute path on macOS, not a stub:
   integer literals and state names are allowed here.
 - List-valued state: `state items = ["a", "b"]` and `for (item in items) { Text("{item}") }`
   unrolls at compile time against the initializer; list contents are fixed at compile times.
+  A list element is read by position with `{items[i]}`, where the subscript is an integer literal
+  or a `for` count loop variable, and resolves to its literal string at compile time.
 - Plain programs keep byte-identical IR. All existing tests and emitters stay green.
 
 ## 5. PostgreSQL wire protocol client (`opurom-db`)

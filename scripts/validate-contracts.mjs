@@ -11,6 +11,7 @@ export const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCES = [
   'components.json', 'counter.opuir.json', 'IR_SCHEMA.md', 'LANG_SPEC.md',
   'COMPONENTS_AND_A11Y.md', 'IR_ADDITIONS.md', 'README.md',
+  'LANGUAGE_ADDITIONS.md', 'GPU_WINDOW_TRANSPORT.md',
 ];
 
 // The mini-program package section states its target count in words, so the
@@ -233,6 +234,28 @@ export function validateContracts(root = REPO_ROOT) {
   })();
   check('particle field bounds are documented consistently', particleDocsAgree,
     'IR_ADDITIONS.md and LANG_SPEC.md state the shipped particle bounds');
+
+  // List indexing resolves at compile time, so every document that states the
+  // read syntax must agree on the three parts the compiler enforces: the
+  // `{items[i]}` form, an integer subscript (literal or `for` count variable),
+  // and a compile-time resolution that never reaches IR.
+  const listIndexDocs = [
+    'LANGUAGE_ADDITIONS.md', 'LANG_SPEC.md', 'GPU_WINDOW_TRANSPORT.md',
+  ];
+  const listIndexAgree = (() => {
+    for (const name of listIndexDocs) {
+      const text = files[name];
+      if (!text.includes('{items[i]}')) return `${name} does not state the \`{items[i]}\` read form`;
+      if (!/integer literal/i.test(text)) return `${name} does not state that the subscript is an integer literal`;
+      if (!/'for' count loop variable|`for` count loop variable/.test(text) && !/count loop variable/i.test(text)) {
+        return `${name} does not state that a \`for\` count loop variable is a valid subscript`;
+      }
+      if (!/compile[- ]time/i.test(text)) return `${name} does not state that list reads resolve at compile time`;
+    }
+    return null;
+  })();
+  check('list indexing contract is documented consistently', listIndexAgree,
+    'LANGUAGE_ADDITIONS.md, LANG_SPEC.md and GPU_WINDOW_TRANSPORT.md state the shipped list read');
 
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])

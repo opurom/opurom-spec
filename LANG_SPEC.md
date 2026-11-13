@@ -118,5 +118,7 @@ source declares it.
 
 `v0.1` defines the core declarative syntax: app, state, component tree, events and actions.
 Additive language levels extend it with `async`/`await`, module imports, `if`/`for` in UI,
-theme tokens, custom components, computed and list-valued state, and animations. A compiler
+theme tokens, custom components, computed and list-valued state, and animations; a list-valued
+state is read by position with `{items[i]}`, where the subscript is an integer literal or a
+`for` count loop variable that resolves at compile time. A compiler
 targeting a later level must still compile every `v0.1` program to byte-identical IR.

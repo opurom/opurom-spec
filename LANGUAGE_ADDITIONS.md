@@ -43,6 +43,16 @@ substituting `{i}` in string literals with the decimal index, and emits consecut
 `for` never appears in IR. Nested `for` is allowed; the innermost `{i}` refers to the innermost
 loop. Count > 64 is a diagnostic.
 
+The iterable may also be a list-valued state: `for (item in items) { Text("{item}") }` binds
+`item` to each element in initializer order. A list state is stored with `type` `"list"` and its
+`init` array; its contents are fixed at compile time, so iteration and every element read unroll
+into literal nodes and never reach IR.
+
+A list element is read by position with `{items[i]}` inside a `Text` value. The subscript is an
+integer literal in `0..len-1` or a `for` count loop variable, and the element resolves to its
+literal string at compile time. A subscript that names a non-list state, that is not an integer,
+or that is out of range is a diagnostic in the standard `path:line:col: error:` + `  help:` form.
+
 ## 4. Theme block
 
 ```opu

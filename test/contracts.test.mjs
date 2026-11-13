@@ -78,18 +78,23 @@ const CORRUPTIONS = [
     editText(dir, 'IR_ADDITIONS.md', '`count` | 0..512 | required', '`count` | 0..513 | required')],
   ['particle field bounds are documented consistently', dir =>
     editText(dir, 'LANG_SPEC.md', 'an integer 0..512', 'an integer 0..513')],
+  ['list indexing contract is documented consistently', dir =>
+    editText(dir, 'LANGUAGE_ADDITIONS.md', 'A list element is read by position with `{items[i]}`',
+      'A list element is read by position')],
+  ['list indexing contract is documented consistently', dir =>
+    editText(dir, 'GPU_WINDOW_TRANSPORT.md', '`{items[i]}`', '`{items}`')],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 14 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 15 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 14);
+  assert.equal(checks.length, 15);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {
