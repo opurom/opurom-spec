@@ -64,12 +64,20 @@ Emitters generate **code**, not an IR interpreter. Supported in v0.1:
 | --- | --- |
 | `native` | `main.rs` + `Cargo.toml` (std only; builds with `cargo build --release`) |
 | `web` | `index.html`, `app.js`, `ir.json` (Canvas 2D renderer, no runtime dependency) |
-| `wechat` | `app.json`, `index.wxml`, `index.wxss`, `index.js` |
-| `alipay` | `app.json`, `index.axml`, `index.acss`, `index.js` |
-| `qq` | `app.json`, `index.qml`, `index.qss`, `index.js` |
-| `douyin` | `app.json`, `index.ttml`, `index.ttss`, `index.js` |
-| `baidu` | `app.json`, `index.swan`, `index.css`, `index.js` |
-| `kuaishou` | `app.json`, `index.ksml`, `index.css`, `index.js` |
+| `wechat` | `app.json`, `app.js`, `pages/index/index.wxml`, `pages/index/index.wxss`, `pages/index/index.js` |
+| `alipay` | `app.json`, `app.js`, `pages/index/index.axml`, `pages/index/index.acss`, `pages/index/index.js` |
+| `qq` | `app.json`, `app.js`, `pages/index/index.qml`, `pages/index/index.qss`, `pages/index/index.js` |
+| `douyin` | `app.json`, `app.js`, `pages/index/index.ttml`, `pages/index/index.ttss`, `pages/index/index.js` |
+| `baidu` | `app.json`, `app.js`, `pages/index/index.swan`, `pages/index/index.css`, `pages/index/index.js` |
+| `kuaishou` | `app.json`, `app.js`, `pages/index/index.ksml`, `pages/index/index.css`, `pages/index/index.js` |
+
+### Mini-program package
+
+For all six mini-program targets, a root `app.js` is required and MUST call
+`App({})`. `app.json` `pages` entries are package-root-relative paths without file
+extensions. The framework resolves each path to the page `.js`, markup, style,
+and optional `.json` files. When `entryPagePath` is absent, the first `pages`
+entry is the entry page.
 
 Mini-program emitters share one lowering pass with a per-platform table of file extensions,
 template directives (`wx:for` / `a:for` / `s-for` / `tt:for` / `ks:for`) and binding syntax.
