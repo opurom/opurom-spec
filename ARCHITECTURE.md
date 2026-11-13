@@ -77,3 +77,19 @@ Benchmarks (fps, cold start, binary size) get real numbers only when there is a 
 backend and a real device matrix. `opurom bench`
 reports measured elapsed times and artifact sizes for the operations that actually run here.
 
+## One source, two viewports, two targets
+
+`opuromc` compiles one `.opu` file into one IR. That IR is the only input to viewport rendering
+and to target lowering: `opurom-render <ir.json> <width> <height>` selects a width breakpoint
+(compact below 600, then medium, expanded, wide and ultra), and
+`opuromc target <ir.json> --target <name> -o <dir>` lowers the same file to each of the nine
+emitters. No source or feature-code change accompanies a viewport or target change.
+
+`scripts/adaptive.mjs` verifies this mechanically. It compiles one example source once, renders
+that IR at 360x740 and 1440x900, and requires the two frame digests to differ; differing digests
+at distinct breakpoints demonstrate layout reflow rather than scaling. It then lowers the same IR
+to `web` and `native` and requires every artifact declared by `opuromc targets` to be present
+and non-empty. The IR digest is compared before and after these steps, so the run also checks
+that the single IR was not rewritten between consumers. Run it with `npm run adaptive` in
+`opurom-spec`; `npm test` includes the same proof.
+
