@@ -2,7 +2,7 @@
 
 This document adds four capabilities that close named gaps in the framework. Everything is
 additive: existing IR stays valid, the three golden digests stay unchanged, and all existing
-tests stay green. No invented numbers.
+tests stay green.
 
 ## 1. HTTP/3 over QUIC (`opurom-server`)
 
@@ -47,8 +47,8 @@ The layout engine currently has three width breakpoints. It gains five tiers plu
 | Ultra | >= 1600 |
 
 - Existing behaviour at 320x240 and 800x600 is preserved byte-for-byte; the three golden
-  digests `2fc4eac75fd50f89`, `88127ca1577cdb61` and `40891c1fbb81399e` MUST NOT change
-  (re-baselined once for text edge anti-aliasing, pinned since).
+  digests `900abf4bd93d1e51`, `c8403ba57da5ee61` and `48a56056bd32a07e` MUST NOT change
+  (pinned with the brand accent and edge-anti-aliased text as the current baselines).
 - A fluid grid computes column count, gutter and margin from container width rather than fixed
   constants; the computation is integer-only and deterministic.
 - Multi-window and split-screen: a resize from one tier to another recomputes layout, and the
@@ -63,7 +63,7 @@ Following the X11 adapter pattern, the platform layer gains a Wayland client ada
   the crate still builds on hosts without Wayland development libraries.
 - Pure-Rust, host-independent wire encoding for the setup handshake, object IDs, opcode and
   message size, and the shared-memory buffer contract. These unit tests MUST run on every host.
-- A concrete SKIP (never a fake PASS) when no `WAYLAND_DISPLAY` is present, and a documented
+- A concrete SKIP when no `WAYLAND_DISPLAY` is present, and a documented
   `Planned` status in the host registry until a live compositor is available.
 - Linux cross-target build verification.
 

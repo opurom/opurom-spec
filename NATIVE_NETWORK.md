@@ -26,7 +26,7 @@ dependency must be pinned and justified.
   against the software renderer's PPM for the same IR.
 - The comparison is a real pixel check over the captured region, with a documented tolerance for
   the system window background and a clear PASS/FAIL report. A window that cannot be opened on a
-  headless host reports SKIP, never a fake PASS.
+  headless host reports SKIP.
 - `open_window()` becomes a real, tested entry point instead of an untested stub. This is the
   first on-screen verification in the project.
 

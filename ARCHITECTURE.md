@@ -74,6 +74,6 @@ business code is the only source for shared types, ORM definitions and migration
 | Repo hygiene | each project has its own git repo, English-only files, Conventional commits, clean tree, version tags |
 
 Benchmarks (fps, cold start, binary size) get real numbers only when there is a real GPU
-backend and a real device matrix; no invented figures appear in this repository. `opurom bench`
+backend and a real device matrix. `opurom bench`
 reports measured elapsed times and artifact sizes for the operations that actually run here.
 

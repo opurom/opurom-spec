@@ -55,7 +55,7 @@ keys keep the compiler defaults. Unknown keys are a diagnostic.
 ## 5. Atomic style shortcuts and visual effects
 
 ```opu
-Card(p: 16, m: 8, bg: "#101828", rounded: 12, shadow: 2, gradient: "#4F46E5,#101828", glass: true, opacity: 0.95, animate: spring) {
+Card(p: 16, m: 8, bg: "#101828", rounded: 12, shadow: 2, gradient: "#097FEB,#101828", glass: true, opacity: 0.95, animate: spring) {
   Text("Hi", color: "#FFFFFF", size: 20)
 }
 ```

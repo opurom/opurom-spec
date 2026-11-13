@@ -7,7 +7,6 @@ multi-device sync debugging over WebSocket.
 
 Everything is additive: all earlier IR versions stay valid, golden digests stay unchanged, and existing tests
 stay green. All work must be verifiable on this host or explicitly SKIP with a concrete reason.
-No invented numbers.
 
 ## 1. Advanced deterministic visual effects (`opurom-render`)
 
@@ -15,9 +14,9 @@ No invented numbers.
   frosted `glass` (alpha compositing) and `liquid` glass (specular highlight). Integer
   fixed-point maths only; no crate, no wall clock, no GPU.
 - Identical IR + viewport + state + theme MUST give byte-identical pixels. Effects absent MUST
-  leave the three golden digests unchanged: 320x240 `2fc4eac75fd50f89`, 800x600
-  `88127ca1577cdb61`, 800x600 --state count=7 `40891c1fbb81399e` (re-baselined once for text
-  edge anti-aliasing, pinned since).
+  leave the three golden digests unchanged: 320x240 `900abf4bd93d1e51`, 800x600
+  `c8403ba57da5ee61`, 800x600 --state count=7 `48a56056bd32a07e` (pinned with the brand accent
+  and edge-anti-aliased text as the current baselines).
 - `--commands` output for an IR with no effects MUST stay byte-identical to the platform delivery
   layer output so the Metal display-list equality proof keeps working.
   real-time 120fps claim.

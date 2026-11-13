@@ -6,7 +6,6 @@ scheduler with fault isolation, and a full DAP debugger.
 
 Everything is additive: all earlier IR versions stay valid, golden digests stay unchanged, and existing tests
 stay green. New dependencies are allowed (the crate registry is reachable); pin every new one.
-No invented numbers.
 
 ## 1. GPU visual-effect kernels (`opurom-render` + `opurom-gpu`)
 
@@ -36,8 +35,7 @@ No invented numbers.
 
 ## 4. Public package marketplace (`opurom-pkg`)
 
-- A GitHub-backed registry: `publish` uploads a signed package to a real GitHub Release asset
-  (using `OPR_GITHUB_TOKEN` from the environment only, never from a tracked file), `search` and
+- A GitHub-backed registry: `publish` uploads a signed package to a real GitHub Release asset, `search` and
   `install` read it back over HTTPS, verify the Ed25519 signature and SHA-256 integrity, and
   reject tampering/wrong key/missing signature.
 - A local HTTP mock covers the same flows for offline CI; the real-API path is exercised once

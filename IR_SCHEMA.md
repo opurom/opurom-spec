@@ -12,7 +12,7 @@ otherwise. No layer may require fields beyond this document.
   "app": "Counter",
   "state": [ { "name": "count", "type": "int", "init": 0 } ],
   "tree": { "id": 0, "kind": "Column", "props": {...}, "children": [...], "events": {...} },
-  "theme": { "mode": "system", "accent": "#4F46E5", "radius": 12 }
+  "theme": { "mode": "system", "accent": "#097FEB", "radius": 12 }
 }
 ```
 

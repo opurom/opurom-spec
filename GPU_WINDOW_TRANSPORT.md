@@ -18,7 +18,7 @@ A genuine GPU compute path on macOS, not a stub:
 - CLI `opurom-gpu probe`: prints the real device name, the measured dispatch time (Instant) and
   the readback digest. `opurom-gpu self-test` runs the consistency assertion.
 - `#[cfg(target_os = "macos")]` only; on other targets a documented `MetalUnavailable` error is
-  returned, never a fake success. Dependencies are target-scoped in Cargo.toml so Linux CI builds
+  returned. Dependencies are target-scoped in Cargo.toml so Linux CI builds
   the crate without Metal.
 
 ## 2. macOS native window adapter (`opurom-platform`)

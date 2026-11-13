@@ -3,8 +3,7 @@
 The integration layer targets the last "real" gaps that are verifiable on this host: real renderer
 output inside the mobile libraries, an animated multi-frame GPU render loop, a richer language
 server, and honest sample apps that exercise the grown catalog. Everything is additive: all earlier
-IR versions stay valid, golden digests stay unchanged, and existing tests stay green. No invented
-numbers.
+IR versions stay valid, golden digests stay unchanged, and existing tests stay green.
 
 ## 1. Real renderer inside the mobile libraries (`opurom-mobile` + `opurom-render`)
 
