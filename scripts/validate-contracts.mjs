@@ -10,7 +10,7 @@ export const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 const SOURCES = [
   'components.json', 'counter.opuir.json', 'IR_SCHEMA.md', 'LANG_SPEC.md',
-  'COMPONENTS_AND_A11Y.md', 'README.md',
+  'COMPONENTS_AND_A11Y.md', 'IR_ADDITIONS.md', 'README.md',
 ];
 
 // The mini-program package section states its target count in words, so the
@@ -198,6 +198,41 @@ export function validateContracts(root = REPO_ROOT) {
     !docsAgree ? 'IR_SCHEMA, LANG_SPEC and COMPONENTS_AND_A11Y disagree on theme.fontScale' :
       'fontScale' in (golden?.theme ?? {}) ? 'golden IR must omit theme.fontScale' : null,
     'optional key documented, golden IR unchanged');
+
+  // The renderer enforces the particle field bounds at parse time, so every
+  // spec document that states them must agree: the IR_ADDITIONS field table
+  // carries the canonical triples and LANG_SPEC.md must restate each range.
+  const EXPECTED_PARTICLE_FIELDS = [
+    ['count', '0..512', 'required'],
+    ['seed', '0..4294967295', '1'],
+    ['radius', '0..32', '2'],
+    ['alpha', '0..1024', '1024'],
+  ];
+  const particleTable = table(files['IR_ADDITIONS.md'], '## 5. Particle field');
+  const particleDocsAgree = (() => {
+    if (!particleTable) return 'IR_ADDITIONS.md declares no particle field table';
+    const rows = particleTable.rows
+      .map(row => [backticked(row[0]), row[1], row[2]].filter(Boolean))
+      .map(row => ({ field: row[0], range: row[1], default: row[2] }));
+    for (const [field, range, defaultValue] of EXPECTED_PARTICLE_FIELDS) {
+      const row = rows.find(entry => entry.field === field);
+      if (!row) return `IR_ADDITIONS.md particle field table has no \`${field}\` row`;
+      if (row.range !== range) return `particles.${field} is stated as ${JSON.stringify(row.range)}, the shipped bound is ${JSON.stringify(range)}`;
+      if (defaultValue === 'required') {
+        if (row.default !== 'required') return `particles.${field} must be required, the table says ${JSON.stringify(row.default)}`;
+      } else if (row.default !== defaultValue) {
+        return `particles.${field} default is ${JSON.stringify(row.default)}, the shipped default is ${JSON.stringify(defaultValue)}`;
+      }
+    }
+    for (const [field, range] of EXPECTED_PARTICLE_FIELDS) {
+      if (!files['LANG_SPEC.md'].includes(range)) {
+        return `LANG_SPEC.md does not state the particles.${field} bound ${JSON.stringify(range)}`;
+      }
+    }
+    return null;
+  })();
+  check('particle field bounds are documented consistently', particleDocsAgree,
+    'IR_ADDITIONS.md and LANG_SPEC.md state the shipped particle bounds');
 
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])

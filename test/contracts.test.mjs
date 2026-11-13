@@ -74,18 +74,22 @@ const CORRUPTIONS = [
   ['README.md index links resolve', dir => editText(dir, 'README.md', '(ARCHITECTURE.md)', '(MISSING.md)')],
   ['fontScale contract is documented without changing golden IR', dir =>
     editText(dir, 'LANG_SPEC.md', 'A local prop always wins.', 'A theme value always wins.')],
+  ['particle field bounds are documented consistently', dir =>
+    editText(dir, 'IR_ADDITIONS.md', '`count` | 0..512 | required', '`count` | 0..513 | required')],
+  ['particle field bounds are documented consistently', dir =>
+    editText(dir, 'LANG_SPEC.md', 'an integer 0..512', 'an integer 0..513')],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 13 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 14 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 13);
+  assert.equal(checks.length, 14);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {

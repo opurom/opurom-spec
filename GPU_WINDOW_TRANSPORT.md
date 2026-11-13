@@ -37,10 +37,25 @@ A genuine GPU compute path on macOS, not a stub:
 
 - Page transitions (`slide`, `fade`, `scale`) and gesture-linked animation driven by integer
   fixed-point progress 0..1024, deterministic at a given tick.
-- A particle system with a fixed seed (no rand crate, no wall clock): N particles, integer
-  positions/velocities, bounded lifetime; identical tick sequences give identical digests.
-- Automatic degradation: given a measured frame budget in ms, the animator reduces particle count
-  and disables expensive effects; the chosen quality level is deterministic for the same budget.
+- A particle field (`particles` prop): a fixed-seed, fixed-count integer scatter of dots over a
+  node rectangle. `count` is required; `seed` (default 1), `radius` (default 2) and `alpha`
+  (default 1024, fixed point with 1024 fully opaque) are bounded integers; `color` is an optional
+  `#RRGGBB` that falls back to the node accent. Dot `i` is placed at the pure integer hash of
+  `(seed, i)` reduced modulo the rect — no clock, no rand, no global state — so the same command
+  paints the same bytes on every host.
+- Particle rendering is a spatial primitive, not a simulation: dots are static, every dot position
+  is a pure function of the seed and the dot index, and nothing advances over time. The renderer
+  records one display-list `particles` command per node; `opurom-gpu` parses the same command
+  (`KIND_PARTICLES`) with the same bounds and its MSL kernel evaluates the identical unsigned
+  integer hash and index-order dot blending per pixel.
+- A moving particle simulation exists as a caller-owned library API: `ParticleSystem` advances
+  integer positions, velocities and bounded lifetimes by explicit `step()` / `step_mode()` calls,
+  with `Wrap` (default) and `Bounce` modes and deterministic, formula-verified contact and
+  restitution arithmetic. No tick loop or wall clock drives it; see [ANIMATION_AND_PHYSICS.md](ANIMATION_AND_PHYSICS.md).
+- Quality tiers are caller-applied, not automatic: `choose_quality(budget_ms, count, effects)`
+  maps a measured frame budget to a deterministic particle count and effect policy (`>=16 ms`
+  full, `>=8 ms` three quarters, `>=4 ms` half, otherwise one quarter, effects disabled below the
+  full tier). Callers decide whether and when to use it; nothing measures a budget on its own.
 - All V0.1 golden digests MUST NOT change. No fps claims; `profile` remains the measured source.
 
 ## 4. Language expressiveness (`opurom-lang`)

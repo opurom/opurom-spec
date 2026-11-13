@@ -65,14 +65,32 @@ Shortcuts `p/m/bg/rounded` lower to `padding/margin/color/radius`. `shadow`, `gr
 `ease`, `none`. Colors must be `#RRGGBB`; opacity must be 0..1; `shadow` must be 0..8. Validation
 errors use the standard `path:line:col: error:` + `  help:` form.
 
-## 6. New node kinds
+## 6. Particle field
+
+```opu
+Container(width: 240, height: 120, particles: "count=64,seed=7,radius=2,alpha=512,color=#101828") {
+  Text("Field")
+}
+```
+
+`particles` is accepted on every node kind. It is a comma-separated `name=value` field list in one
+string that lowers to the bounded `props.particles` object of [IR_ADDITIONS.md](IR_ADDITIONS.md) §5:
+`count` is required and must be an integer 0..512, `seed` an integer 0..4294967295 (default 1),
+`radius` an integer 0..32 (default 2), `alpha` an integer 0..1024 (default 1024, fixed point with
+1024 fully opaque), and `color` an optional `#RRGGBB`. Omitted fields keep their defaults and
+`color` is emitted only when declared. Dots are a static spatial scatter with no motion over time.
+Validation errors use the standard `path:line:col: error:` + `  help:` form: a value that is not a
+string, a field without `=`, a duplicate field, an unknown field, a non-integer value, a value
+outside its range and a malformed `color` each produce exit 1 with a `help:` line, no panic.
+
+## 7. New node kinds
 
 The 16 kinds from IR_ADDITIONS §6 become valid `KIND`s with the props listed there. `bind` on
 `Switch/Checkbox/Radio/Slider/Tabs` is type-checked against the state and lowers to the event
 action specified in that table. Unknown kinds remain an error (with a suggestion listing the 24
 valid kinds).
 
-## 7. Diagnostics additions
+## 8. Diagnostics additions
 
 New error classes needing a negative fixture each: `else` unsupported, `for` count > 64, bad
 color, opacity out of range, shadow out of range, `valueFrom` type mismatch, `when` on a non-bool

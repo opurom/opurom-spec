@@ -57,13 +57,35 @@ numbers; `true`/`false` stay JSON booleans; colors are `#RRGGBB` strings.
 
 Unknown props remain legal and are ignored by consumers that do not support them.
 
-## 5. Theme tokens
+## 5. Particle field
+
+Any node MAY carry an optional `props.particles` object. It is a static spatial primitive, not a
+simulation: dots do not move, and nothing advances over time.
+
+| Field | Range | Default | Meaning |
+| --- | --- | --- | --- |
+| `count` | 0..512 | required | number of dots |
+| `seed` | 0..4294967295 | 1 | integer hash seed |
+| `radius` | 0..32 | 2 | dot radius in integer pixels |
+| `alpha` | 0..1024 | 1024 | fixed-point dot alpha, 1024 fully opaque |
+| `color` | `#RRGGBB` | node accent | optional dot color |
+
+Dot `i` is placed at the pure integer hash of `(seed, i)` reduced modulo the node rectangle, so the
+same object paints the same bytes on every host. `count` is required; the other fields keep their
+defaults when absent and `color` is emitted only when declared. The renderer records one display-list
+command `{"kind":"particles","rect":...,"clip":...,"count":...,"seed":...,"radius":...,"color":...}`
+with the same bounds, and the GPU backend parses and evaluates that command with identical unsigned
+integer arithmetic. The accessibility tree carries exactly one node per IR node: dots are decorative
+texture and never expand into per-dot entries. A consumer that does not render particle dots MUST
+ignore the object (forward-compatible degradation), never reject the file.
+
+## 6. Theme tokens
 
 `theme` MAY carry `"tokens": { "surface": "#RRGGBB", "onSurface": "#RRGGBB", "font": "<name>" }`.
 Missing tokens fall back to the theme's `mode`/`accent`/`radius`. Deterministic rendering MUST NOT
 depend on a host font: text is drawn with the renderer's built-in bitmap font.
 
-## 6. Node kind catalog (24 kinds)
+## 7. Node kind catalog (24 kinds)
 
 v0.1 eight: `Column, Row, Container, Text, Button, Input, Image, Spacer`.
 
@@ -94,7 +116,7 @@ Required props for the new kinds (all others optional):
 Consumers that do not know a new kind render it as a `Container` (with children) or a `Text`
 (label/value/title/name) rather than failing. This is the documented fallback, not an error.
 
-## 7. Determinism
+## 8. Determinism
 
 All interactive UI rendering (gradients, glass, shadow, animation at a given tick) MUST stay
 integer-only and pixel-deterministic. The v0.1 golden digest for `counter.opuir.json` must not

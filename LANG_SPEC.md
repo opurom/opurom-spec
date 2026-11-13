@@ -63,6 +63,14 @@ expr      = literal | IDENT ;
 
 Positional argument: `Text("hi")` ≡ `Text(value: "hi")`; `Button("OK")` ≡ `Button(label: "OK")`.
 
+`particles` is accepted on every node kind. It is a comma-separated `name=value` field list in one
+string: `count` is required and must be an integer 0..512, `seed` must be an integer
+0..4294967295 (default 1), `radius` an integer 0..32 (default 2), `alpha` an integer 0..1024
+(default 1024, fixed point with 1024 fully opaque), and `color` an optional `#RRGGBB`. A missing
+`=`, a duplicate field, an unknown field, a non-integer value or a value outside its range is an
+error naming the field. The prop lowers to the bounded `props.particles` object of
+[IR_ADDITIONS.md](IR_ADDITIONS.md).
+
 ## Types
 
 Inferred from the initializer: `int` (i64 semantics), `bool`, `string`. A state declaration may
@@ -101,6 +109,10 @@ A `theme { ... }` block accepts `mode`, `accent`, `radius` and `fontScale`.
 `fontScale` is a number in 0.5..3.0 and lowers to the optional `theme.fontScale` IR key,
 which sets the text scale for every node that does not declare its own `fontScale` prop.
 A local prop always wins. The key is emitted only when the source declares it.
+
+A `particles` field list lowers to the bounded object in [IR_ADDITIONS.md](IR_ADDITIONS.md), with
+the documented defaults applied for omitted fields; the `color` key is emitted only when the
+source declares it.
 
 ## Language levels
 
