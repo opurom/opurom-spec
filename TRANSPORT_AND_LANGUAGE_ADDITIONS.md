@@ -47,7 +47,8 @@ The layout engine currently has three width breakpoints. It gains five tiers plu
 | Ultra | >= 1600 |
 
 - Existing behaviour at 320x240 and 800x600 is preserved byte-for-byte; the three golden
-  digests `c87bf023a6c01f9d`, `8cc3021fa80749b5` and `e7aad51c98d9cf21` MUST NOT change.
+  digests `2fc4eac75fd50f89`, `88127ca1577cdb61` and `40891c1fbb81399e` MUST NOT change
+  (re-baselined once for text edge anti-aliasing, pinned since).
 - A fluid grid computes column count, gutter and margin from container width rather than fixed
   constants; the computation is integer-only and deterministic.
 - Multi-window and split-screen: a resize from one tier to another recomputes layout, and the

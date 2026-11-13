@@ -15,8 +15,9 @@ No invented numbers.
   frosted `glass` (alpha compositing) and `liquid` glass (specular highlight). Integer
   fixed-point maths only; no crate, no wall clock, no GPU.
 - Identical IR + viewport + state + theme MUST give byte-identical pixels. Effects absent MUST
-  leave the three V0.1 golden digests unchanged: 320x240 `c87bf023a6c01f9d`, 800x600
-  `8cc3021fa80749b5`, 800x600 --state count=7 `e7aad51c98d9cf21`.
+  leave the three golden digests unchanged: 320x240 `2fc4eac75fd50f89`, 800x600
+  `88127ca1577cdb61`, 800x600 --state count=7 `40891c1fbb81399e` (re-baselined once for text
+  edge anti-aliasing, pinned since).
 - `--commands` output for an IR with no effects MUST stay byte-identical to the platform delivery
   layer output so the Metal display-list equality proof keeps working.
   real-time 120fps claim.

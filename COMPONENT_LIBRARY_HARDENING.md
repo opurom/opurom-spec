@@ -16,8 +16,9 @@ stay green. No invented numbers. New dependencies must be pinned and justified.
   role, and a test asserting its pixels differ from the fallback and from every other new kind.
 - `opurom-lang/src/catalog.json` MUST remain byte-identical to `opurom-spec/components.json`;
   `opuromc components` must print the new count. All 9 emitters keep working.
-- The three V0.1 golden digests MUST NOT change: 320x240 `c87bf023a6c01f9d`, 800x600
-  `8cc3021fa80749b5`, 800x600 --state count=7 `e7aad51c98d9cf21`.
+- The three golden digests MUST NOT change: 320x240 `2fc4eac75fd50f89`, 800x600
+  `88127ca1577cdb61`, 800x600 --state count=7 `40891c1fbb81399e`. They were re-baselined once
+  when text rasterization gained edge anti-aliasing; since then they are pinned.
 
 ## 2. GPU presentation into a live window (`opurom-gpu` + `opurom-platform`)
 

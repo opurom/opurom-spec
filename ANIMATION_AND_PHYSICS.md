@@ -2,8 +2,10 @@
 
 This document specifies the animation physics added to the OPUROM renderer: an inertia curve,
 wall restitution and equal-mass contact response for the particle system. Everything is
-integer-only, deterministic and additive; the three golden digests `c87bf023a6c01f9d`,
-`8cc3021fa80749b5` and `e7aad51c98d9cf21` are unchanged by this level.
+integer-only, deterministic and additive; the three golden digests `2fc4eac75fd50f89`,
+`88127ca1577cdb61` and `40891c1fbb81399e` are unchanged by this level. Those three were
+re-baselined once, when text rasterization gained edge anti-aliasing: glyph ink boxes and
+advance metrics did not move, so this level still adds no pixel change of its own.
 
 ## 1. Units
 
