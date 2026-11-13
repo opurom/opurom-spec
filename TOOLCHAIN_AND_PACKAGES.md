@@ -41,8 +41,8 @@ import "models/todo.opu"
 import "ui/cards.opu"
 ```
 
-- An imported file may declare `state`, `model`, `api` and `theme` only. Declarations are merged
-  into the importing program's IR; duplicate names are a diagnostic.
+- An imported file may declare `state`, `model`, `api`, `theme` and `imports` only. Declarations
+  are merged into the importing program's IR; duplicate names are a diagnostic.
 - Paths are relative to the importing file, must end in `.opu`, may not escape the project root
   (`..` traversal rejected), and cycles are detected with a readable diagnostic.
 - IR gains optional top-level `"imports": ["models/todo.opu", ...]`. Consumers ignore it.

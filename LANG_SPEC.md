@@ -114,6 +114,36 @@ A `particles` field list lowers to the bounded object in [IR_ADDITIONS.md](IR_AD
 the documented defaults applied for omitted fields; the `color` key is emitted only when the
 source declares it.
 
+## Responsive layout and project files
+
+`opurom-render` selects a layout tier with `Breakpoint::from_width(width: u32)` from the
+viewport width in logical pixels. The five `Breakpoint` variants have these exact boundaries:
+
+| Tier | Width (logical px) |
+| --- | --- |
+| `Compact` | `< 600` |
+| `Medium` | `< 900` |
+| `Expanded` | `< 1200` |
+| `Wide` | `< 1600` |
+| `Ultra` | `>= 1600` |
+
+- `Row` uses `Direction::Horizontal` except at `Breakpoint::Compact`, where `direction`
+  returns `Direction::Vertical` and the children stack vertically.
+- `Grid` calls `fluid_grid` when the tier is `Expanded` or higher and the node declares no
+  `columns` prop. The function sets `columns = clamp(width / MIN_COLUMN_WIDTH, 1, MAX_GRID_COLUMNS)`
+  with `MIN_COLUMN_WIDTH = 120` and `MAX_GRID_COLUMNS = 12`, plus
+  `margin = clamp(width / 40, 8, 32)` and `gutter = clamp(width / 60, 8, 24)`. In every other
+  case `Grid` uses the declared `columns` prop (default 2, minimum 1) with zero gutter. All
+  terms are integer divisions of a non-negative width.
+
+A project is one `main.opu` plus the modules it reaches through `import "models/todo.opu"`.
+`opuromc compile` resolves each import relative to the importing file or a `moduleRoots` entry in
+`opurom.json`, requires the `.opu` extension, and rejects absolute paths, `..` traversal, targets
+that escape the project root and import cycles. An imported module may declare only
+state, model, api, theme and imports; the compiler merges those declarations into one `Program`
+before lowering. Viewport width is a render-time input: the same IR reflows at every tier and
+lowers to each emitter without changes to the source tree.
+
 ## Language levels
 
 `v0.1` defines the core declarative syntax: app, state, component tree, events and actions.

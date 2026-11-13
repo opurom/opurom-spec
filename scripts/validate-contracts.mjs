@@ -257,6 +257,40 @@ export function validateContracts(root = REPO_ROOT) {
   check('list indexing contract is documented consistently', listIndexAgree,
     'LANGUAGE_ADDITIONS.md, LANG_SPEC.md and GPU_WINDOW_TRANSPORT.md state the shipped list read');
 
+  // `Breakpoint::from_width`, `fluid_grid` and the module restriction are shipped
+  // values, so the published contract must quote each width boundary and the
+  // import form exactly. A changed boundary or a dropped import is a regression.
+  const EXPECTED_TIERS = [
+    ['Compact', '< 600'],
+    ['Medium', '< 900'],
+    ['Expanded', '< 1200'],
+    ['Wide', '< 1600'],
+    ['Ultra', '>= 1600'],
+  ];
+  const responsiveContract = (() => {
+    const text = files['LANG_SPEC.md'];
+    for (const [tier, boundary] of EXPECTED_TIERS) {
+      if (!text.includes(`\`${tier}\``)) return `LANG_SPEC.md does not name the \`${tier}\` tier`;
+      if (!text.includes(boundary)) {
+        return `LANG_SPEC.md does not state the ${tier} boundary ${JSON.stringify(boundary)}`;
+      }
+    }
+    for (const value of [
+      'Breakpoint::from_width', 'Direction::Vertical',
+      'MIN_COLUMN_WIDTH = 120', 'MAX_GRID_COLUMNS = 12',
+    ]) {
+      if (!text.includes(value)) return `LANG_SPEC.md does not quote \`${value}\``;
+    }
+    if (!/import "[^"]+\.opu"/.test(text)) return 'LANG_SPEC.md does not state the import "..." syntax';
+    if (!text.includes('main.opu')) return 'LANG_SPEC.md does not name the main.opu project entry';
+    if (!text.includes('state, model, api, theme and imports')) {
+      return 'LANG_SPEC.md does not state the imported module restriction';
+    }
+    return null;
+  })();
+  check('responsive layout and project contract is documented', responsiveContract,
+    'LANG_SPEC.md quotes the five shipped width tiers and the import syntax');
+
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])
     .filter(target => !/^(https?:|mailto:|#)/.test(target))

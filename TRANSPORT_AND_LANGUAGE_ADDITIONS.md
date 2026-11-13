@@ -36,7 +36,7 @@ checking. The compiler gains one shared type checker over the whole program:
 
 ## 3. Five-tier adaptive layout and fluid grid (`opurom-render`)
 
-The layout engine currently has three width breakpoints. It gains five tiers plus a fluid grid:
+The layout engine has five width breakpoints in `Breakpoint::from_width`:
 
 | Tier | Width (logical px) |
 | --- | --- |

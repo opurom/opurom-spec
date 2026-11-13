@@ -83,18 +83,22 @@ const CORRUPTIONS = [
       'A list element is read by position')],
   ['list indexing contract is documented consistently', dir =>
     editText(dir, 'GPU_WINDOW_TRANSPORT.md', '`{items[i]}`', '`{items}`')],
+  ['responsive layout and project contract is documented', dir =>
+    editText(dir, 'LANG_SPEC.md', '`< 600`', '`< 601`')],
+  ['responsive layout and project contract is documented', dir =>
+    editText(dir, 'LANG_SPEC.md', 'import "models/todo.opu"', 'import models/todo.opu')],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 15 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 16 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 15);
+  assert.equal(checks.length, 16);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {
