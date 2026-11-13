@@ -27,7 +27,7 @@ if (dark) {
 
 `if` takes one bool state name in parentheses. Each direct child node receives `"when": "dark"`.
 `if` blocks may appear anywhere a node may appear. Nested `if` is allowed (conditions combine by
-nesting, not by logic operators). `else` is out of scope for the interactive UI layer and must
+nesting, not by logic operators). `else` is out of scope for this language level and must
 produce a friendly "not yet supported" diagnostic.
 
 ## 3. Compile-time repetition

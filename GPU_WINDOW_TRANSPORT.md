@@ -69,6 +69,6 @@ A genuine GPU compute path on macOS, not a stub:
 - gzip response compression via `flate2` when the request sends `Accept-Encoding: gzip`.
 - `ETag`/`If-None-Match` → `304 Not Modified`, and configurable CORS headers (`OPR_CORS`).
 - All features are opt-in and default behaviour stays byte-identical; structured logging and rate
-  limiting from the async language layer keep working. Tests cover each header/status/body path.
+  limiting from the rate limiter keep working. Tests cover each header/status/body path.
 
 

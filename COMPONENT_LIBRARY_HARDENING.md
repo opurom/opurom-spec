@@ -43,7 +43,7 @@ stay green. No invented numbers. New dependencies must be pinned and justified.
   payment and share: each declares its capability, is granted explicitly, and a denied capability
   is rejected with a typed error. Mock devices provide deterministic replies (no real hardware).
 - Plugin crash isolation: a plugin process that exits or sends malformed JSON must not crash the
-  host; the circuit breaker from the production layer trips after repeated failures. A real
+  host; the circuit breaker from the plugin host trips after repeated failures. A real
   JSON-lines process test covers grant/deny/crash/recovery.
 
 ## 5. Certificate status (`opurom-server`)

@@ -51,7 +51,7 @@ platform API coverage.
 
 `opurom build --optimize` applies it before emitters and prints measured byte counts (input vs
 output). A golden IR with no dead state optimizes to a deep-equal IR. Optimization is opt-in;
-default builds are byte-identical to the interactive UI layer output.
+default builds stay byte-identical to the earlier compiler output.
 
 ## 4. Cooperative async scheduler (kernel)
 

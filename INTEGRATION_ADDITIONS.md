@@ -19,7 +19,7 @@ numbers.
 
 ## 2. Animated multi-frame GPU render loop (`opurom-gpu` + `opurom-platform`)
 
-- The component library hardening presents ONE frame. The integration layer adds a bounded,
+- The GPU presentation path presents ONE frame. The integration layer adds a bounded,
   deterministic multi-frame loop: render N frames at N distinct animation ticks through the GPU
   pipeline, present each through the real CAMetalLayer drawable, and capture the window after each
   present. The captured sequence MUST equal the software renderer's sequence at the same ticks
