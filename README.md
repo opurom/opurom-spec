@@ -24,6 +24,7 @@ implement these documents; none of them may redefine them.
 | [PRODUCTION_BREADTH.md](PRODUCTION_BREADTH.md) | GPU effects, HTTP/2, IntelliJ plugin, marketplace, scheduler, DAP |
 | [COMPONENT_LIBRARY_HARDENING.md](COMPONENT_LIBRARY_HARDENING.md) | 100+ primitives, GPU presentation, tree shaking, plugins, OCSP/CRL, caching_sha2 |
 | [INTEGRATION_ADDITIONS.md](INTEGRATION_ADDITIONS.md) | mobile real rendering, GPU loop, LSP completeness, gallery |
+| [TRANSPORT_AND_LANGUAGE_ADDITIONS.md](TRANSPORT_AND_LANGUAGE_ADDITIONS.md) | HTTP/3, static typing, five-tier layout, Wayland wire protocol |
 | [components.json](components.json) | 216 named components mapped to 100 distinct primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 
