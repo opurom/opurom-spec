@@ -96,7 +96,7 @@ import "ui/cards.opu"
 
 - Add a `jetbrains/` subproject inside the existing repo: a TextMate-style `.opu` grammar subset,
   an LSP client configuration stub, `plugin.xml` metadata, and a validation script that checks
-  JSON/XML well-formedness, keyword coverage and honest status. No IntelliJ runtime is tested.
+  JSON/XML well-formedness, keyword coverage and the documented capability list.
 - Keep `vscode-opurom/` and `scripts/validate.mjs` green.
 
 
