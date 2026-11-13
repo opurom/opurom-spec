@@ -27,8 +27,8 @@ if (dark) {
 
 `if` takes one bool state name in parentheses. Each direct child node receives `"when": "dark"`.
 `if` blocks may appear anywhere a node may appear. Nested `if` is allowed (conditions combine by
-nesting, not by logic operators). `else` is out of scope for this language level and must
-produce a friendly "not yet supported" diagnostic.
+nesting, not by logic operators). The `else` branch belongs to a later additive language level,
+where it lowers to the `unless` node field.
 
 ## 3. Compile-time repetition
 
@@ -79,8 +79,9 @@ color, opacity out of range, shadow out of range, `valueFrom` type mismatch, `wh
 state, duplicate `theme` block, unknown theme key, unknown `animate` value, unknown kind
 suggestion. All must produce exit 1 + `help:` line, no panic.
 
-## Still out of scope
+## Language level
 
-`async`/`await`, functions, modules/imports, custom components, `else`, list-valued state,
-event handlers with local variables, units (`dp`/`rem`). Each must be rejected with a friendly
-"not yet supported in v0.2" diagnostic.
+This level defines plain state declarations, UI blocks, atomic style shortcuts, multi-action
+events and theme tokens. Later language levels add `async`/`await`, module imports, custom
+components, `else` branches, computed and list-valued state, and higher-level layout units.
+Each level keeps every earlier program valid.

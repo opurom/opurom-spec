@@ -51,7 +51,7 @@ A genuine GPU compute path on macOS, not a stub:
   IR gains optional top-level `computed` array with `{name, type, expr}`. Only `+`, `-`, `*`,
   integer literals and state names are allowed here.
 - List-valued state: `state items = ["a", "b"]` and `for (item in items) { Text("{item}") }`
-  unrolls at compile time against the initializer; changing list contents at runtime is planned for later releases.
+  unrolls at compile time against the initializer; list contents are fixed at compile times.
 - Plain programs keep byte-identical IR. All existing tests and emitters stay green.
 
 ## 5. PostgreSQL wire protocol client (`opurom-db`)

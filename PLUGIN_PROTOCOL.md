@@ -71,6 +71,6 @@ marketplace in the core protocol; the format is forward-compatible with one.
 ## Scope
 
 The core protocol ships three reference plugins (`camera`, `notification`, `storage`) implemented
-as small Rust binaries that speak this protocol with **simulated** hardware. They are real processes with real
-handshakes, not mocks. Actual OS hardware bindings, signing, sandboxing (seatbelt/landlock) and a
-remote marketplace are planned for later releases.
+as small Rust binaries that speak this protocol with deterministic mock devices. They are real processes with real
+handshakes, not in-process stubs. The protocol also defines signed package archives, a permission
+sandbox for native capabilities and a GitHub Releases backed registry.

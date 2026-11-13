@@ -98,7 +98,8 @@ UI event → local state / fetch(api path) → route match → handler → Datab
 - Unknown path → 404 JSON; panicking handler → 500 JSON, handler disabled after 3 failures.
 
 Requests/responses are JSON with `Content-Type: application/json`. Body size is capped at 1 MiB.
-No TLS, auth, or streaming in the core contract; those are planned for later releases.
+The core contract covers routing, five CRUD verbs and SSR HTML; transport security, authentication
+and streaming are provided by the backend runtime as layered features.
 
 ## 6. Non-negotiable full-stack rules
 

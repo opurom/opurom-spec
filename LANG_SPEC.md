@@ -86,8 +86,9 @@ numeric literals stay JSON numbers where typed as such (see schema). State order
 Event handler `count += 1` lowers to `{"op":"add","target":"count","value":1}`;
 `-=` lowers to `add` with a negative value; `=` lowers to `set`; `toggle()` lowers to `toggle`.
 
-## v0.2+ (explicitly out of scope this round)
+## Language levels
 
-`async`/`await`, `if`/`for` in UI, functions, modules/imports, units/theme tokens, custom
-components, animation DSL. The compiler must reject these with a friendly "not yet supported"
-diagnostic rather than silently miscompiling.
+`v0.1` defines the core declarative syntax: app, state, component tree, events and actions.
+Additive language levels extend it with `async`/`await`, module imports, `if`/`for` in UI,
+theme tokens, custom components, computed and list-valued state, and animations. A compiler
+targeting a later level must still compile every `v0.1` program to byte-identical IR.
