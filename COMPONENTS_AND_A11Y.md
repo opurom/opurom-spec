@@ -1,21 +1,22 @@
-# OPUROM R3 Addendum (normative)
+# OPUROM Component Catalog and Accessibility Addendum (normative)
 
-R3 targets ecosystem scale and production ergonomics. Everything here is **additive**: R1 and R2
-IR files stay valid, golden digests stay unchanged, and all existing tests stay green.
+The component catalog targets ecosystem scale and production ergonomics. Everything here is
+**additive**: all earlier IR files stay valid, golden digests stay unchanged, and all existing
+tests stay green.
 
 ## 1. Component catalog (100+ components)
 
 [components.json](components.json) is the single source of truth: an array of
 `[name, primitive, category, defaultProps]` tuples. `name` is a capitalized identifier used in
-source; `primitive` is one of the 24 R2 node kinds; `category` groups the docs; `defaultProps`
-are merged into the node's props at lowering time.
+source; `primitive` is one of the 24 interactive UI node kinds; `category` groups the docs;
+`defaultProps` are merged into the node's props at lowering time.
 
 Rules:
 
 - A source `Kind` may be a catalog component name. The compiler resolves it to its `primitive`
   and merges `defaultProps` under explicitly written props (explicit wins).
 - The lowered IR node keeps `kind` = primitive and gains an optional `"component"` field with the
-  original name. Consumers that do not know `component` ignore it; the IR stays R1/R2-compatible.
+  original name. Consumers that do not know `component` ignore it; the IR stays backward-compatible.
 - Unknown kinds remain a diagnostic. Catalog names are validated at compile time; duplicate
   names, unknown primitives, and invalid props are rejected.
 - Expansion is deterministic and compile-time only: no component registry ships in a build.
@@ -36,7 +37,7 @@ Optional props/theme keys, all deterministic:
 `opurom-render <ir> <w> <h> <out.ppm> --a11y <out.json>` writes a JSON accessibility tree:
 `[{id, role, label, bounds:[x,y,w,h], hidden}]`, pre-order, integer coordinates, deterministic.
 Hidden nodes (`when` false) appear with `hidden: true`. V0.1 golden digests MUST NOT change when
-these props are absent. No screen-reader OS integration in R3: the tree is data, not a claim of
+these props are absent. No screen-reader OS integration here: the tree is data, not a claim of
 platform API coverage.
 
 ## 3. Optimizer / tree shaking
@@ -50,7 +51,7 @@ platform API coverage.
 
 `opurom build --optimize` applies it before emitters and prints measured byte counts (input vs
 output). A golden IR with no dead state optimizes to a deep-equal IR. Optimization is opt-in;
-default builds are byte-identical to R2 output.
+default builds are byte-identical to the interactive UI layer output.
 
 ## 4. Cooperative async scheduler (kernel)
 
@@ -79,13 +80,4 @@ ANSI half-block text (two pixel rows per character row), `poll_event` accepts pa
 with a thin adapter and zero kernel changes — the platform-boundary demonstration. It is NOT a
 Metal/Vulkan/ANGLE backend.
 
-## 7. Honest scope
 
-R3 implements: 100+ named components (compiled to 24 primitives), accessibility tree + font
-scaling + high contrast, dead-state optimizer with measured sizes, deterministic cooperative
-scheduler, a DAP subset debugger, measured `bench --full` numbers and a multi-device sync hub.
-
-Still not implemented (R4+): Metal/Vulkan/ANGLE GPU backends, real OS-native window adapters,
-PostgreSQL/MySQL, cloud deployment, TLS/auth, async/await in the language, a package
-marketplace, JetBrains IDE plugin, real fps/device benchmarks, a 100+ *distinct* primitive
-renderer (catalog components map onto the 24 primitives). No invented numbers anywhere.

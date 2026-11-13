@@ -1,4 +1,4 @@
-# OPUROM WASM target ABI (R2, normative)
+# OPUROM WASM target ABI (normative)
 
 `opuromc target <ir> --target wasm -o <dir>` is the 9th emitter. It produces:
 
@@ -22,7 +22,7 @@ fn opu_tap(node_id: u32) -> u32;        // applies tap action chain; returns pat
 fn opu_input(node_id: u32, v: i32) -> u32; // applies input action chain with numeric value
 ```
 
-Only `int` states are exposed through this ABI in R2; bool/string states live in `host.js` as a
+Only `int` states are exposed through this ABI; bool/string states live in `host.js` as a
 mirror and are applied there. `opu_tap` applies the full `actions` array (or the single v0.1
 action) in order, including `valueFrom` reads, and returns the number of patches. Unknown
 `node_id` returns 0. Overflow uses checked arithmetic and saturates rather than wrapping.
@@ -32,7 +32,4 @@ action) in order, including `valueFrom` reads, and returns the number of patches
 `opu_version() == 1`, `opu_state(0) == <init>`, `opu_tap(<plus button id>) == 1`, and
 `opu_state(0) == <init + 1>`.
 
-## Honesty
 
-This emits real `wasm32` machine code with no JS bridge for state logic. It does **not** yet
-provide DOM/WASM hybrid rendering, SIMD, threads, or a measured startup benchmark. Those are R3+.

@@ -1,8 +1,8 @@
-# OPUROM Lang — R2 additive syntax (normative)
+# OPUROM Lang — interactive UI additions (normative)
 
 Superset of [LANG_SPEC.md](LANG_SPEC.md). Every v0.1 program keeps compiling to byte-identical
 IR. The compiler version is reported by `opuromc --version` as `0.2.0`, but the emitted `ir`
-string stays `"0.1"` with the optional fields of [IR_R2_ADDENDUM.md](IR_R2_ADDENDUM.md).
+string stays `"0.1"` with the optional fields of [IR_ADDITIONS.md](IR_ADDITIONS.md).
 
 ## 1. Multi-statement handlers and state expressions
 
@@ -27,8 +27,8 @@ if (dark) {
 
 `if` takes one bool state name in parentheses. Each direct child node receives `"when": "dark"`.
 `if` blocks may appear anywhere a node may appear. Nested `if` is allowed (conditions combine by
-nesting, not by logic operators). `else` is out of scope for R2 and must produce a friendly
-"not yet supported" diagnostic.
+nesting, not by logic operators). `else` is out of scope for the interactive UI layer and must
+produce a friendly "not yet supported" diagnostic.
 
 ## 3. Compile-time repetition
 
@@ -67,7 +67,7 @@ errors use the standard `path:line:col: error:` + `  help:` form.
 
 ## 6. New node kinds
 
-The 16 kinds from IR_R2_ADDENDUM §6 become valid `KIND`s with the props listed there. `bind` on
+The 16 kinds from IR_ADDITIONS §6 become valid `KIND`s with the props listed there. `bind` on
 `Switch/Checkbox/Radio/Slider/Tabs` is type-checked against the state and lowers to the event
 action specified in that table. Unknown kinds remain an error (with a suggestion listing the 24
 valid kinds).
@@ -79,7 +79,7 @@ color, opacity out of range, shadow out of range, `valueFrom` type mismatch, `wh
 state, duplicate `theme` block, unknown theme key, unknown `animate` value, unknown kind
 suggestion. All must produce exit 1 + `help:` line, no panic.
 
-## Still out of scope (R3+)
+## Still out of scope
 
 `async`/`await`, functions, modules/imports, custom components, `else`, list-valued state,
 event handlers with local variables, units (`dp`/`rem`). Each must be rejected with a friendly

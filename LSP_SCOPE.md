@@ -1,4 +1,4 @@
-# OPUROM LSP scope (R2, normative)
+# OPUROM LSP scope (normative)
 
 New independent project `opurom-lsp`, zero npm dependencies, Node builtins only. Entry:
 `node opurom-lsp/bin/server.mjs --stdio`. Framing is standard LSP `Content-Length: N\r\n\r\n<JSON>`.
@@ -34,5 +34,6 @@ self-contained. A second test uses the real `opuromc` when available.
 
 ## Scope
 
-R2: diagnostics, hover, completion, definition. R3+: formatting, rename, references, code actions,
-semantic tokens, workspace symbols, debugger adapter protocol (DAP), profiler views.
+Core scope: diagnostics, hover, completion, definition. Later scope: formatting, rename,
+references, code actions, semantic tokens, workspace symbols, debugger adapter protocol (DAP),
+profiler views.

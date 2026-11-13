@@ -77,22 +77,3 @@ Benchmarks (fps, cold start, binary size) get real numbers only when there is a 
 backend and a real device matrix; no invented figures appear in this repository. `opurom bench`
 reports measured elapsed times and artifact sizes for the operations that actually run here.
 
-## Round roadmap
-
-- **R1**: frozen spec, six parallel workstreams, end-to-end golden slice, CLI, IDE grammar,
-  docs, per-project git history. Verified.
-- **R2 (this round)**: full-stack backend layer (server, db, runtime adapters), single-file
-  model/api syntax, wasm32 emitter, process-isolated plugins + local registry, LSP server +
-  VS Code client, renderer effects/animation, CLI full-stack build/serve/bench, GitHub org with
-  parallel CI + CI-gated auto-tagging and releases. All R1 checks must stay green.
-- **R3+**: Metal/Vulkan/ANGLE GPU backend, OS-native adapters with real device conformance,
-  PostgreSQL/MySQL drivers, production Node.js bundling, cloud deployment, 100+ component
-  library with accessibility, async/await, modules/package marketplace, debugger (DAP),
-  profiler, multi-device sync, build tree-shaking, real fps/size benchmarks.
-
-## Honest scope
-
-R2 is a working full-stack vertical slice with real, tested mechanisms — not a shipping SDK for
-every OS and cloud. Platform columns marked `Scaffold`/`Planned` mean exactly that, and the
-capability boundary in the umbrella README lists what is and is not implemented. This is
-intentional: a verifiable narrow path beats twelve untested claims.

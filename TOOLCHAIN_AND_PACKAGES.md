@@ -1,9 +1,9 @@
-# OPUROM R4 Addendum (normative)
+# OPUROM Toolchain and Packages Addendum (normative)
 
-R4 targets language expressiveness, offline packaging and production hardening. All changes are
-**additive**: R1-R3 IR stays valid, golden digests stay unchanged, and every existing test stays
-green. No new external crate is required (the host network may be unavailable; builds use cached
-crates with `--offline` where applicable).
+The async language layer targets language expressiveness, offline packaging and production
+hardening. All changes are **additive**: all earlier IR versions stay valid, golden digests stay
+unchanged, and every existing test stays green. No new external crate is required (the host
+network may be unavailable; builds use cached crates with `--offline` where applicable).
 
 ## 1. Language: async/await effects
 
@@ -26,13 +26,13 @@ app AsyncDemo {
   given path at runtime and stores the response body in the named **string** state.
 - IR: `events.<name>` gains optional `"async": true` and
   `"effects": [{"kind":"delay","ms":50},{"kind":"fetch","path":"/todos","into":"payload"}]`.
-  A v0.1-R3 consumer ignores both keys and still applies `actions` (documented degradation).
+  A v0.1 consumer ignores both keys and still applies `actions` (documented degradation).
 - `await` outside `async` is a diagnostic; `fetch` into a non-string state is a diagnostic;
   `delay` must be 0..60000; duplicate `async` keyword is a diagnostic.
 - Emitters implement effects with each target's native async facility: web `async/await` +
   `fetch`, native a std-only deterministic sequencer (delay as a measured busy-free step,
   fetch against `OPR_BASE_URL` when set, otherwise a documented local result), mini-programs
-  their `request` API, wasm via host callbacks. Honest per-target status is mandatory.
+  their `request` API, wasm via host callbacks. Per-target status is documented.
 
 ## 2. Language: modules
 
@@ -99,13 +99,4 @@ import "ui/cards.opu"
   JSON/XML well-formedness, keyword coverage and honest status. No IntelliJ runtime is tested.
 - Keep `vscode-opurom/` and `scripts/validate.mjs` green.
 
-## 8. Honest scope
 
-R4 implements: async/await effects, module imports, an offline package manager with checksum
-verification, a deterministic SVG vector backend, 8 more distinct primitives, measured profiling
-and inspection, SQLite pooling/rate limiting/structured logs, and JetBrains grammar metadata.
-
-Still R5+: Metal/Vulkan/ANGLE GPU backends, real OS-native window adapters, PostgreSQL/MySQL,
-cloud deployment, TLS/auth, real device conformance, JetBrains runtime plugin verification,
-language-level OS async IO, a remote package marketplace, screen-reader OS integration, and
-measured competitive claims. No invented numbers anywhere.

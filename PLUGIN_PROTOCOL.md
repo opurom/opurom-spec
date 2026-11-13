@@ -1,4 +1,4 @@
-# OPUROM Plugin Protocol v1 (R2, normative)
+# OPUROM Plugin Protocol v1 (normative)
 
 Plugins are **separate processes**, never linked into the kernel. A plugin crash, hang or protocol
 violation is contained by the OS process boundary. This is the extension mechanism for native
@@ -66,11 +66,11 @@ file inside the plugin directory (no `..` traversal). Invalid manifests are reje
 ```
 
 `opurom plugin verify` checks every entry's manifest, executable bit and handshake. No network
-marketplace in R2; the format is forward-compatible with one.
+marketplace in the core protocol; the format is forward-compatible with one.
 
 ## Scope
 
-R2 ships three reference plugins (`camera`, `notification`, `storage`) implemented as small Rust
-binaries that speak this protocol with **simulated** hardware. They are real processes with real
+The core protocol ships three reference plugins (`camera`, `notification`, `storage`) implemented
+as small Rust binaries that speak this protocol with **simulated** hardware. They are real processes with real
 handshakes, not mocks. Actual OS hardware bindings, signing, sandboxing (seatbelt/landlock) and a
-remote marketplace are R3+.
+remote marketplace are planned for later releases.

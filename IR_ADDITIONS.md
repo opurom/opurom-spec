@@ -1,8 +1,9 @@
-# OPUROM IR — R2 additive extension (normative)
+# OPUROM IR — interactive UI additions (normative)
 
-`ir` stays `"0.1"`. R2 adds **optional** fields only. Every v0.1 IR file remains valid and every
-v0.1 consumer must keep working. A consumer that does not implement an R2 feature MUST ignore the
-corresponding optional field (forward-compatible degradation), never reject the file.
+`ir` stays `"0.1"`. The interactive UI layer adds **optional** fields only. Every v0.1 IR file
+remains valid and every v0.1 consumer must keep working. A consumer that does not implement an
+interactive UI feature MUST ignore the corresponding optional field (forward-compatible
+degradation), never reject the file.
 
 ## 1. Multi-action events
 
@@ -64,8 +65,8 @@ depend on a host font: text is drawn with the renderer's built-in bitmap font.
 
 v0.1 eight: `Column, Row, Container, Text, Button, Input, Image, Spacer`.
 
-R2 adds sixteen: `Card, Divider, Icon, Badge, Progress, Switch, Slider, Checkbox, Radio, Dialog,
-Tabs, List, Grid, Scroll, Avatar, Spinner`.
+The interactive UI layer adds sixteen: `Card, Divider, Icon, Badge, Progress, Switch, Slider,
+Checkbox, Radio, Dialog, Tabs, List, Grid, Scroll, Avatar, Spinner`.
 
 Required props for the new kinds (all others optional):
 
@@ -93,6 +94,6 @@ Consumers that do not know a new kind render it as a `Container` (with children)
 
 ## 7. Determinism
 
-All R2 rendering (gradients, glass, shadow, animation at a given tick) MUST stay integer-only and
-pixel-deterministic. The v0.1 golden digest for `counter.opuir.json` must not change: R2 features
-are opt-in through props/fields, never implied by default.
+All interactive UI rendering (gradients, glass, shadow, animation at a given tick) MUST stay
+integer-only and pixel-deterministic. The v0.1 golden digest for `counter.opuir.json` must not
+change: interactive UI features are opt-in through props/fields, never implied by default.

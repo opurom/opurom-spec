@@ -1,9 +1,9 @@
-# OPUROM Full-Stack Contract (R2, normative)
+# OPUROM Full-Stack Contract (normative)
 
 One `.opu` source file defines the UI, the data model, and the HTTP API. One IR carries all three.
 Frontend and backend types therefore have a single source of truth.
 
-## 1. Single-file syntax (additive to LANG_SPEC + LANG_R2_ADDENDUM)
+## 1. Single-file syntax (additive to LANG_SPEC + LANGUAGE_ADDITIONS)
 
 ```opu
 app TodoApp {
@@ -76,7 +76,7 @@ or `null`. Shared types are these field definitions — no separate frontend or 
 
 Generated service code is **lowered Rust**, not an IR interpreter. It uses path dependencies on
 `opurom-server` and `opurom-db` rooted at the workspace (`--dep-root`, default
-`/Users/mac/work/opurom`). Generated code is a local build artifact and is never committed.
+`<workspace>`). Generated code is a local build artifact and is never committed.
 
 ## 4. Runtime chain
 
@@ -98,7 +98,7 @@ UI event → local state / fetch(api path) → route match → handler → Datab
 - Unknown path → 404 JSON; panicking handler → 500 JSON, handler disabled after 3 failures.
 
 Requests/responses are JSON with `Content-Type: application/json`. Body size is capped at 1 MiB.
-No TLS, auth, or streaming in R2; those are R3+.
+No TLS, auth, or streaming in the core contract; those are planned for later releases.
 
 ## 6. Non-negotiable full-stack rules
 
@@ -113,5 +113,5 @@ Implemented and verified: HTTP routing (5 verbs), model CRUD against SQLite via 
 KV driver, migrations generated from IR, a Rust-native service run, SSR HTML, and a Todo example
 that is exercised end to end (start server → POST → GET → DELETE).
 
-Not implemented (R3+): PostgreSQL/MySQL drivers, Node.js runtime deployment, Serverless adapters
+Not implemented: PostgreSQL/MySQL drivers, Node.js runtime deployment, Serverless adapters
 beyond a conformance stub, full middleware/auth, TLS, connection pooling, real device benchmarks.

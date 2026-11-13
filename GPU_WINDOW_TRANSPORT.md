@@ -1,8 +1,9 @@
-# OPUROM R5 Addendum (normative)
+# OPUROM GPU, Window and Transport Addendum (normative)
 
-R5 targets real hardware acceleration, a real OS window, deeper language expressiveness and
-production protocol coverage. Everything is additive: R1-R4 IR stays valid, golden digests stay
-unchanged, and all existing tests stay green. Builds are offline-capable with cached crates.
+The GPU and transport layer targets real hardware acceleration, a real OS window, deeper language
+expressiveness and production protocol coverage. Everything is additive: all earlier IR versions
+stay valid, golden digests stay unchanged, and all existing tests stay green. Builds are
+offline-capable with cached crates.
 
 ## 1. Metal GPU backend (new project `opurom-gpu`)
 
@@ -19,8 +20,6 @@ A genuine GPU compute path on macOS, not a stub:
 - `#[cfg(target_os = "macos")]` only; on other targets a documented `MetalUnavailable` error is
   returned, never a fake success. Dependencies are target-scoped in Cargo.toml so Linux CI builds
   the crate without Metal.
-- Honest scope: compute-only fill/gradient, no full UI rasterizer on GPU, no Vulkan/ANGLE/D3D
-  backend, no 120fps claim, no device matrix. Those remain R6+.
 
 ## 2. macOS native window adapter (`opurom-platform`)
 
@@ -33,8 +32,6 @@ A genuine GPU compute path on macOS, not a stub:
   `MetalUnavailable`-style fallback on non-macOS.
 - Multi-window: `WindowSet` manages 2..4 independent viewports, each with its own `Size`, event
   queue and frame buffer; resize of one window must not affect the others. Deterministic tests.
-- Honest scope: macOS only; Windows/Linux/Harmony native windows remain R6+; no real GUI session
-  was exercised in CI; no native widget embedding.
 
 ## 3. Animation system (`opurom-render`)
 
@@ -49,12 +46,12 @@ A genuine GPU compute path on macOS, not a stub:
 ## 4. Language expressiveness (`opurom-lang`)
 
 - `else` after `if (boolState)` — lowers to a second `when`-style field `unless` on the child
-  nodes; v0.1-R4 consumers ignore `unless`.
+  nodes; v0.1 consumers ignore `unless`.
 - `computed NAME = EXPR` — a derived int/bool/string value recomputed from state after each event;
   IR gains optional top-level `computed` array with `{name, type, expr}`. Only `+`, `-`, `*`,
-  integer literals and state names are allowed in R5.
+  integer literals and state names are allowed here.
 - List-valued state: `state items = ["a", "b"]` and `for (item in items) { Text("{item}") }`
-  unrolls at compile time against the initializer; changing list contents at runtime is R6+.
+  unrolls at compile time against the initializer; changing list contents at runtime is planned for later releases.
 - Plain programs keep byte-identical IR. All existing tests and emitters stay green.
 
 ## 5. PostgreSQL wire protocol client (`opurom-db`)
@@ -65,8 +62,6 @@ A genuine GPU compute path on macOS, not a stub:
 - A conformance test spins up a local TCP mock server that speaks those messages; no external
   database is required. CRUD helpers route to either SQLite or Postgres through the `Database`
   trait where SQL is compatible.
-- Honest scope: no TLS, no SCRAM/MD5 auth, no prepared statements, no connection pooling, no
-  real PostgreSQL server tested. MySQL remains R6+.
 
 ## 6. Production HTTP features (`opurom-server`)
 
@@ -74,16 +69,6 @@ A genuine GPU compute path on macOS, not a stub:
 - gzip response compression via `flate2` when the request sends `Accept-Encoding: gzip`.
 - `ETag`/`If-None-Match` → `304 Not Modified`, and configurable CORS headers (`OPR_CORS`).
 - All features are opt-in and default behaviour stays byte-identical; structured logging and rate
-  limiting from R4 keep working. Tests cover each header/status/body path.
+  limiting from the async language layer keep working. Tests cover each header/status/body path.
 
-## 7. Honest scope
 
-R5 implements: a real Metal compute backend with GPU/CPU readback equality, a macOS AppKit window
-adapter with real PNG output and multi-window state, deterministic transitions/particles/
-degradation, `else`/`computed`/list-state language features, a PostgreSQL v3 wire client with a
-mock server conformance test, and auth/compression/ETag/CORS HTTP features.
-
-Still R6+: Vulkan/ANGLE/D3D backends, full GPU UI rasterization, Windows/Linux/Harmony native
-windows, real device conformance and fps claims, TLS, SCRAM, MySQL, remote marketplace, an
-IntelliJ runtime plugin, OS screen-reader integration, and competitive benchmark claims. No
-invented numbers anywhere.
