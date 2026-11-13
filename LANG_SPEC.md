@@ -30,12 +30,13 @@ app Counter {
 ```ebnf
 program   = "app" IDENT "{" { decl } "}" ;
 decl      = state_decl | node ;
-state_decl= "state" IDENT "=" literal [";"] ;
+state_decl= "state" IDENT [ ":" type_name ] "=" literal [";"] ;
 node      = KIND [ "(" [ props ] ")" ] ( ";" | "{" { node | statement } "}" ) ;
 props     = prop { "," prop } [ "," ] ;
 prop      = IDENT ":" value ;
 value     = literal | IDENT ;
 literal   = INT | STRING | BOOL ;
+type_name = "int" | "bool" | "string" ;
 statement = IDENT ( "+=" | "-=" | "=" ) expr [";"]
           | IDENT "." "toggle" "(" ")" [";"] ;
 expr      = literal | IDENT ;
@@ -64,13 +65,22 @@ Positional argument: `Text("hi")` ≡ `Text(value: "hi")`; `Button("OK")` ≡ `B
 
 ## Types
 
-Inferred from the initializer: `int` (i64 semantics), `bool`, `string`. Required checks:
+Inferred from the initializer: `int` (i64 semantics), `bool`, `string`. A state declaration may
+carry an optional type annotation - `state count: int = 0` - which the compiler checks against the
+initializer; an annotation that disagrees with the initializer is an error. An annotated program
+and its untyped equivalent lower to byte-identical IR.
+
+Required checks:
 
 1. Duplicate state names → error.
 2. Interpolation / `bind` / event target refers to undeclared state → error.
 3. `+=` / `-=` on non-`int`, `toggle()` on non-`bool`, assignment type mismatch → error.
-4. Unknown node kind, unknown prop for that kind, missing required prop → error.
-5. Type of every state and every expression is resolved at compile time; no runtime type tags.
+   Every such diagnostic names the expected type and the found type.
+4. A condition (`if` / `when` / `unless`) must be a `bool` value → error.
+5. Unknown node kind, unknown prop for that kind, missing required prop → error.
+6. A component parameter with a declared type is checked at every call site; an omitted type is
+   inferred from the first call site and every later call site is checked against it → error.
+7. Type of every state and every expression is resolved at compile time; no runtime type tags.
 
 ## Diagnostics
 
