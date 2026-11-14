@@ -67,7 +67,12 @@ otherwise. No layer may require fields beyond this document.
   CSS into the generated stylesheet. `props.glass: true` expands into the
   native effect pipeline, so the software framebuffer and display-list commands
   both render the same translucent lamina; documents without it emit no effect
-  commands and stay byte-identical.
+  commands and stay byte-identical. Stylesheet targets MUST lower `glass` to the
+  Stylesheet targets MUST lower `glass` to the normative liquid-glass lamina in
+  `DEFAULT_UI_SYSTEM.md` section 2.9 (or the normative refinement that overrides
+  it): a backdrop blur chain, a translucent frosted lamina, a specular top edge
+  and a darker lower interior. A dark theme swaps only the lamina tint, border
+  and specular colour, leaving the blur chain unchanged.
 
 ### System font stack
 

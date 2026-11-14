@@ -139,8 +139,9 @@ viewport width in logical pixels. The five `Breakpoint` variants have these exac
   with zero gutter. Mini-program targets lower `Grid` to a wrapping flex row with
   percentage-width cells, preferring `compactColumns` when declared, because their
   stylesheets have no CSS Grid. They emit `theme.tokens.stage` as the `page`
-  background colour (falling back to `surface`, then white). All terms are integer
-  divisions of a non-negative width.
+  background colour (falling back to `surface`, then white), and lower `glass`
+  to the normative liquid-glass lamina with its light and dark tints. All terms
+  are integer divisions of a non-negative width.
 
 A project is one `main.opu` plus the modules it reaches through `import "models/todo.opu"`.
 `opuromc compile` resolves each import relative to the importing file or a `moduleRoots` entry in
