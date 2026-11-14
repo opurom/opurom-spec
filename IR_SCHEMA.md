@@ -39,15 +39,23 @@ otherwise. No layer may require fields beyond this document.
   rendered page needs no external copy step; absolute paths and `..` segments
   are outside the contract and MUST NOT be followed. `props.fit` selects
   `contain`, `cover` or `fill` placement for the decoded image.
-- `events` maps event name (`tap`, `input`) to exactly one action:
+- `events` maps an event name to exactly one action. The five accepted names are
+  `tap`, `input`, `doubleTap`, `longPress` and `drag`. A source `gesture:` prop is
+  removed at lowering and selects the event name (`gesture: doubleTap` binds the
+  handler under `doubleTap`); without it a tap handler binds under `tap`. Mini-program
+  targets emit the three gesture events as a touch-start/move/end recognizer that
+  dispatches by node id, while the other targets bind the gesture natively.
 
   ```json
-  { "op": "set" | "add" | "sub" | "toggle", "target": "count", "value": 1 }
+  { "op": "set" | "add" | "sub" | "toggle" | "nav" | "push" | "validate", "target": "count", "value": 1 }
   ```
 
   `toggle` has no `value`. `add` and `sub` require numeric `value` and `int` target; `sub`
   subtracts instead of adding. `set` requires the value type to match the target's declared
-  type. `input` actions are `set` with `value` omitted: the runtime supplies the input string,
+  type. `push` navigates to a declared page and `validate` triggers the target's form
+  checks; both omit `value`. `nav` is the older transition-only navigation signal,
+  accepted for compatibility with pre-`push` documents: it takes no `value` and its
+  `target`, when present, is a string. `input` actions are `set` with `value` omitted: the runtime supplies the input string,
   parsed by the target's declared type (int parses with 0 on failure, bool is `true` only for
   the text `"true"`, string is taken as-is), so numeric and boolean controls bind the same way.
 

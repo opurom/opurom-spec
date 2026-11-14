@@ -26,7 +26,7 @@ implement these documents; none of them may redefine them.
 | [INTEGRATION_ADDITIONS.md](INTEGRATION_ADDITIONS.md) | mobile real rendering, GPU loop, LSP completeness, gallery |
 | [TRANSPORT_AND_LANGUAGE_ADDITIONS.md](TRANSPORT_AND_LANGUAGE_ADDITIONS.md) | HTTP/3, static typing, five-tier layout, Wayland wire protocol |
 | [ANIMATION_AND_PHYSICS.md](ANIMATION_AND_PHYSICS.md) | integer-only inertia curve, restitution, contact and determinism contract |
-| [components.json](components.json) | 240 named components mapped to 100 distinct primitives |
+| [components.json](components.json) | 260 named components mapped to 100 distinct primitives |
 | [counter.opu](counter.opu) / [counter.opuir.json](counter.opuir.json) | Golden pair: the compiler must lower the former into the latter |
 | [scripts/validate.mjs](scripts/validate.mjs) | Contract validator: catalog, golden IR, emitter table, index links |
 
@@ -36,10 +36,10 @@ clear diagnostic. Breaking changes bump the version and are a new round's work, 
 ## Component catalog (COMPONENT_LIBRARY_HARDENING section 1)
 
 [components.json](components.json) is the single source of truth for the
-component catalog. It extends from 116 names / 32 primitives to **240 named
+component catalog. It extends from 116 names / 32 primitives to **260 named
 components mapped onto 100 DISTINCT primitive kinds** (32 earlier kinds + 68 extended
 kinds). It is vendored byte-for-byte by `opurom-lang/src/catalog.json` (enforced by CI), and
-`opuromc components` prints `240 components`.
+`opuromc components` prints `260 components`.
 
 Every new primitive kind has a real, deterministic software drawing, a
 documented prop schema and a default a11y role in `opurom-render`. The three V0.1

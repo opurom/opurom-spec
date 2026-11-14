@@ -8,7 +8,7 @@ The token system has two layers. The foundational `--opurom-color-*` palette hol
 
 Brand provenance is the cool blue-cyan pair recorded as `BRAND_ORIGIN` and `BRAND_TERMINAL` in Section 2. The primary, primary-light, and primary-dark tokens derive from that pair. Liquid Glass is the default material language: a translucent frosted lamina with backdrop blur/saturate, a specular inner edge, and restrained accent. Two-colour gradients are reserved for emphasis, hero, and active elements only and MUST NOT be used as full-bleed backgrounds. Surfaces are single-hue or white. Depth comes from elevation plus glass, not clashing gradients.
 
-The component contract is catalog v0.3 in `opurom-spec/components.json`: 240 named components and 100 distinct drawn primitives. Section 4 specifies 53 default UI component forms in six categories; component aliases in the catalog lower to those forms. The five shared responsive tiers are Compact `<600`, Medium `<900`, Expanded `<1200`, Wide `<1600`, and Ultra `>=1600` logical pixels. The compiler, `opurom-render/src/layout.rs`, and the DOM emitter use the same thresholds.
+The component contract is catalog v0.3 in `opurom-spec/components.json`: 260 named components and 100 distinct drawn primitives. Section 4 specifies 53 default UI component forms in six categories; component aliases in the catalog lower to those forms. The five shared responsive tiers are Compact `<600`, Medium `<900`, Expanded `<1200`, Wide `<1600`, and Ultra `>=1600` logical pixels. The compiler, `opurom-render/src/layout.rs`, and the DOM emitter use the same thresholds.
 
 ![Token architecture](assets/ui/token-architecture.svg)
 
