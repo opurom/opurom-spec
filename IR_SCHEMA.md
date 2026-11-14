@@ -60,8 +60,11 @@ otherwise. No layer may require fields beyond this document.
   `fontScale` or `fontFamily` declaration emit no such key, so existing IR stays
   byte-identical. The optional `tokens` object carries `surface`, `onSurface`,
   `stage`, `font` and `contrast` overrides; `stage` is the flat page backdrop a
-  `glass` lamina refracts and falls back to `surface` when absent, `surface` and
-  `onSurface` remain the contrast reference. `props.glass: true` expands into the
+  `glass` lamina refracts and falls back to `surface` when absent, then to white,
+  `surface` and `onSurface` remain the contrast reference. Mini-program targets
+  emit `stage` as the `page` background colour and MUST reject a value that is
+  not a strict `#RRGGBB` or `#RRGGBBAA` literal, so an authored IR cannot inject
+  CSS into the generated stylesheet. `props.glass: true` expands into the
   native effect pipeline, so the software framebuffer and display-list commands
   both render the same translucent lamina; documents without it emit no effect
   commands and stay byte-identical.
