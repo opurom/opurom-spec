@@ -361,6 +361,38 @@ export function validateContracts(root = REPO_ROOT) {
     interactionContract,
     'gesture/nav/animation keys documented, golden IR unchanged');
 
+  // Media, typography, repetition, validation and indexes are additive IR keys.
+  // Their documented shapes must match the lowering and the golden IR must stay
+  // free of every opt-in key.
+  const mediaContract = (() => {
+    if (!/## 9\. Media, typography, repetition and validation/.test(additions)) {
+      return 'IR_ADDITIONS.md lacks the media/typography/repetition section';
+    }
+    for (const token of ['maxLines', 'repeat', 'form.validate()', 'minLength',
+      'indexes', 'contain', 'IndexScan']) {
+      if (!additions.includes(token)) return `IR_ADDITIONS.md omits ${token}`;
+    }
+    for (const key of ['repeat', 'maxLines', 'required', 'minLength', 'indexes']) {
+      if (key in (golden ?? {})) return `golden counter IR must not carry ${key}`;
+    }
+    const scan = (n) => {
+      if (!n || typeof n !== 'object') return null;
+      for (const key of ['repeat', 'maxLines', 'fit', 'required', 'pattern']) {
+        if (key in (n.props ?? {})) return `golden node carries ${key}`;
+      }
+      for (const c of n.children ?? []) {
+        const hit = scan(c);
+        if (hit) return hit;
+      }
+      return null;
+    };
+    const hit = scan(golden?.tree);
+    return hit ? `golden counter IR ${hit}` : null;
+  })();
+  check('media and form contract is documented without golden drift',
+    mediaContract,
+    'media/typography/repeat/validation keys documented, golden IR unchanged');
+
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])
     .filter(target => !/^(https?:|mailto:|#)/.test(target))

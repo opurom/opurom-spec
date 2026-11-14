@@ -156,7 +156,35 @@ interpolates over `duration` after `delay`, using integer half-up rounding. At s
 equals its target, so a settled animated node is field-identical to the same node with `animate`
 removed and the frames are byte-identical.
 
-## 9. Determinism
+## 9. Media, typography, repetition and validation
+
+An `Image` node reads a packed PNG through `src`, resolved against the process working directory.
+The decoder accepts 8-bit grayscale, RGB and RGBA, non-interlaced, all five row filters, with
+bounded dimensions and decoded size. `fit` is `contain` by default, with `cover` and `fill`
+selectable; a missing or unreadable source draws a deterministic rounded-cross placeholder rather
+than failing the frame. The browser emitter lowers the same node to a void `img` with escaped
+`src`, `alt`, `width`, `height`, `loading="lazy"` and `object-fit`.
+
+A `Text` node MAY carry `maxLines` (truncating with an ellipsis) and `align`
+(`left | center | right`). Both integrate with the existing word wrap and stay integer-only.
+
+A `for item in list { ... }` block lowers to one synthetic `Column` carrying
+`"repeat": {"item": "<name>", "list": "<state>"}`; its children remain the template and `{item}`
+is substituted by the consumer. A `for item in state.list` form is also accepted. The
+compile-time parenthesized unroll is unchanged.
+
+`Input` nodes accept `required`, `minLength`, `maxLength` and `pattern` props, which lower to
+same-named `props`. A `form.validate()` handler statement lowers to
+`{"op":"validate","target":"form"}`. All three shapes are additive: programs that do not use them
+emit byte-identical IR.
+
+A model MAY declare `"indexes": [{"name":"...","columns":["a","b"],"unique":true}]` (`unique`
+defaults to false). Index DDL runs in the same migration transaction as the table creation. A
+pure query planner selects the index with the longest matching leading-column prefix, tie-broken
+by name, and reports `TableScan` or `IndexScan`; a fully matched unique index bounds the estimate
+to one row.
+
+## 10. Determinism
 
 All interactive UI rendering (gradients, glass, shadow, animation at a given tick) MUST stay
 integer-only and pixel-deterministic. The v0.1 golden digest for `counter.opuir.json` must not
