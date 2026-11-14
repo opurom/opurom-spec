@@ -36,8 +36,23 @@ otherwise. No layer may require fields beyond this document.
 - `theme`: compiler-emitted defaults when the source omits theme syntax. `mode` ∈
   `light|dark|system`, `accent` is `#RRGGBB`, `radius` is a number in logical pixels.
   The optional `fontScale` is a JSON number in 0.5..3.0 and sets a global text scale;
-  a node's own `props.fontScale` takes precedence over it. Programs without a
-  `fontScale` declaration emit no such key, so existing IR stays byte-identical.
+  a node's own `props.fontScale` takes precedence over it. The optional `fontFamily`
+  is a CSS font-family string that leads the platform-adaptive system stack, so a
+  project can ship its own typeface while keeping OS fallbacks; programs without a
+  `fontScale` or `fontFamily` declaration emit no such key, so existing IR stays
+  byte-identical.
+
+### System font stack
+
+Every emitter resolves text through one platform-adaptive CSS font-family list rather
+than a fixed generic family. The list is ordered so the first installed family wins on
+each host: `PingFang SC` and `Hiragino Sans GB` on macOS and iOS, `Microsoft YaHei`
+and `Microsoft JhengHei` on Windows, `Noto Sans CJK SC`, `Source Han Sans SC` and
+`Roboto` on Linux and Android, with `Helvetica Neue` and `Arial` as Latin fallbacks and
+`sans-serif` as the final catch-all. A `theme.fontFamily` value is prepended to this
+stack, so applications get native system typography by default and can override it
+without a per-OS branch. Emitters that emit canvas text apply the same list to
+`ctx.font`.
 
 ## Golden pair
 
