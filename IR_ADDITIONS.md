@@ -191,3 +191,68 @@ to one row.
 All interactive UI rendering (gradients, glass, shadow, animation at a given tick) MUST stay
 integer-only and pixel-deterministic. The v0.1 golden digest for `counter.opuir.json` must not
 change: interactive UI features are opt-in through props/fields, never implied by default.
+
+## 11. Design-system chain
+
+The design-system layer is additive and opt-in, so an IR that declares none of its keys stays
+byte-identical. `opurom-lang` accepts three new node props in `DESIGN_PROPS` and all nine target
+emitters preserve them. Unknown values are diagnostics naming the prop, the value and the accepted
+list:
+
+| Prop | Allowed values |
+| --- | --- |
+| `state` | `default`, `hover`, `active`, `focus`, `disabled` |
+| `variant` | `primary`, `secondary`, `text`, `danger`, `ghost`, `fab` |
+| `tone` | `success`, `warning`, `error`, `info`, `neutral` |
+
+`state` resolves exactly one of the five interaction states; `default` is also the meaning of an
+absent prop, and an authored boolean `disabled` prop wins over `state` and over any caller override
+(`NodeState::resolve`). The DOM runtime mirrors the same precedence — `disabled` > `active` >
+`focus` > `hover` > `default` — with `data-state` and `opurom-state-*` classes driven by real
+listeners. `opurom-render` paints each state with deterministic integer RGBA transforms
+(`NodeState::color`, `NodeState::opacity`): hover is a white tint `c + (255 - c) * 3 / 16`, active
+is `c * 13 / 16` plus a pressed inset, focus leaves colours unchanged and draws a two-pixel accent
+ring outside the node rect, and disabled desaturates by integer luminance
+`(299r + 587g + 114b) / 1000` with `alpha * 3 / 5`. All arithmetic is integer division, so results
+are host-independent; `--interactive-state` applies one state to every interactive node for a
+state-matrix screenshot without changing default stdout.
+
+`variant` and `tone` resolve through the semantic palette tokens `primary`, `secondary`, `success`,
+`warning`, `error`, `info` and `neutral` (measured `#0A71FC`, `#0DB2FF`, `#1FB14C`, `#FD960E`,
+`#F62B35`, `#0A71FC` and `#132C5A`). An explicit `theme.tokens.*` override wins; a tone always wins
+on the border colour, and a variant/tone default never replaces an authored `color` or `border`.
+`opurom-web` lowers both into `data-variant` / `data-tone` markup in the DOM emitter and into
+`semanticSpec` on the Canvas path, so both paths resolve the same palette.
+
+The opt-in `fontMetrics` key selects text metrics: `FontMetrics::Fixed` (the default) keeps one
+advance per glyph, `font::advance(scale) = (GLYPH_W + 1) * scale`, while
+`FontMetrics::Proportional` derives a compact per-glyph advance from the 12x14 coverage atlas. It
+may be set globally through `theme.fontMetrics` or overridden per node through `props.fontMetrics`;
+a program that declares neither keeps the fixed default, so the three canonical golden frames stay
+byte-identical.
+
+The adaptive frame budget is integer-only and caller-supplied. `choose_quality` degrades particle
+counts in quarters and drops expensive effects below 16 ms, and `--frame-budget <ms>` wires it into
+the renderer CLI with one deterministic third stdout line. `FrameBudget::push` /
+`Renderer::render_auto_at` evaluate a rolling `WINDOW_FRAMES = 20` window with an integer
+nearest-rank p95: a p95 above the `FrameRate` target (Hz60 = 16 ms, Hz120 = 8 ms) degrades
+`QualityTier` from `Full` to `Reduced` to `Minimal`, while promotion needs three consecutive good
+windows. No clock is read inside the renderer, and the no-flag path is byte-for-byte identical.
+
+The default path MUST leave the THREE canonical golden IR/digests unchanged: `counter.opuir.json`
+at 320x240 = `8d45f412996a99c6`, at 800x600 = `318beb1dd337bc4e`, and at 800x600 with
+`--state count=7` = `40073cb95c912d80`. None of `state`, `variant`, `tone` or `fontMetrics` may
+appear in the golden counter IR, at the top level or in any node's props. The component catalog
+stays at 260 names, including the feedback/overlay family `Modal`, `Confirm`, `Drawer`, `Toast`,
+`Tooltip`, `Notification`.
+
+Cross-layer contracts: `opurom-core` routes input editing through the kernel text-input bus
+`TEXT_INPUT_BUS` ("textInput") on `PluginBus`, where `TextInputState` wraps `TextBuffer` and typed
+`TextInputError` / `TextBufferError` report failures without mutating state; the `catch_unwind`
+circuit breaker isolates a failing handler so the runtime keeps working, and an `Input` opts in with
+`props.textBuffer`. `opurom-platform` consumes `resolve_layout(DisplayGeometry) -> LayoutDecision`
+from window and `WireEvent::Geometry` events; the pure integer resolver derives `LayoutTier`,
+`columns`, `gutter` and an `avoid_fold` region from `FoldRegion`, `Posture` and `WindowRole`, so the
+same geometry yields the same decision on every host. `opurom-cli` broadcasts `decideReload`
+decisions to multiple preview devices through `createDeviceRegistry`, assigning a monotonic
+`revision` and a deterministic replayable log.

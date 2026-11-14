@@ -99,18 +99,22 @@ const CORRUPTIONS = [
       'at view time and rejects an unknown name')],
   ['icon name contract is documented and complete', dir =>
     editText(dir, 'LANG_SPEC.md', '`chat`', '`chaat`')],
+  ['design system chain is documented without golden drift', dir =>
+    editText(dir, 'IR_ADDITIONS.md', '## 11. Design-system chain', '## 11. Design chain')],
+  ['design system chain is documented without golden drift', dir =>
+    editJson(dir, 'counter.opuir.json', data => { data.tree.props.fontMetrics = 'proportional'; })],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 20 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 21 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 20);
+  assert.equal(checks.length, 21);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {

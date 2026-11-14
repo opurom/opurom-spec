@@ -406,6 +406,47 @@ export function validateContracts(root = REPO_ROOT) {
     mediaContract,
     'media/typography/repeat/validation keys documented, golden IR unchanged');
 
+  // The design-system chain is additive: one section must document the three
+  // props, all five states and every variant/tone value, and no opt-in key may
+  // leak into the frozen golden counter IR (top level or any node's props).
+  const designSection = additions.split('## 11. Design-system chain')[1]
+    ?.split('\n## ')[0] ?? '';
+  const DESIGN_PROPS = ['state', 'variant', 'tone'];
+  const DESIGN_STATES = ['default', 'hover', 'active', 'focus', 'disabled'];
+  const DESIGN_VALUES = ['primary', 'secondary', 'text', 'danger', 'ghost', 'fab',
+    'success', 'warning', 'error', 'info', 'neutral'];
+  const DESIGN_KEYS = [...DESIGN_PROPS, 'fontMetrics'];
+  const designContract = (() => {
+    if (!designSection) return 'IR_ADDITIONS.md lacks the design-system chain section';
+    for (const token of [...DESIGN_PROPS, ...DESIGN_STATES, ...DESIGN_VALUES, 'fontMetrics']) {
+      if (!designSection.includes(`\`${token}\``)) {
+        return `design-system chain section omits \`${token}\``;
+      }
+    }
+    for (const key of DESIGN_KEYS) {
+      if (!(key in (golden ?? {}))) continue;
+      // `state` is the legal v0.1 top-level state-declaration array; the
+      // design-system `state` is a node prop, never a root value.
+      if (key === 'state' && Array.isArray(golden.state)) continue;
+      return `golden counter IR must not carry ${key}`;
+    }
+    const scan = (n) => {
+      if (!n || typeof n !== 'object') return null;
+      for (const key of DESIGN_KEYS) {
+        if (key in (n.props ?? {})) return `golden node carries ${key}`;
+      }
+      for (const c of Array.isArray(n.children) ? n.children : []) {
+        const hit = scan(c);
+        if (hit) return hit;
+      }
+      return null;
+    };
+    const hit = scan(golden?.tree);
+    return hit ? `golden counter IR ${hit}` : null;
+  })();
+  check('design system chain is documented without golden drift', designContract,
+    'props, states and variant/tone values documented, golden IR unchanged');
+
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])
     .filter(target => !/^(https?:|mailto:|#)/.test(target))
