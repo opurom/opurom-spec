@@ -484,6 +484,44 @@ export function validateContracts(root = REPO_ROOT) {
   check('design system chain is documented without golden drift', designContract,
     'props, states and variant/tone values documented, golden IR unchanged');
 
+  // Theme-from-source keys are additive: one section must document
+  // fontMetrics, all six semantic tokens and the Input textBuffer/secure props,
+  // and none of those opt-in keys may leak into the frozen golden counter IR.
+  const themeSection = additions.split('## 13. Theme from source')[1]
+    ?.split('\n## ')[0] ?? '';
+  const THEME_TOKENS = ['success', 'warning', 'error', 'info', 'primary', 'secondary'];
+  const THEME_KEYS = ['fontMetrics', 'tokens', 'textBuffer', 'secure'];
+  const themeContract = (() => {
+    if (!themeSection) return 'IR_ADDITIONS.md lacks the theme-from-source section';
+    for (const token of ['fontMetrics', ...THEME_TOKENS, 'textBuffer', 'secure']) {
+      if (!themeSection.includes(`\`${token}\``)) {
+        return `theme-from-source section omits \`${token}\``;
+      }
+    }
+    for (const key of THEME_KEYS) {
+      if (!(key in (golden ?? {}))) continue;
+      // The top-level `state` array is legal v0.1 state declarations and is
+      // unrelated to any theme-from-source key; no exception is needed here
+      // because none of these keys is `state`.
+      return `golden counter IR must not carry ${key}`;
+    }
+    const scan = (n) => {
+      if (!n || typeof n !== 'object') return null;
+      for (const key of THEME_KEYS) {
+        if (key in (n.props ?? {})) return `golden node carries ${key}`;
+      }
+      for (const c of Array.isArray(n.children) ? n.children : []) {
+        const hit = scan(c);
+        if (hit) return hit;
+      }
+      return null;
+    };
+    const hit = scan(golden?.tree);
+    return hit ? `golden counter IR ${hit}` : null;
+  })();
+  check('theme from source is documented without golden drift', themeContract,
+    'fontMetrics, tokens, textBuffer/secure documented, golden IR unchanged');
+
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])
     .filter(target => !/^(https?:|mailto:|#)/.test(target))

@@ -324,3 +324,74 @@ The action union gains `pop`:
 - `Theme.transition` (`slide | fade | scale`) selects the transition kind the renderer runs on each
   `push` and `pop`; a document that declares no route emits no navigation patches and stays
   byte-identical.
+
+## 13. Theme from source
+
+Three source capabilities reach the IR as additive, opt-in keys: theme text metrics, the semantic
+palette tokens, and editable text inputs. A program that declares none of them stays byte-identical,
+so the three canonical golden digests are unchanged.
+
+### Text metrics: `theme.fontMetrics`
+
+`theme.fontMetrics` is a string selecting how a glyph's horizontal advance is measured. The IR
+carries it at `theme.fontMetrics` and a node may override it at `props.fontMetrics`; a node without
+the prop inherits the theme value, and a program that declares neither keeps the default.
+
+| Element | Type | Accepted values |
+| --- | --- | --- |
+| `theme.fontMetrics` | string | `fixed`, `proportional` |
+| `props.fontMetrics` (node override) | string | `fixed`, `proportional` |
+
+`fixed` is the default: every glyph advances by `(GLYPH_W + 1) * scale`, so committed frames stay
+byte-identical. `proportional` derives a compact per-glyph advance from the 12x14 coverage atlas
+(`FontMetrics::Proportional` in `opurom-render/src/font.rs`). An unknown value fails IR validation
+with a diagnostic naming `fontMetrics`, the value and the accepted `fixed`/`proportional` set.
+
+### Semantic palette: `theme.tokens.*`
+
+`theme.tokens` is a JSON object of `#RRGGBB` strings. The six semantic names `success`, `warning`,
+`error`, `info`, `primary` and `secondary` are consumed by the renderer and web targets as the
+palette for the design-system `variant`/`tone` values; an explicit token override wins over the
+built-in default.
+
+| Key | Type | Meaning |
+| --- | --- | --- |
+| `tokens.success` | string `#RRGGBB` | success / positive ink |
+| `tokens.warning` | string `#RRGGBB` | warning ink |
+| `tokens.error` | string `#RRGGBB` | error / danger ink |
+| `tokens.info` | string `#RRGGBB` | informational ink |
+| `tokens.primary` | string `#RRGGBB` | primary accent ink |
+| `tokens.secondary` | string `#RRGGBB` | secondary accent ink |
+
+Each value is a `#RRGGBB` color; a missing token falls back to its built-in default, so an IR that
+declares no `tokens` object renders unchanged.
+
+### Editable inputs: `Input` `textBuffer`, `secure`, `value`
+
+An `Input` node opts into kernel-owned text editing with `props.textBuffer: true`. When set,
+`opurom-core` registers an editable input for that node through `Runtime::with_text_input`; the IR
+carries the opt-in and its options on the node's `props`:
+
+| Prop | Type | Meaning |
+| --- | --- | --- |
+| `textBuffer` | bool | opt in to kernel text editing; `false` or absent means none |
+| `secure` | bool | mask the displayed value (password-style); default `false` |
+| `value` | string | initial buffer contents; default empty string |
+
+Kernel editable-input contract, as registered by `Runtime::with_text_input`:
+
+- Capacity is `props.capacity`, else `props.maxLength`, else the kernel default
+  (`DEFAULT_TEXT_INPUT_CAPACITY`). A `textBuffer` value that is not a bool, a non-integer capacity
+  or a non-string `value` is an IR validation error.
+- A `secure` input renders a masked display while the real buffer and cursor stay in `TextInputState`;
+  the buffer is never mutated by a failed edit.
+- Editing flows through the kernel text-input bus (`TEXT_INPUT_BUS` on `PluginBus`); a failing handler
+  is isolated by the `catch_unwind` circuit breaker, so one bad input never stops the runtime, and a
+  capacity overflow reports a `capacityExceeded` error without mutating state.
+
+### CLI profiler quality tiers
+
+The `opurom-cli` profiler gains `--degrade <60|120>`, which reports the renderer's `FrameBudget`
+quality tiers (`Full`, `Reduced`, `Minimal`) for the measured samples; the `tiers` fields are appended
+only when `--degrade` is used, so the base profile record is unchanged. The renderer exposes the same
+policy as `--auto-degrade <60|120>`, which wire the measured frame budget into the render config.

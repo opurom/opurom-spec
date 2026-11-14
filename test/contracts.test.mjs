@@ -126,18 +126,22 @@ const CORRUPTIONS = [
     editJson(dir, 'counter.opuir.json', data => { data.routes = { Home: { tree: null } }; })],
   ['gesture and navigation contract is documented without golden drift', dir =>
     editJson(dir, 'counter.opuir.json', data => { data.initialRoute = 'Home'; })],
+  ['theme from source is documented without golden drift', dir =>
+    editText(dir, 'IR_ADDITIONS.md', '## 13. Theme from source', '## 13. Theme')],
+  ['theme from source is documented without golden drift', dir =>
+    editJson(dir, 'counter.opuir.json', data => { data.tree.props.textBuffer = true; })],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 22 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 23 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 22);
+  assert.equal(checks.length, 23);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {
