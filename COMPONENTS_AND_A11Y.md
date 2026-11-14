@@ -22,6 +22,37 @@ Rules:
 - Expansion is deterministic and compile-time only: no component registry ships in a build.
 - `opuromc components` prints the catalog (name, primitive, category); the count MUST be >= 100.
 
+## 1.1 Flutter-aligned named components (additive)
+
+The catalog carries an additive set of 24 Material 3 and Cupertino **named components**.
+Each is a plain catalog tuple; it maps onto one of the existing 100 drawn primitives and
+adds no new drawn primitive, renderer change, theme key, font glyph or IR action op.
+
+- Material 3: `Scaffold`, `AppBar`, `FloatingActionButton`, `NavigationBar`,
+  `NavigationRail`, `NavigationDrawer`, `InputChip`, `SnackBar`, `BottomSheet`,
+  `ModalBottomSheet`, `SegmentedButton`, `DividerVertical`, `ListTile`, `ExpansionTile`,
+  `TooltipCard`.
+- Cupertino-style: `CupertinoButton`, `CupertinoSwitch`, `CupertinoSlider`,
+  `CupertinoTextField`, `CupertinoNavigationBar`, `CupertinoAlertDialog`,
+  `CupertinoTabBar`, `CupertinoPicker`, `CupertinoSegmentedControl`.
+
+The names and their default props are taken from Flutter's Material 3 and Cupertino
+component vocabulary; the defaults (radius, padding, elevation-like `shadow` and the
+brand accent `#097FEB` where the component uses an accent) are deliberate and not
+placeholders. Each `defaultProps` object is structurally validated with the rest of the
+catalog, and any prop a program writes against one of these names is checked against the
+resolved primitive, so an unknown prop is rejected with the standard friendly
+`unknown prop '<name>' on <Component>` diagnostic instead of being silently dropped. Because the names resolve to existing primitives, `Scaffold` lowers to
+`Column`, `AppBar` to `Row`, `FloatingActionButton`/`CupertinoButton` to `Button`,
+`NavigationBar`/`SegmentedButton`/`CupertinoTabBar` to `Tabs`, `InputChip` to `Badge`,
+`NavigationRail` to `NavRail`, `NavigationDrawer` to `Sidebar`, `SnackBar` to `Card`,
+`BottomSheet`/`ModalBottomSheet`/`CupertinoAlertDialog` to `Dialog`,
+`SegmentedControl`-like forms to `Tabs`/`SegmentedInput`, `DividerVertical` to
+`Divider`, `ListTile` to `Row`, `ExpansionTile` to `Card`, `TooltipCard` to `Tooltip`,
+`CupertinoSwitch` to `Switch`, `CupertinoSlider` to `Slider`, `CupertinoTextField` to
+`Input`, `CupertinoNavigationBar` to `Row`, `CupertinoPicker` to `SelectBox`, and
+`CupertinoSegmentedControl` to `SegmentedInput`.
+
 ## 2. Accessibility (renderer + SSR)
 
 Optional props/theme keys, all deterministic:
