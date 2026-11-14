@@ -62,9 +62,12 @@ import "ui/cards.opu"
 ## 3.1 Icon packages (`opurom-icons`)
 
 - A package whose `opurom-pkg.json` declares `"kind": "icons"` and an `"entry"` JSON document;
-  optional fields `license`, `attribution`, `iconSource`, `viewBox` and `weights` describe the
-  vendored set. The entry document is `{format, license, attribution, source, viewBox, count,
-  icons:[{name, weight, viewBox, paths:[{d}]}]}`.
+  optional fields `license`, `attribution`, `iconSource`, `viewBox`, `styles`, `sketch` and `count`
+  describe the vendored set. The entry document is `{format, license, attribution, source, viewBox,
+  styles, sketch, count, categories, icons:[{id, name, category, viewBox, paths:[{d}],
+  styles:{<style>:[{d, stroke?, fill?, strokeWidth?, opacity?}]}}]}`. Each icon carries one path
+  list per declared drawing style; the top-level `paths` mirrors the `line` style for consumers
+  that predate the multi-style table.
 - The compiler resolves every locked dependency of kind `icons` at compile time, merges the
   package names into the `Icon` name check, and emits an `icons` IR key
   (`[{name, viewBox, paths:[string]}]`) only when a program actually references a package icon;
@@ -73,9 +76,11 @@ import "ui/cards.opu"
 - The web DOM emitter paints package geometry with the recorded viewBox and `fill="currentColor"`
   and no stroke scaling; built-in names keep their 24x24 stroked paths. The native renderer paints
   its deterministic fallback glyph for names outside its embedded set.
-- The reference package `opurom-icons` vendors Phosphor Icons (MIT, (c) 2023 Phosphor Icons) with
-  the license text and attribution preserved; its `tools/fetch-icons.mjs` refreshes the curated
-  set from the published upstream package, and CI never fetches.
+- The reference package `opurom-icons` vendors the complete QingIcon set (Apache-2.0) — 3907 icons,
+  each in the `line`, `fill-small`, `fill-regular` and `fill-large` styles; the license and NOTICE
+  text are preserved. Its `tools/build-icons.mjs` rebuilds `icons/icons.json` from the vendored
+  upstream `vendor/qingicon/` source, and CI never fetches. The `sketch` variant is a runtime
+  rough-geometry effect, not static path data.
 
 ## 4. Vector renderer backend (`opurom-render`)
 
