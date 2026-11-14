@@ -116,7 +116,33 @@ Required props for the new kinds (all others optional):
 Consumers that do not know a new kind render it as a `Container` (with children) or a `Text`
 (label/value/title/name) rather than failing. This is the documented fallback, not an error.
 
-## 8. Determinism
+## 8. Gestures, navigation and implicit animation
+
+A node MAY carry `"gesture": "<name>"` with name in `tap | doubleTap | longPress | drag`. The
+handler bound to that gesture is stored under the same event key: `events.longPress`,
+`events.drag`, and so on. A gesture with no handler lowers to `{"actions": []}`. Consumers that
+only understand `tap`/`input` ignore the other gesture keys, which keeps gesture IR forward
+compatible.
+
+A program MAY declare top-level pages, which lower to an optional `"pages": ["Home", ...]` array
+(absent when no pages are declared, so existing IR is unchanged). A handler statement `push: Page`
+lowers to the navigation action:
+
+```json
+{ "op": "push", "target": "Page" }
+```
+
+`push` has no `value`. The renderer's navigation stack applies it as a `push` and runs the
+configured page transition; `Theme.transition` (`slide | fade | scale`) selects the transition kind.
+
+A node with `"animate": "<curve>"` runs a deterministic entry animation; the optional integer
+`"duration"` (ms, 0..=10000) and `"delay"` (ms, 0..=10000) tune it. When a numeric style prop
+(`radius`, `padding`, `shadow`, `color`, `opacity`) changes between two renders the value
+interpolates over `duration` after `delay`, using integer half-up rounding. At settle every value
+equals its target, so a settled animated node is field-identical to the same node with `animate`
+removed and the frames are byte-identical.
+
+## 9. Determinism
 
 All interactive UI rendering (gradients, glass, shadow, animation at a given tick) MUST stay
 integer-only and pixel-deterministic. The v0.1 golden digest for `counter.opuir.json` must not

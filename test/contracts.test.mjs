@@ -99,13 +99,13 @@ const CORRUPTIONS = [
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 17 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 18 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 17);
+  assert.equal(checks.length, 18);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {

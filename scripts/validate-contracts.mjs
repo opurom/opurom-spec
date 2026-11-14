@@ -322,6 +322,45 @@ export function validateContracts(root = REPO_ROOT) {
   check('icon name contract is documented and complete', iconContract,
     'LANG_SPEC.md lists all 31 built-in icon names and the compile-time validation');
 
+  // Gestures, navigation and implicit animation are additive: their IR keys are
+  // documented in IR_ADDITIONS and must not appear in the golden counter IR.
+  const additions = files['IR_ADDITIONS.md'];
+  const interactionContract = (() => {
+    if (!/## 8\. Gestures, navigation and implicit animation/.test(additions)) {
+      return 'IR_ADDITIONS.md lacks the gesture/navigation/animation section';
+    }
+    for (const word of ['tap', 'doubleTap', 'longPress', 'drag']) {
+      if (!additions.includes(word)) return `IR_ADDITIONS.md omits the ${word} gesture`;
+    }
+    if (!/\{ "op": "push", "target": "Page" \}/.test(additions)) {
+      return 'IR_ADDITIONS.md omits the push action shape';
+    }
+    if (!/"pages": \["Home"/.test(additions)) {
+      return 'IR_ADDITIONS.md omits the pages array';
+    }
+    for (const key of ['gesture', 'pages', 'duration', 'delay']) {
+      if (key in (golden ?? {})) return `golden counter IR must not carry ${key}`;
+    }
+    const walk = (n) => {
+      if (!n || typeof n !== 'object') return null;
+      const props = n.props ?? {};
+      for (const key of ['gesture', 'duration', 'delay', 'animate']) {
+        if (key in props) return `golden node carries ${key}`;
+      }
+      for (const c of n.children ?? []) {
+        const hit = walk(c);
+        if (hit) return hit;
+      }
+      return null;
+    };
+    const nodeHit = walk(golden?.tree);
+    if (nodeHit) return `golden counter IR ${nodeHit}`;
+    return null;
+  })();
+  check('gesture and navigation contract is documented without golden drift',
+    interactionContract,
+    'gesture/nav/animation keys documented, golden IR unchanged');
+
   const links = [...files['README.md'].matchAll(/\]\(([^)\s]+)\)/g)]
     .map(match => match[1])
     .filter(target => !/^(https?:|mailto:|#)/.test(target))
