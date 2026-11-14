@@ -176,7 +176,9 @@ compile-time parenthesized unroll is unchanged.
 `Input` nodes accept `required`, `minLength`, `maxLength` and `pattern` props, which lower to
 same-named `props`. A `form.validate()` handler statement lowers to
 `{"op":"validate","target":"form"}`. All three shapes are additive: programs that do not use them
-emit byte-identical IR.
+emit byte-identical IR. A kernel dispatching a `validate` action emits the reserved patch
+`{"name":"@validate","value":"form"}` and leaves state unchanged, mirroring `@nav`; consumers
+must not treat `@validate` as a state name.
 
 A model MAY declare `"indexes": [{"name":"...","columns":["a","b"],"unique":true}]` (`unique`
 defaults to false). Index DDL runs in the same migration transaction as the table creation. A
