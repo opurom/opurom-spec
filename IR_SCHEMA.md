@@ -40,7 +40,13 @@ otherwise. No layer may require fields beyond this document.
   is a CSS font-family string that leads the platform-adaptive system stack, so a
   project can ship its own typeface while keeping OS fallbacks; programs without a
   `fontScale` or `fontFamily` declaration emit no such key, so existing IR stays
-  byte-identical.
+  byte-identical. The optional `tokens` object carries `surface`, `onSurface`,
+  `stage`, `font` and `contrast` overrides; `stage` is the flat page backdrop a
+  `glass` lamina refracts and falls back to `surface` when absent, `surface` and
+  `onSurface` remain the contrast reference. `props.glass: true` expands into the
+  native effect pipeline, so the software framebuffer and display-list commands
+  both render the same translucent lamina; documents without it emit no effect
+  commands and stay byte-identical.
 
 ### System font stack
 

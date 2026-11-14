@@ -50,7 +50,7 @@ numbers; `true`/`false` stay JSON booleans; colors are `#RRGGBB` strings.
 | `radius` | `rounded` | number | corner radius |
 | `shadow` | — | number | soft shadow strength |
 | `gradient` | — | `"#RRGGBB,#RRGGBB"` | two-stop linear gradient |
-| `glass` | — | bool | frosted-glass fill |
+| `glass` | — | bool | liquid-glass lamina over the refracted backdrop |
 | `opacity` | — | number 0..1 | alpha |
 | `border` | — | color | 1px border |
 | `animate` | — | `"spring"\|"ease"\|"none"` | entry animation |
@@ -81,9 +81,19 @@ ignore the object (forward-compatible degradation), never reject the file.
 
 ## 6. Theme tokens
 
-`theme` MAY carry `"tokens": { "surface": "#RRGGBB", "onSurface": "#RRGGBB", "font": "<name>" }`.
-Missing tokens fall back to the theme's `mode`/`accent`/`radius`. Deterministic rendering MUST NOT
-depend on a host font: text is drawn with the renderer's built-in bitmap font.
+`theme` MAY carry `"tokens": { "surface": "#RRGGBB", "onSurface": "#RRGGBB",
+"stage": "#RRGGBB", "font": "<name>", "contrast": "normal"\|"high" }`.
+Missing tokens fall back to the theme's `mode`/`accent`/`radius`. `surface` and `onSurface`
+remain the contrast reference for on-surface ink; `stage` is the flat tinted page backdrop
+that a `glass` lamina refracts, and falls back to `surface` when absent so documents that
+declare no stage stay byte-identical. Deterministic rendering MUST NOT depend on a host font:
+text is drawn with the renderer's built-in bitmap font.
+
+A `glass: true` node without an explicit `effects` glass or liquid entry expands into the
+native effect pipeline: a blurred refraction of the backdrop plus a specular edge band. The
+software framebuffer and the display-list commands both carry the expansion, so every backend
+renders the same lamina without new IR fields. IR that declares no glass emits no effect
+commands and keeps the pixel-consistency guarantee unchanged.
 
 ## 7. Node kind catalog (24 kinds)
 
