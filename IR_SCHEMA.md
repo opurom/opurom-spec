@@ -40,11 +40,15 @@ otherwise. No layer may require fields beyond this document.
   are outside the contract and MUST NOT be followed. `props.fit` selects
   `contain`, `cover` or `fill` placement for the decoded image.
 - `events` maps an event name to exactly one action. The five accepted names are
-  `tap`, `input`, `doubleTap`, `longPress` and `drag`. A source `gesture:` prop is
+  `tap`, `input`, `doubleTap`, `longPress` and `drag`; the set is closed and
+  consumers MUST reject an undeclared name with a readable diagnostic rather
+  than silently dropping the binding. A source `gesture:` prop is
   removed at lowering and selects the event name (`gesture: doubleTap` binds the
   handler under `doubleTap`); without it a tap handler binds under `tap`. Mini-program
   targets emit the three gesture events as a touch-start/move/end recognizer that
   dispatches by node id, while the other targets bind the gesture natively.
+  `dragEnd` and `nav` are runtime gesture-binding aliases, not author-declarable
+  IR event names.
 
   ```json
   { "op": "set" | "add" | "sub" | "toggle" | "nav" | "push" | "validate", "target": "count", "value": 1 }
