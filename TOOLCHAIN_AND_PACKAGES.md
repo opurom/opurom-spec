@@ -79,7 +79,7 @@ import "ui/cards.opu"
 - The reference package `opurom-icons` vendors the complete QingIcon set (Apache-2.0) — 3907 icons,
   each in the `line`, `fill-small`, `fill-regular` and `fill-large` styles; the license and NOTICE
   text are preserved. Its `tools/build-icons.mjs` rebuilds `icons/icons.json` from the vendored
-  upstream `vendor/qingicon/` source, and CI never fetches. The `sketch` variant is a runtime
+  upstream source from `vendor/qingicon/` (fetched on demand, not committed), and CI never fetches. The `sketch` variant is a runtime
   rough-geometry effect, not static path data.
 
 ## 4. Vector renderer backend (`opurom-render`)
