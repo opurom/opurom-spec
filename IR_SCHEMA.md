@@ -64,7 +64,11 @@ otherwise. No layer may require fields beyond this document.
   the text `"true"`, string is taken as-is), so numeric and boolean controls bind the same way.
 
 - `theme`: compiler-emitted defaults when the source omits theme syntax. `mode` ∈
-  `light|dark|system`, `accent` is `#RRGGBB`, `radius` is a number in logical pixels.
+  `light|dark|system`, `accent` is `#RRGGBB`, `radius` is a non-negative number
+  in logical pixels. IR consumers reject an out-of-set `mode`, a malformed `accent`
+  or a negative `radius` when the field is present; an omitted field keeps its
+  consumer default. The self-drawn renderer quantizes `radius` to an integer for
+  layout and therefore rejects a fractional value; the DOM consumer accepts it.
   The optional `fontScale` is a JSON number in 0.5..3.0 and sets a global text scale;
   a node's own `props.fontScale` takes precedence over it. The optional `fontFamily`
   is a CSS font-family string that leads the platform-adaptive system stack, so a
