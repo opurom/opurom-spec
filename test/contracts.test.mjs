@@ -113,6 +113,19 @@ const CORRUPTIONS = [
     editJson(dir, 'counter.opuir.json', data => {
       data.tree.events = { hover: { op: 'add', target: 'count', value: 1 } };
     })],
+  ['gesture and navigation contract is documented without golden drift', dir =>
+    editText(dir, 'IR_ADDITIONS.md', '{ "op": "pop" }', '{ "op": "poo" }')],
+  ['gesture and navigation contract is documented without golden drift', dir =>
+    editText(dir, 'IR_ADDITIONS.md', '## 12. Multi-page routing', '## 12. Multi page routing')],
+  ['gesture and navigation contract is documented without golden drift', dir =>
+    editText(dir, 'IR_ADDITIONS.md', 'UNIQUE ACROSS THE ENTIRE MULTI-PAGE PROGRAM',
+      'unique across each route tree')],
+  ['gesture and navigation contract is documented without golden drift', dir =>
+    editText(dir, 'LANG_SPEC.md', 'push: Detail', 'push: Missing')],
+  ['gesture and navigation contract is documented without golden drift', dir =>
+    editJson(dir, 'counter.opuir.json', data => { data.routes = { Home: { tree: null } }; })],
+  ['gesture and navigation contract is documented without golden drift', dir =>
+    editJson(dir, 'counter.opuir.json', data => { data.initialRoute = 'Home'; })],
 ];
 
 test('published contracts pass the validator', () => {

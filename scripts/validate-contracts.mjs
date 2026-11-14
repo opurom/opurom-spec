@@ -364,13 +364,31 @@ export function validateContracts(root = REPO_ROOT) {
     for (const word of ['tap', 'doubleTap', 'longPress', 'drag']) {
       if (!additions.includes(word)) return `IR_ADDITIONS.md omits the ${word} gesture`;
     }
-    if (!/\{ "op": "push", "target": "Page" \}/.test(additions)) {
+    if (!/\{ "op": "push", "target": "Detail" \}/.test(additions)) {
       return 'IR_ADDITIONS.md omits the push action shape';
     }
-    if (!/"pages": \["Home"/.test(additions)) {
-      return 'IR_ADDITIONS.md omits the pages array';
+    if (!/\{ "op": "pop" \}/.test(additions)) {
+      return 'IR_ADDITIONS.md omits the pop action shape';
     }
-    for (const key of ['gesture', 'pages', 'duration', 'delay']) {
+    if (!/## 12\. Multi-page routing/.test(additions)) {
+      return 'IR_ADDITIONS.md lacks the multi-page routing section';
+    }
+    if (!/"initialRoute"/.test(additions) || !/"routes"/.test(additions)) {
+      return 'IR_ADDITIONS.md omits the routes/initialRoute keys';
+    }
+    if (!/\{"name":"@nav","value":"\.\."\}/.test(additions)) {
+      return 'IR_ADDITIONS.md omits the pop @nav patch';
+    }
+    if (!/UNIQUE ACROSS THE ENTIRE MULTI-PAGE PROGRAM/.test(additions)) {
+      return 'IR_ADDITIONS.md does not state document-global node id uniqueness';
+    }
+    if (!/## Routes and navigation/.test(language)) {
+      return 'LANG_SPEC.md lacks the routes and navigation section';
+    }
+    for (const token of ['route Home', 'push: Detail', '{ pop }']) {
+      if (!language.includes(token)) return `LANG_SPEC.md omits the ${token} route syntax`;
+    }
+    for (const key of ['gesture', 'pages', 'routes', 'initialRoute', 'duration', 'delay']) {
       if (key in (golden ?? {})) return `golden counter IR must not carry ${key}`;
     }
     const walk = (n) => {
@@ -391,7 +409,7 @@ export function validateContracts(root = REPO_ROOT) {
   })();
   check('gesture and navigation contract is documented without golden drift',
     interactionContract,
-    'gesture/nav/animation keys documented, golden IR unchanged');
+    'gesture/routes/pop keys documented, golden IR unchanged');
 
   // Media, typography, repetition, validation and indexes are additive IR keys.
   // Their documented shapes must match the lowering and the golden IR must stay

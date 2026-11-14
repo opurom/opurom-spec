@@ -134,21 +134,19 @@ handler bound to that gesture is stored under the same event key: `events.longPr
 only understand `tap`/`input` ignore the other gesture keys, which keeps gesture IR forward
 compatible.
 
-A program MAY declare top-level pages, which lower to an optional `"pages": ["Home", ...]` array
-of unique route names (absent when no pages are declared, so existing IR is unchanged; a
-duplicate or non-string entry fails IR validation). A handler statement `push: Page`
-lowers to the navigation action:
+A program MAY declare top-level routes, each owning its own content tree (see the multi-page
+section below). A handler statement `push: Page` lowers to the navigation action:
 
 ```json
 { "op": "push", "target": "Page" }
 ```
 
-`push` has no `value`. The renderer's navigation stack applies it as a `push` and runs the
-configured page transition; `Theme.transition` (`slide | fade | scale`) selects the transition kind.
-A kernel that dispatches the IR emits the reserved navigation patch
-`{"name":"@nav","value":"Page"}` for each `push` and leaves state unchanged: the renderer owns the
-stack. The patch still advances the runtime version, and consumers must not treat `@nav` as a
-state name.
+`push` has no `value`, and `pop` (below) has neither `target` nor `value`. The renderer's
+navigation stack applies a `push` and runs the configured page transition; `Theme.transition`
+(`slide | fade | scale`) selects the transition kind. A kernel that dispatches the IR emits the
+reserved navigation patch `{"name":"@nav","value":"Page"}` for each `push` and leaves state
+unchanged: the renderer owns the stack. The patch still advances the runtime version, and
+consumers must not treat `@nav` as a state name.
 
 A node with `"animate": "<curve>"` runs a deterministic entry animation; the optional integer
 `"duration"` (ms, 0..=10000) and `"delay"` (ms, 0..=10000) tune it. When a numeric style prop
@@ -257,3 +255,72 @@ from window and `WireEvent::Geometry` events; the pure integer resolver derives 
 same geometry yields the same decision on every host. `opurom-cli` broadcasts `decideReload`
 decisions to multiple preview devices through `createDeviceRegistry`, assigning a monotonic
 `revision` and a deterministic replayable log.
+
+## 12. Multi-page routing
+
+Multi-page routing is an additive v0.1 capability: it adds only optional top-level fields, so an
+IR without them is the unchanged single-page program. The version string stays `"0.1"` for both
+single-page and multi-page programs; there is no version bump. A single-page document keeps one
+top-level `"tree"` (the only page). A multi-page document carries NO top-level `"tree"` and instead
+declares an `"initialRoute"` and a `"routes"` map, where every route owns its own content tree:
+
+```json
+{
+  "ir": "0.1",
+  "app": "Shop",
+  "state": [ { "name": "count", "type": "int", "init": 0 } ],
+  "theme": { "mode": "system", "accent": "#097FEB", "radius": 12 },
+  "initialRoute": "Home",
+  "routes": {
+    "Home":   { "tree": { "id": 0, "kind": "Column", "props": {}, "children": [], "events": {} },
+                "title": "Home" },
+    "Detail": { "tree": { "id": 1, "kind": "Column", "props": {}, "children": [], "events": {} },
+                "title": "Detail" }
+  }
+}
+```
+
+Rules:
+
+- `routes` is an object keyed by route name. Every key is a unique non-empty string, and each
+  value is `{ "tree": <node>, "title": <optional string> }`. `tree` is one node shaped exactly as
+  the top-level `tree` (same fields: `id`, `kind`, `props`, `children`, `events`). `title` is an
+  optional non-empty string a consumer may show in a navigation bar; it is not a node prop.
+- Node `id`s are u32 and UNIQUE ACROSS THE ENTIRE MULTI-PAGE PROGRAM. The compiler emits them in
+  pre-order within each route tree, continuing across routes in declaration order (for example
+  `Home` owns `0..n` and `Detail` continues at `n+1`); ids never restart per route. Consumers
+  validate global uniqueness — a duplicate id (the same id in two route trees) fails IR validation
+  with a readable diagnostic — without demanding ordering or contiguity, mirroring the single-page
+  rule. Globally unique ids keep node-id-only tap dispatch and every emitter's node-keyed identity
+  unambiguous without changing the event signature.
+- `initialRoute` is REQUIRED when `routes` is present and MUST name a declared route key. A document
+  that omits it, or names an undeclared route, fails IR validation with a readable diagnostic.
+- When `routes` is present a legacy top-level `pages` array (retired names-only form) is rejected;
+  `routes` supersedes it. When `routes` is absent the document is a single-page program and the
+  top-level `tree` is the only page.
+- A consumer that does not implement multi-page routing rejects an IR whose `routes` it cannot
+  honour with a readable diagnostic rather than rendering one page and dropping the rest; it MUST
+  still accept and render every IR without `routes` byte-identically.
+
+### Navigation ops: push and pop
+
+The action union gains `pop`:
+
+```json
+{ "op": "push", "target": "Detail" }
+{ "op": "pop" }
+```
+
+- `push` keeps `{"op":"push","target":"Detail"}`; `target` is a string and MUST name a declared
+  route when `routes` is present. `push` has no `value`.
+- `pop` has neither `target` nor `value`; it pops the current route, and is ignored when the stack
+  is already at `initialRoute` (popping the root is a no-op).
+- The older `nav` op remains a transition-only navigation signal (accepted for compatibility) and
+  is a no-op relative to the routes stack.
+- Runtime patches are reserved and leave declared state unchanged: `push` emits
+  `{"name":"@nav","value":"Detail"}` and `pop` emits `{"name":"@nav","value":".."}` (the `..`
+  sentinel names a pop). Each patch still advances the runtime version, and consumers must not treat
+  `@nav` as a state name.
+- `Theme.transition` (`slide | fade | scale`) selects the transition kind the renderer runs on each
+  `push` and `pop`; a document that declares no route emits no navigation patches and stays
+  byte-identical.

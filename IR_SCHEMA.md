@@ -21,6 +21,16 @@ otherwise. No layer may require fields beyond this document.
 - `tree`: single root node. Every node has exactly these four fields:
   `id` (u32, pre-order from 0, unique), `kind` (string, one of the kinds in LANG_SPEC),
   `props` (object), `children` (array, possibly empty), `events` (object, possibly empty).
+- `routes` / `initialRoute`: OPTIONAL multi-page fields, absent for a single-page program so its
+  IR is unchanged and byte-identical. When `routes` is present the document carries NO top-level
+  `tree`; instead `routes` is an object keyed by route name, each value
+  `{ "tree": <node>, "title": <optional string> }`, and `initialRoute` is a required string naming
+  a declared route key. Route keys are unique non-empty strings; node `id`s are u32 and unique
+  across the whole multi-page program — the compiler emits them in pre-order continuing across
+  route trees in declaration order (never restarting per route), and consumers validate global
+  uniqueness, rejecting a duplicate id with a readable diagnostic. A legacy top-level `pages`
+  array is rejected when `routes` is present.
+  Full shape, navigation ops and patches: [IR_ADDITIONS.md](IR_ADDITIONS.md#12-multi-page-routing).
 - `props` values are JSON numbers when the source literal was numeric, strings otherwise.
   Unknown props are preserved (forward compatibility) but consumers ignore unsupported ones.
   `props.compactColumns` on a `Grid` node is a non-negative integer declaring the
@@ -51,15 +61,18 @@ otherwise. No layer may require fields beyond this document.
   IR event names.
 
   ```json
-  { "op": "set" | "add" | "sub" | "toggle" | "nav" | "push" | "validate", "target": "count", "value": 1 }
+  { "op": "set" | "add" | "sub" | "toggle" | "nav" | "push" | "pop" | "validate", "target": "count", "value": 1 }
   ```
 
   `toggle` has no `value`. `add` and `sub` require numeric `value` and `int` target; `sub`
   subtracts instead of adding. `set` requires the value type to match the target's declared
-  type. `push` navigates to a declared page and `validate` triggers the target's form
-  checks; both omit `value`. `nav` is the older transition-only navigation signal,
-  accepted for compatibility with pre-`push` documents: it takes no `value` and its
-  `target`, when present, is a string. `input` actions are `set` with `value` omitted: the runtime supplies the input string,
+  type. `push` navigates to a declared route (its `target` names one) and `validate` triggers the
+  target's form checks; both omit `value`. `pop` takes neither `target` nor `value` and pops the
+  current route, ignored at the initial route. `nav` is the older transition-only navigation
+  signal, accepted for compatibility with pre-`push` documents: it takes no `value` and its
+  `target`, when present, is a string. `push` and `pop` are specified in
+  [IR_ADDITIONS.md](IR_ADDITIONS.md#12-multi-page-routing). `input` actions are `set` with
+  `value` omitted: the runtime supplies the input string,
   parsed by the target's declared type (int parses with 0 on failure, bool is `true` only for
   the text `"true"`, string is taken as-is), so numeric and boolean controls bind the same way.
 

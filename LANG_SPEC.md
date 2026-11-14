@@ -29,7 +29,8 @@ app Counter {
 
 ```ebnf
 program   = "app" IDENT "{" { decl } "}" ;
-decl      = state_decl | node ;
+decl      = state_decl | route_decl | node ;
+route_decl= "route" IDENT "{" node "}" ;
 state_decl= "state" IDENT [ ":" type_name ] "=" literal [";"] ;
 node      = KIND [ "(" [ props ] ")" ] ( ";" | "{" { node | statement } "}" ) ;
 props     = prop { "," prop } [ "," ] ;
@@ -38,7 +39,9 @@ value     = literal | IDENT ;
 literal   = INT | STRING | BOOL ;
 type_name = "int" | "bool" | "string" ;
 statement = IDENT ( "+=" | "-=" | "=" ) expr [";"]
-          | IDENT "." "toggle" "(" ")" [";"] ;
+          | IDENT "." "toggle" "(" ")" [";"]
+          | "push" ":" IDENT [";"]
+          | "pop" [";"] ;
 expr      = literal | IDENT ;
 ```
 
@@ -47,6 +50,8 @@ expr      = literal | IDENT ;
 - A block may not mix children and statements; the compiler rejects that with a diagnostic.
 - `Text` strings interpolate `{name}` against state. `{{` is a literal `{`.
 - `Input` with `bind: name` lowers to an `input` event that sets that state.
+- `route Name { ... }` declares a named page of the app; `push: Name` and `pop` are handler
+  statements. See [Routes and navigation](#routes-and-navigation) below.
 
 ## Node kinds and props (v0.1)
 
@@ -113,6 +118,47 @@ A local prop always wins. The key is emitted only when the source declares it.
 A `particles` field list lowers to the bounded object in [IR_ADDITIONS.md](IR_ADDITIONS.md), with
 the documented defaults applied for omitted fields; the `color` key is emitted only when the
 source declares it.
+
+## Routes and navigation
+
+An app MAY declare named pages with `route` blocks at the app top level; the first declared route
+is the initial route and route names must be unique. `state`, `theme`, components and imports stay
+at the app level and are shared by every route, so `{name}` interpolation inside any route resolves
+against the same state.
+
+```opu
+// shop.opu — two routes, one shared state pool
+app Shop {
+  state tab = 0
+
+  route Home {
+    Column(gap: 8, padding: 16) {
+      Text("Home, tab {tab}")
+      Button("Open") { push: Detail }
+    }
+  }
+
+  route Detail {
+    Column(gap: 8, padding: 16) {
+      Text("Detail")
+      Button("Back") { pop }
+    }
+  }
+}
+```
+
+- A `route` block carries exactly one root node; zero or several root nodes in one block are an
+  error. When `route` blocks are present the app body MUST NOT also declare a top-level tree: the
+  routes are the pages.
+- `push: Name` in a handler lowers to `{"op":"push","target":"Name"}` and `pop` lowers to
+  `{"op":"pop"}` (see [IR_ADDITIONS.md](IR_ADDITIONS.md)). `push: Name` where `Name` is not a
+  declared route is an error naming the declared routes. `pop` is valid in any handler and the
+  runtime ignores it while the stack is already at the initial route. `push` and `pop` are
+  reserved handler keywords.
+- The compiler emits `routes`, `initialRoute` (the first declared route) and one tree per route
+  per [IR_SCHEMA.md](IR_SCHEMA.md), assigning node ids in pre-order within each route and
+  continuing across routes in declaration order, so every id is unique in the whole program.
+  Programs without `route` blocks lower byte-identically to the single-page document.
 
 ## Responsive layout and project files
 
