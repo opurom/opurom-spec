@@ -172,6 +172,25 @@ export function validateContracts(root = REPO_ROOT) {
       undeclaredOps.length ? `event ops outside the declared union: ${undeclaredOps.join(', ')}` : null,
     `used ops ${usedOps.join(', ') || 'none'} within ${declaredOps.join('|')}`);
 
+  const eventNamesClause = /The five accepted names are([^;]+);/.exec(files['IR_SCHEMA.md'])?.[1];
+  const declaredEventNames = eventNamesClause
+    ? [...eventNamesClause.matchAll(/`([A-Za-z]+)`/g)].map(match => match[1])
+    : [];
+  const requiredEventNames = ['tap', 'input', 'doubleTap', 'longPress', 'drag'];
+  const usedEventNames = [...new Set(nodes.flatMap(node =>
+    node.events && typeof node.events === 'object' && !Array.isArray(node.events)
+      ? Object.keys(node.events)
+      : []))];
+  const missingNames = requiredEventNames.filter(name => !declaredEventNames.includes(name));
+  const extraNames = declaredEventNames.filter(name => !requiredEventNames.includes(name));
+  const undeclaredNames = usedEventNames.filter(name => !declaredEventNames.includes(name));
+  check('IR event name set is closed and documented',
+    declaredEventNames.length === 0 ? 'IR_SCHEMA.md declares no event names' :
+      missingNames.length ? `event names missing from IR_SCHEMA.md: ${missingNames.join(', ')}` :
+        extraNames.length ? `event names outside the closed set: ${extraNames.join(', ')}` :
+          undeclaredNames.length ? `golden IR uses undeclared event names: ${undeclaredNames.join(', ')}` : null,
+    `declared ${declaredEventNames.join('|')}`);
+
   const unmapped = langKinds.filter(kind => !distinctKinds.has(kind));
   check('LANG_SPEC.md node kinds appear in components.json',
     langKinds.length === 0 ? 'LANG_SPEC.md declares no node kinds' :

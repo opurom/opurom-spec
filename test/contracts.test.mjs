@@ -103,18 +103,28 @@ const CORRUPTIONS = [
     editText(dir, 'IR_ADDITIONS.md', '## 11. Design-system chain', '## 11. Design chain')],
   ['design system chain is documented without golden drift', dir =>
     editJson(dir, 'counter.opuir.json', data => { data.tree.props.fontMetrics = 'proportional'; })],
+  ['IR event name set is closed and documented', dir =>
+    editText(dir, 'IR_SCHEMA.md', '`tap`, `input`, `doubleTap`, `longPress` and `drag`',
+      '`tap`, `input`, `doubleTap` and `longPress`')],
+  ['IR event name set is closed and documented', dir =>
+    editText(dir, 'IR_SCHEMA.md', '`tap`, `input`, `doubleTap`, `longPress` and `drag`',
+      '`tap`, `input`, `doubleTap`, `longPress`, `drag` and `hover`')],
+  ['IR event name set is closed and documented', dir =>
+    editJson(dir, 'counter.opuir.json', data => {
+      data.tree.events = { hover: { op: 'add', target: 'count', value: 1 } };
+    })],
 ];
 
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 21 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 22 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 21);
+  assert.equal(checks.length, 22);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {
