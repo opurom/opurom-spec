@@ -2,7 +2,7 @@
 
 ## 1. Scope and authority
 
-This document is a mandatory override of the flat-color and low-detail clauses of `opurom-spec/DEFAULT_UI_SYSTEM.md`. It governs every elevated default UI component. The v2 custom properties in Section 2 are the authoritative token contract for `opurom-web/lib/design.mjs` and are being implemented in that layer in parallel with this supplement; where the base specification's v1 values differ, the values below govern. No GPU-only item in Section 3 is a CSS declaration, and none is emitted as CSS by the DOM emitter.
+This document is a mandatory override of the flat-color and low-detail clauses of `opurom-spec/DEFAULT_UI_SYSTEM.md`. It governs every elevated default UI component. The v2 custom properties in Section 2 are the authoritative token contract for `opurom-web/lib/design.mjs` and are being implemented in that layer in parallel with this supplement; where the base specification's v1 values differ, the values below govern. No backend requirement in Section 3 is a CSS declaration, and none is emitted as CSS by the DOM emitter.
 
 Overridden clauses, by base specification section number:
 
@@ -80,17 +80,19 @@ Material constraints:
 
 ### Rendering backend requirements (not CSS declarations)
 
-The following items are requirements on `opurom-render` and GPU backends. They are NOT CSS declarations, cannot be expressed as CSS custom properties, and are NOT emitted as CSS by the DOM emitter `opurom-web/lib/emit.mjs`. No clause in this supplement states that these items are implemented in CSS.
+The following items are FORWARD REQUIREMENTS shared by the software raster `opurom-render` and the GPU backends, and they are NOT yet implemented in the default rendering path. They are NOT CSS declarations, cannot be expressed as CSS custom properties, and are NOT emitted as CSS by the DOM emitter `opurom-web/lib/emit.mjs`. No clause in this supplement states that these items are implemented in CSS. The software raster is expected to implement them behind an OPT-IN path, so the pinned golden RGBA digests of the default path remain unchanged; the default path cannot change because its output is pinned to those digests under a byte-identical output contract.
+
+Current baseline in the software raster: integer-snapped straight edges, 6x6 bilinear coverage of a 12x14 4-bit coverage atlas on text edges, and 4x4 point-sampled coverage on icon edges. Box rounded corners, circles, rings, and line edges currently have no coverage in the default path. Gradients are 10-bit fixed point (`UNIT=1024`) with RGBA8 output, with no dithering and no 16-bit framebuffer; no MSAA sample count is present in the GPU backend. The display list `opurom-render/src/display.rs` carries high-level solid, rounded, and gradient geometry that a GPU backend can raster analytically.
 
 | Requirement | Attribution |
 | --- | --- |
-| 4x MSAA full-scene anti-aliasing | GPU sample count; backend only |
-| 16-bit smooth gradient transitions, no banding | Framebuffer precision and dithering; backend only |
-| Cubic-Bezier smoothing of all vector paths | Path tessellation; backend only |
-| Whole-pixel snapping of straight edges with subpixel curves | Rasterization geometry; backend only |
-| Baseline-grid vertical centering of text | Text layout and rasterization; backend only |
-| One physical-pixel strokes at 1x | Device-pixel rasterization; backend only |
-| 60fps floor | Frame pacing; backend only |
+| 4x MSAA full-scene anti-aliasing | Forward requirement; not yet implemented |
+| 16-bit smooth gradient transitions, no banding | Forward requirement; not yet implemented |
+| Cubic-Bezier smoothing of all vector paths | Forward requirement; no cubic-Bezier evaluator is present in either backend |
+| Whole-pixel snapping of straight edges with subpixel curves | Integer-snapped straight edges are the current baseline; subpixel curves are a forward requirement |
+| Baseline-grid vertical centering of text | Geometric band centering is the current baseline; baseline-grid alignment is a forward requirement |
+| One physical-pixel strokes at 1x | Forward requirement; the renderer works in logical pixels |
+| 60fps floor | Forward requirement; `choose_quality` / `--frame-budget` provide deterministic adaptive degradation tiers |
 
 ## 4. Geometric precision
 
@@ -269,14 +271,16 @@ Only the workspace files listed in Section 11 are cited as artifacts.
 
 ## 10. Validation checklist
 
-| # | Checklist item | Satisfied by |
+Backend items in this checklist are forward requirements shared by the software raster `opurom-render` and the GPU backends; the software raster is expected to implement them behind an OPT-IN path so the pinned golden RGBA digests of the default path remain byte-identical.
+
+| # | Checklist item | Attribution (CSS/DOM implementation; forward backend requirement) |
 | --- | --- | --- |
-| 1 | No flat solid-color fills on elevated components; all have liquid-glass layering | Section 2 glass token table and three tier rules; Section 6 layered-token columns with `--opurom-glass-fill-light`, `--opurom-glass-fill-dark`, `--opurom-glass-blur-desktop`, `--opurom-glass-blur-compact`, `--opurom-glass-highlight`, `--opurom-glass-thickness`, `--opurom-glass-shadow`, `--opurom-glass-border-light`, and `--opurom-glass-border-dark` |
-| 2 | No jagged edges, no pixelated curves; all shapes are smooth and anti-aliased | Section 3, "Rendering backend requirements (not CSS declarations)": GPU-only 4x MSAA full-scene anti-aliasing, cubic-Bezier smoothing of all vector paths, whole-pixel snapping of straight edges with subpixel curves, and one physical-pixel strokes at 1x, on `opurom-render` and GPU backends, NOT emitted as CSS. Section 3, "CSS/DOM declarations" supplies the `1px` inside border where CSS permits; Section 4 supplies the shape rules. |
-| 3 | No blurry / fuzzy text; all typography is sharp, baseline-aligned and correctly weighted | Section 3, "CSS/DOM declarations": `-webkit-font-smoothing: antialiased`, `-moz-osx-font-smoothing: grayscale`, `text-rendering: optimizeLegibility`, `font-synthesis: none`, weights 400/500/600/700, 4.5:1 contrast, and the baseline alignment approximation. Exact baseline-grid vertical centering of text is a GPU-only backend requirement in Section 3, "Rendering backend requirements (not CSS declarations)", NOT emitted as CSS. |
-| 4 | No malformed rounded shapes; all capsules and circles are mathematically correct | Section 4 ELLIPSE caveat, `border-radius: <height/2>px` capsule rule, equal width/height circle rule, four-corner consistency, proportional inner corners; `--opurom-radius-capsule`, `--opurom-radius-full`, `--opurom-switch-track-width`, `--opurom-switch-track-height`, `--opurom-switch-thumb-size`, `--opurom-switch-thumb-inset` |
-| 5 | No plain blue blocks; all primary elements use gradient + highlight + shadow layering | Section 5 `--opurom-color-primary-gradient`, `--opurom-color-primary-gradient-hover`, `--opurom-color-primary-gradient-active`, `--opurom-color-primary-soft`, `--opurom-color-primary-soft-glow`; Section 2 `--opurom-glass-highlight`, `--opurom-glass-shadow`, `--opurom-glass-glow`. The 16-bit no-banding transition is a GPU-only backend requirement in Section 3, "Rendering backend requirements (not CSS declarations)", NOT emitted as CSS. |
-| 6 | All interactive states have smooth, refined motion transitions | Section 7 `--opurom-motion-fast`, `--opurom-motion-medium`, `--opurom-motion-large`, `--opurom-motion-color`, `--opurom-motion-press-scale`, `--opurom-motion-hover-lift`, seven micro-interactions, and bounded overshoot; Section 6 `D / H / A / F / X` columns. The 60fps floor is a GPU-only backend requirement in Section 3, "Rendering backend requirements (not CSS declarations)", NOT emitted as CSS. |
+| 1 | No flat solid-color fills on elevated components; all have liquid-glass layering | CSS/DOM: Section 2 glass token table and three tier rules, and Section 6 layered-token columns with `--opurom-glass-fill-light`, `--opurom-glass-fill-dark`, `--opurom-glass-blur-desktop`, `--opurom-glass-blur-compact`, `--opurom-glass-highlight`, `--opurom-glass-thickness`, `--opurom-glass-shadow`, `--opurom-glass-border-light`, and `--opurom-glass-border-dark`; declared in `opurom-web/lib/design.mjs` (`FOUNDATION`, `designCss`) and emitted by `opurom-web/lib/emit.mjs` (`styleFor`) |
+| 2 | No jagged edges, no pixelated curves; all shapes are smooth and anti-aliased | Partially implemented. CSS/DOM: Section 3, "CSS/DOM declarations" supplies the `1px` inside border where CSS permits, and Section 4 supplies the shape rules, emitted by `opurom-web/lib/emit.mjs` (`styleFor`). Current software-raster baseline: 6x6 coverage on text edges and 4x4 coverage on icon edges; box rounded corners, circles, rings, and line edges have no coverage in the default path. Shape-edge coverage: Forward requirement on opurom-render / GPU backend; not emitted as CSS. |
+| 3 | No blurry / fuzzy text; all typography is sharp, baseline-aligned and correctly weighted | CSS/DOM: Section 3, "CSS/DOM declarations": `-webkit-font-smoothing: antialiased`, `-moz-osx-font-smoothing: grayscale`, `text-rendering: optimizeLegibility`, `font-synthesis: none`, weights 400/500/600/700, 4.5:1 contrast, and the baseline alignment approximation; token layer in `opurom-web/lib/design.mjs` (`FOUNDATION`, `designCss`) and body rules in `opurom-web/lib/emit.mjs` (`cssFor`). Software-raster text placement is geometric band centering, not baseline-grid alignment. Exact baseline-grid vertical centering of text: Forward requirement on opurom-render / GPU backend; not emitted as CSS. |
+| 4 | No malformed rounded shapes; all capsules and circles are mathematically correct | CSS/DOM: Section 4 ELLIPSE caveat, `border-radius: <height/2>px` capsule rule, equal width/height circle rule, four-corner consistency, proportional inner corners; `--opurom-radius-capsule`, `--opurom-radius-full`, `--opurom-switch-track-width`, `--opurom-switch-track-height`, `--opurom-switch-thumb-size`, `--opurom-switch-thumb-inset`, declared in `opurom-web/lib/design.mjs` (`FOUNDATION`) and emitted by `opurom-web/lib/emit.mjs` (`styleFor`) |
+| 5 | No plain blue blocks; all primary elements use gradient + highlight + shadow layering | CSS/DOM: Section 5 `--opurom-color-primary-gradient`, `--opurom-color-primary-gradient-hover`, `--opurom-color-primary-gradient-active`, `--opurom-color-primary-soft`, `--opurom-color-primary-soft-glow`; Section 2 `--opurom-glass-highlight`, `--opurom-glass-shadow`, `--opurom-glass-glow`, declared in `opurom-web/lib/design.mjs` (`FOUNDATION`) and emitted by `opurom-web/lib/emit.mjs` (`styleFor`). The 16-bit no-banding gradient transition: Forward requirement on opurom-render / GPU backend; not emitted as CSS. |
+| 6 | All interactive states have smooth, refined motion transitions | CSS/DOM: Section 7 `--opurom-motion-fast`, `--opurom-motion-medium`, `--opurom-motion-large`, `--opurom-motion-color`, `--opurom-motion-press-scale`, `--opurom-motion-hover-lift`, seven micro-interactions, and bounded overshoot; Section 6 `D / H / A / F / X` columns; declared in `opurom-web/lib/design.mjs` (`FOUNDATION`, `designCss`). The 60fps floor: Forward requirement on opurom-render / GPU backend; not emitted as CSS. |
 | 7 | Overall visual quality matches the 13 reference preview renders in detail and atmosphere | Section 9 reference alignment: the target is the visual effect and atmosphere, with lighting from top, soft shadows, translucent layers, and a restrained cyan-blue accent. No automated per-pixel comparison was performed; no measured pixel equality is claimed. |
 | 8 | Every component from the original specification has received the above upgrades | Section 6, subsections 6.1 to 6.6: all 53 component forms (8 + 12 + 13 + 8 + 7 + 5), each with a tier, layered tokens, five state slots, and a motion token |
 
@@ -288,6 +292,6 @@ Only workspace-relative files verified to exist are cited.
 | --- | --- |
 | `opurom-web/lib/design.mjs` | Token layer: foundational `FOUNDATION` values, `designCss`, and `semanticCss`; the target for the v2 custom properties in Sections 2, 4, 5, and 7 |
 | `opurom-web/lib/emit.mjs` | DOM emitter: `styleFor` emits per-node `backdrop-filter`, `background`, `box-shadow`, `border`, and `border-radius` CSS for glass nodes; `cssFor` emits the body font-smoothing and `box-sizing` rules. It does not emit any Section 3 backend requirement. |
-| `opurom-render/src/raster.rs` | Raster backend source to which the Section 3 backend requirements apply; the file implements integer pixel writes, rounded-rect gradient fills, and sub-sampled glyph rasterization, and emits no CSS |
+| `opurom-render/src/raster.rs` | Backend source to which the Section 3 forward requirements apply and in which they are NOT yet implemented; it currently performs integer pixel writes, rounded-rect gradient fills, and sub-sampled glyph rasterization, and emits no CSS. An opt-in coverage flag is the intended mechanism for the remaining coverage requirements. |
 | `opurom-spec/DEFAULT_UI_SYSTEM.md` | Base specification with the overridden clauses listed in the scope statement above and the 53 component forms used in Section 6 |
 | `opurom-spec/assets/ui/*.svg` | Eight verified SVG assets: `preview-buttons.svg`, `preview-data-display.svg`, `preview-feedback.svg`, `preview-inputs.svg`, `preview-navigation.svg`, `preview-other.svg`, `token-architecture.svg`, `token-overview.svg` |
