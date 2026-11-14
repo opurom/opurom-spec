@@ -135,7 +135,8 @@ only understand `tap`/`input` ignore the other gesture keys, which keeps gesture
 compatible.
 
 A program MAY declare top-level pages, which lower to an optional `"pages": ["Home", ...]` array
-(absent when no pages are declared, so existing IR is unchanged). A handler statement `push: Page`
+of unique route names (absent when no pages are declared, so existing IR is unchanged; a
+duplicate or non-string entry fails IR validation). A handler statement `push: Page`
 lowers to the navigation action:
 
 ```json
