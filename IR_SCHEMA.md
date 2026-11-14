@@ -23,6 +23,10 @@ otherwise. No layer may require fields beyond this document.
   `props` (object), `children` (array, possibly empty), `events` (object, possibly empty).
 - `props` values are JSON numbers when the source literal was numeric, strings otherwise.
   Unknown props are preserved (forward compatibility) but consumers ignore unsupported ones.
+  `props.compactColumns` on a `Grid` node is a non-negative integer declaring the
+  column count the compact tier MUST keep. A Grid that is really one horizontal
+  row declares it so the compact tier does not stack its cells; a Grid without
+  it stacks to one column on compact widths. Wider tiers use `props.columns`.
   `props.src` on an `Image` node is a project-relative static asset path, an
   inlined `data:image/png;base64,...` URI, or a `{state}` interpolation resolved
   from string or list state at render time. A data URI carries the pixels with

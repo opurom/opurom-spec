@@ -132,9 +132,11 @@ viewport width in logical pixels. The five `Breakpoint` variants have these exac
 - `Grid` calls `fluid_grid` when the tier is `Expanded` or higher and the node declares no
   `columns` prop. The function sets `columns = clamp(width / MIN_COLUMN_WIDTH, 1, MAX_GRID_COLUMNS)`
   with `MIN_COLUMN_WIDTH = 120` and `MAX_GRID_COLUMNS = 12`, plus
-  `margin = clamp(width / 40, 8, 32)` and `gutter = clamp(width / 60, 8, 24)`. In every other
-  case `Grid` uses the declared `columns` prop (default 2, minimum 1) with zero gutter. All
-  terms are integer divisions of a non-negative width.
+  `margin = clamp(width / 40, 8, 32)` and `gutter = clamp(width / 60, 8, 24)`. At
+  `Breakpoint::Compact` a `Grid` stacks to one column unless it declares `compactColumns`,
+  which sets the compact column count for a node that is really one horizontal row.
+  In every other case `Grid` uses the declared `columns` prop (default 2, minimum 1)
+  with zero gutter. All terms are integer divisions of a non-negative width.
 
 A project is one `main.opu` plus the modules it reaches through `import "models/todo.opu"`.
 `opuromc compile` resolves each import relative to the importing file or a `moduleRoots` entry in
