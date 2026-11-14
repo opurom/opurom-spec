@@ -27,6 +27,10 @@ otherwise. No layer may require fields beyond this document.
   column count the compact tier MUST keep. A Grid that is really one horizontal
   row declares it so the compact tier does not stack its cells; a Grid without
   it stacks to one column on compact widths. Wider tiers use `props.columns`.
+  Mini-program targets render phone-width only and therefore prefer
+  `compactColumns` when present; lacking CSS Grid support they lower the count
+  to percentage-width cells in a wrapping flex row, leaving cells with an
+  explicit `width` unchanged.
   `props.src` on an `Image` node is a project-relative static asset path, an
   inlined `data:image/png;base64,...` URI, or a `{state}` interpolation resolved
   from string or list state at render time. A data URI carries the pixels with

@@ -136,7 +136,9 @@ viewport width in logical pixels. The five `Breakpoint` variants have these exac
   `Breakpoint::Compact` a `Grid` stacks to one column unless it declares `compactColumns`,
   which sets the compact column count for a node that is really one horizontal row.
   In every other case `Grid` uses the declared `columns` prop (default 2, minimum 1)
-  with zero gutter. All terms are integer divisions of a non-negative width.
+  with zero gutter. Mini-program targets lower `Grid` to a wrapping flex row with
+  percentage-width cells, preferring `compactColumns` when declared, because their
+  stylesheets have no CSS Grid. All terms are integer divisions of a non-negative width.
 
 A project is one `main.opu` plus the modules it reaches through `import "models/todo.opu"`.
 `opuromc compile` resolves each import relative to the importing file or a `moduleRoots` entry in
