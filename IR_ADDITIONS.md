@@ -134,6 +134,10 @@ lowers to the navigation action:
 
 `push` has no `value`. The renderer's navigation stack applies it as a `push` and runs the
 configured page transition; `Theme.transition` (`slide | fade | scale`) selects the transition kind.
+A kernel that dispatches the IR emits the reserved navigation patch
+`{"name":"@nav","value":"Page"}` for each `push` and leaves state unchanged: the renderer owns the
+stack. The patch still advances the runtime version, and consumers must not treat `@nav` as a
+state name.
 
 A node with `"animate": "<curve>"` runs a deterministic entry animation; the optional integer
 `"duration"` (ms, 0..=10000) and `"delay"` (ms, 0..=10000) tune it. When a numeric style prop
