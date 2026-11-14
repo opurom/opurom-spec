@@ -54,6 +54,11 @@ const CORRUPTIONS = [
   ['catalog primitives match distinct kinds', dir => editJson(dir, 'components.json', data => { data.components[0][1] = 'AlienColumn'; })],
   ['catalog entries have the required shape', dir => editJson(dir, 'components.json', data => { data.components[3][3] = null; })],
   ['catalog component names are unique', dir => editJson(dir, 'components.json', data => { data.components[1][0] = data.components[0][0]; })],
+  ['feedback family names and catalog count are consistent', dir => editJson(dir, 'components.json', data => { data.count += 1; })],
+  ['feedback family names and catalog count are consistent', dir => editJson(dir, 'components.json', data => {
+    const entry = data.components.find(entry => entry[0] === 'Confirm');
+    entry[0] = 'ConfirmAlias';
+  })],
   ['golden IR version matches IR_SCHEMA.md', dir => editJson(dir, 'counter.opuir.json', data => { data.ir = '0.2'; })],
   ['golden IR version matches IR_SCHEMA.md', dir => editText(dir, 'IR_SCHEMA.md', 'ir == "0.1"', 'ir == "0.2"')],
   ['golden IR node ids are unique and pre-ordered', dir => editJson(dir, 'counter.opuir.json', data => { data.tree.children[1].children[1].id = 3; })],
@@ -99,13 +104,13 @@ const CORRUPTIONS = [
 test('published contracts pass the validator', () => {
   const result = spawnSync(process.execPath, [CLI], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stdout + result.stderr);
-  assert.match(result.stdout, /^PASS: 19 contract checks passed$/m);
+  assert.match(result.stdout, /^PASS: 20 contract checks passed$/m);
 });
 
 test('the validator module reports the same verdict', () => {
   const { ok, checks } = validateContracts(ROOT);
   assert.equal(ok, true, JSON.stringify(checks.filter(result => !result.ok)));
-  assert.equal(checks.length, 19);
+  assert.equal(checks.length, 20);
 });
 
 for (const [name, corrupt] of CORRUPTIONS) {

@@ -97,6 +97,19 @@ export function validateContracts(root = REPO_ROOT) {
   check('catalog component names are unique', duplicatedName === undefined ? null :
     `duplicate component name ${JSON.stringify(duplicatedName)}`, `${names.length} unique names`);
 
+  const FEEDBACK_FAMILY = ['Modal', 'Confirm', 'Drawer', 'Toast', 'Tooltip', 'Notification'];
+  const feedbackContract = (() => {
+    if (!Number.isInteger(catalog?.count) || catalog.count !== components.length) {
+      return `count=${JSON.stringify(catalog?.count)}, tuples=${components.length}`;
+    }
+    const present = new Set(names);
+    const missing = FEEDBACK_FAMILY.filter(name => !present.has(name));
+    if (missing.length) return `missing feedback family names: ${missing.join(', ')}`;
+    return null;
+  })();
+  check('feedback family names and catalog count are consistent', feedbackContract,
+    `${FEEDBACK_FAMILY.length} feedback names, ${components.length} tuples`);
+
   const nodes = [];
   const walk = node => {
     if (!node || typeof node !== 'object' || Array.isArray(node)) return;
