@@ -39,7 +39,9 @@ otherwise. No layer may require fields beyond this document.
 
   `toggle` has no `value`. `add` and `sub` require numeric `value` and `int` target; `sub`
   subtracts instead of adding. `set` requires the value type to match the target's declared
-  type. `input` actions are `set` with `value` omitted: the runtime supplies the input string.
+  type. `input` actions are `set` with `value` omitted: the runtime supplies the input string,
+  parsed by the target's declared type (int parses with 0 on failure, bool is `true` only for
+  the text `"true"`, string is taken as-is), so numeric and boolean controls bind the same way.
 
 - `theme`: compiler-emitted defaults when the source omits theme syntax. `mode` ∈
   `light|dark|system`, `accent` is `#RRGGBB`, `radius` is a number in logical pixels.
