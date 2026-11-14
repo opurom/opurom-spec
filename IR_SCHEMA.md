@@ -23,6 +23,11 @@ otherwise. No layer may require fields beyond this document.
   `props` (object), `children` (array, possibly empty), `events` (object, possibly empty).
 - `props` values are JSON numbers when the source literal was numeric, strings otherwise.
   Unknown props are preserved (forward compatibility) but consumers ignore unsupported ones.
+  `props.src` on an `Image` node is a project-relative static asset path, or a
+  `{state}` interpolation resolved from string or list state at render time.
+  Emitters MUST resolve and bundle static references into their output so the
+  rendered page needs no external copy step; absolute paths and `..` segments
+  are outside the contract and MUST NOT be followed.
 - `events` maps event name (`tap`, `input`) to exactly one action:
 
   ```json
