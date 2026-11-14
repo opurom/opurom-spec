@@ -59,6 +59,24 @@ import "ui/cards.opu"
 - Zero dependencies, node builtins only. `verify` is the trust boundary: a tampered or missing
   file must fail loudly. No network marketplace, no remote resolution, no code execution.
 
+## 3.1 Icon packages (`opurom-icons`)
+
+- A package whose `opurom-pkg.json` declares `"kind": "icons"` and an `"entry"` JSON document;
+  optional fields `license`, `attribution`, `iconSource`, `viewBox` and `weights` describe the
+  vendored set. The entry document is `{format, license, attribution, source, viewBox, count,
+  icons:[{name, weight, viewBox, paths:[{d}]}]}`.
+- The compiler resolves every locked dependency of kind `icons` at compile time, merges the
+  package names into the `Icon` name check, and emits an `icons` IR key
+  (`[{name, viewBox, paths:[string]}]`) only when a program actually references a package icon;
+  programs without package icons keep byte-identical IR. Unknown names still fail with the
+  built-in help line.
+- The web DOM emitter paints package geometry with the recorded viewBox and `fill="currentColor"`
+  and no stroke scaling; built-in names keep their 24x24 stroked paths. The native renderer paints
+  its deterministic fallback glyph for names outside its embedded set.
+- The reference package `opurom-icons` vendors Phosphor Icons (MIT, (c) 2023 Phosphor Icons) with
+  the license text and attribution preserved; its `tools/fetch-icons.mjs` refreshes the curated
+  set from the published upstream package, and CI never fetches.
+
 ## 4. Vector renderer backend (`opurom-render`)
 
 - `opurom-render <ir> <w> <h> <out.ppm> --svg <out.svg>` writes a deterministic SVG 1.1
