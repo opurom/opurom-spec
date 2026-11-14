@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="560" viewBox="0 0 1200 560" font-family='-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Microsoft JhengHei", "Segoe UI", Roboto, "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif' fill="#111827">
+<title>Token architecture</title>
+<defs><linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#25D1FF"/><stop offset="100%" stop-color="#0066FF"/></linearGradient><filter id="shadowSm" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/><feOffset in="blur" dx="0" dy="1" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.08" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowMd" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/><feOffset in="blur" dx="0" dy="4" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.12" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowLg" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/><feOffset in="blur" dx="0" dy="10" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.16" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="arrowNeutral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+<rect width="1200" height="560" fill="#F9FAFB"/>
+<text x="24" y="38" font-size="24" font-weight="700" fill="#111827">Token architecture</text>
+<text x="24" y="60" font-size="13" font-weight="400" fill="#6B7280">A single IR theme feeds every rendering surface</text>
+<rect x="1012" y="24" width="164" height="28" rx="999" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<circle cx="1030" cy="38" r="4" fill="#007AFF"/>
+<text x="1042" y="42" font-size="12" font-weight="600" fill="#374151">TOKEN FLOW</text>
+<rect x="24" y="84" width="1152" height="452" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="56" y="116" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">SOURCE</text>
+<text x="470" y="116" font-size="12" font-weight="600" fill="#007AFF" letter-spacing="0.6">CANONICAL TOKENS</text>
+<text x="880" y="116" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">RENDER TARGETS</text>
+<text x="56" y="142" font-size="13" font-weight="400" fill="#6B7280">One theme definition, many surfaces</text>
+<rect x="56" y="204" width="264" height="152" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="76" y="224" width="40" height="8" rx="4" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="84" y="236" width="40" height="8" rx="4" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1"/>
+<rect x="76" y="248" width="56" height="8" rx="4" fill="#F3F4F6" stroke="#6B7280" stroke-width="1"/>
+<text x="76" y="286" font-size="18" font-weight="600" fill="#111827">IR theme</text>
+<text x="76" y="308" font-size="13" font-weight="400" fill="#6B7280">(single source)</text>
+<rect x="76" y="322" width="64" height="20" rx="999" fill="#F3F4F6"/>
+<text x="108.0" y="336.0" font-size="12" font-weight="600" fill="#4B5563" text-anchor="middle">color</text>
+<rect x="148" y="322" width="64" height="20" rx="999" fill="#F3F4F6"/>
+<text x="180.0" y="336.0" font-size="12" font-weight="600" fill="#4B5563" text-anchor="middle">radius</text>
+<rect x="220" y="322" width="64" height="20" rx="999" fill="#F3F4F6"/>
+<text x="252.0" y="336.0" font-size="12" font-weight="600" fill="#4B5563" text-anchor="middle">spacing</text>
+<rect x="464" y="196" width="280" height="168" rx="16" fill="#FFFFFF" stroke="#007AFF" stroke-width="2" filter="url(#shadowMd)"/>
+<rect x="488" y="196" width="232" height="4" rx="4" fill="#007AFF"/>
+<text x="488" y="246" font-size="20" font-weight="700" fill="#111827">design tokens</text>
+<text x="488" y="272" font-size="14" font-weight="500" fill="#005FCC">(design.mjs)</text>
+<rect x="488" y="288" width="232" height="44" rx="8" fill="#007AFF" fill-opacity="0.08"/>
+<text x="500" y="315" font-size="13" font-weight="500" fill="#005FCC">Canonical names + values</text>
+<text x="604" y="388" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">Single normalized token set</text>
+<rect x="872" y="152" width="272" height="88" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="888" y="168" width="40" height="40" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<circle cx="903" cy="183" r="2" fill="#6B7280"/><circle cx="903" cy="193" r="2" fill="#6B7280"/><circle cx="913" cy="183" r="2" fill="#6B7280"/><circle cx="913" cy="193" r="2" fill="#6B7280"/>
+<text x="940" y="190" font-size="14" font-weight="600" fill="#111827">DOM emitter</text>
+<text x="940" y="210" font-size="12" font-weight="400" fill="#6B7280">CSS variables + attributes</text>
+<rect x="872" y="268" width="272" height="88" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="888" y="284" width="40" height="40" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<line x1="899" y1="299" x2="917" y2="299" stroke="#6B7280" stroke-width="1.5"/><line x1="899" y1="309" x2="917" y2="309" stroke="#6B7280" stroke-width="1.5"/><circle cx="905" cy="299" r="3" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.5"/><circle cx="913" cy="309" r="3" fill="#FFFFFF" stroke="#6B7280" stroke-width="1.5"/>
+<text x="940" y="306" font-size="14" font-weight="600" fill="#111827">native renderer</text>
+<text x="940" y="326" font-size="12" font-weight="400" fill="#6B7280">Style resolution at runtime</text>
+<rect x="872" y="384" width="272" height="88" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="888" y="400" width="40" height="40" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<path d="M899 414 H905 L907 417 H917 V427 H899 Z" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="940" y="422" font-size="14" font-weight="600" fill="#111827">platform adapters</text>
+<text x="940" y="442" font-size="12" font-weight="400" fill="#6B7280">Desktop, mobile and web</text>
+<path d="M320 280 H452" fill="none" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arrowNeutral)"/>
+<text x="384" y="266" font-size="12" font-weight="500" fill="#6B7280" text-anchor="middle">compile</text>
+<path d="M756 280 C812 280 812 196 860 196" fill="none" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arrowNeutral)"/>
+<text x="806" y="184" font-size="12" font-weight="500" fill="#6B7280" text-anchor="middle">emit</text>
+<path d="M756 280 C812 280 812 312 860 312" fill="none" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arrowNeutral)"/>
+<text x="806" y="300" font-size="12" font-weight="500" fill="#6B7280" text-anchor="middle">resolve</text>
+<path d="M756 280 C812 280 812 428 860 428" fill="none" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arrowNeutral)"/>
+<text x="806" y="416" font-size="12" font-weight="500" fill="#6B7280" text-anchor="middle">adapt</text>
+<rect x="56" y="486" width="1088" height="36" rx="12" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<text x="68" y="509" font-size="13" font-weight="400" fill="#6B7280">Tokens are consumed at build time and at runtime, so every surface stays aligned.</text>
+<text x="1012" y="509" font-size="12" font-weight="500" fill="#9CA3AF">IR - tokens - emitters</text>
+</svg>

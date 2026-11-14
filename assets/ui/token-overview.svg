@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="620" viewBox="0 0 1200 620" font-family='-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Microsoft JhengHei", "Segoe UI", Roboto, "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif' fill="#111827">
+<title>Token overview</title>
+<defs><linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#25D1FF"/><stop offset="100%" stop-color="#0066FF"/></linearGradient><filter id="shadowSm" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/><feOffset in="blur" dx="0" dy="1" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.08" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowMd" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/><feOffset in="blur" dx="0" dy="4" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.12" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowLg" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/><feOffset in="blur" dx="0" dy="10" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.16" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="arrowNeutral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+<rect width="1200" height="620" fill="#F9FAFB"/>
+<text x="24" y="38" font-size="24" font-weight="700" fill="#111827">Token overview</text>
+<text x="24" y="60" font-size="13" font-weight="400" fill="#6B7280">Foundational color, radius, spacing and elevation scales</text>
+<rect x="1012" y="24" width="164" height="28" rx="999" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<circle cx="1030" cy="38" r="4" fill="#007AFF"/>
+<text x="1042" y="42" font-size="12" font-weight="600" fill="#374151">DESIGN TOKENS</text>
+<rect x="24" y="84" width="1152" height="512" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="36" y="108" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">BRAND COLORS</text>
+<rect x="140" y="120" width="180" height="38" rx="8" fill="#007AFF" stroke="#E5E7EB" stroke-width="1"/>
+<text x="230" y="144" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">PRIMARY</text>
+<text x="230" y="178" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#007AFF</text>
+<rect x="340" y="120" width="180" height="38" rx="8" fill="#22D3EE" stroke="#E5E7EB" stroke-width="1"/>
+<text x="430" y="144" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">LIGHT</text>
+<text x="430" y="178" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#22D3EE</text>
+<rect x="540" y="120" width="180" height="38" rx="8" fill="#005FCC" stroke="#E5E7EB" stroke-width="1"/>
+<text x="630" y="144" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">DARK</text>
+<text x="630" y="178" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#005FCC</text>
+<rect x="740" y="120" width="180" height="38" rx="8" fill="#25D1FF" stroke="#E5E7EB" stroke-width="1"/>
+<text x="830" y="144" font-size="12" font-weight="600" fill="#111827" text-anchor="middle">GRADIENT START</text>
+<text x="830" y="178" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#25D1FF</text>
+<rect x="940" y="120" width="180" height="38" rx="8" fill="#0066FF" stroke="#E5E7EB" stroke-width="1"/>
+<text x="1030" y="144" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">GRADIENT END</text>
+<text x="1030" y="178" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#0066FF</text>
+<rect x="140" y="188" width="200" height="6" rx="4" fill="url(#brandGradient)"/>
+<text x="352" y="196" font-size="12" font-weight="400" fill="#6B7280">135deg #25D1FF - #0066FF</text>
+<rect x="760" y="186" width="388" height="18" rx="4" fill="#007AFF" fill-opacity="0.08"/>
+<text x="954" y="199" font-size="12" font-weight="500" fill="#005FCC" text-anchor="middle">soft background rgba(0,122,255,0.08)</text>
+<text x="36" y="222" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">NEUTRAL RAMP</text>
+<rect x="140" y="232" width="88" height="32" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+<text x="184" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#FFFFFF</text>
+<rect x="232" y="232" width="88" height="32" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<text x="276" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#F9FAFB</text>
+<rect x="324" y="232" width="88" height="32" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<text x="368" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#F3F4F6</text>
+<rect x="416" y="232" width="88" height="32" rx="8" fill="#E5E7EB" stroke="#E5E7EB" stroke-width="1"/>
+<text x="460" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#E5E7EB</text>
+<rect x="508" y="232" width="88" height="32" rx="8" fill="#D1D5DB" stroke="#E5E7EB" stroke-width="1"/>
+<text x="552" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#D1D5DB</text>
+<rect x="600" y="232" width="88" height="32" rx="8" fill="#9CA3AF" stroke="#E5E7EB" stroke-width="1"/>
+<text x="644" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#9CA3AF</text>
+<rect x="692" y="232" width="88" height="32" rx="8" fill="#6B7280" stroke="#E5E7EB" stroke-width="1"/>
+<text x="736" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#6B7280</text>
+<rect x="784" y="232" width="88" height="32" rx="8" fill="#4B5563" stroke="#E5E7EB" stroke-width="1"/>
+<text x="828" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#4B5563</text>
+<rect x="876" y="232" width="88" height="32" rx="8" fill="#374151" stroke="#E5E7EB" stroke-width="1"/>
+<text x="920" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#374151</text>
+<rect x="968" y="232" width="88" height="32" rx="8" fill="#1F2937" stroke="#E5E7EB" stroke-width="1"/>
+<text x="1012" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#1F2937</text>
+<rect x="1060" y="232" width="88" height="32" rx="8" fill="#111827" stroke="#E5E7EB" stroke-width="1"/>
+<text x="1104" y="282" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#111827</text>
+<text x="36" y="310" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">FUNCTIONAL</text>
+<rect x="140" y="320" width="240" height="32" rx="8" fill="#10B981"/>
+<text x="260" y="341" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">SUCCESS</text>
+<text x="260" y="370" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#10B981</text>
+<rect x="396" y="320" width="240" height="32" rx="8" fill="#F59E0B"/>
+<text x="516" y="341" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">WARNING</text>
+<text x="516" y="370" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#F59E0B</text>
+<rect x="652" y="320" width="240" height="32" rx="8" fill="#EF4444"/>
+<text x="772" y="341" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">ERROR</text>
+<text x="772" y="370" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#EF4444</text>
+<rect x="908" y="320" width="240" height="32" rx="8" fill="#3B82F6"/>
+<text x="1028" y="341" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">INFO</text>
+<text x="1028" y="370" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">#3B82F6</text>
+<text x="36" y="396" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">RADIUS SCALE</text>
+<rect x="140" y="404" width="120" height="40" rx="4" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+<text x="200" y="429" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">4 px</text>
+<rect x="308" y="404" width="120" height="40" rx="6" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+<text x="368" y="429" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">6 px</text>
+<rect x="476" y="404" width="120" height="40" rx="8" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+<text x="536" y="429" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">8 px</text>
+<rect x="644" y="404" width="120" height="40" rx="12" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+<text x="704" y="429" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">12 px</text>
+<rect x="812" y="404" width="120" height="40" rx="16" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+<text x="872" y="429" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">16 px</text>
+<rect x="980" y="404" width="120" height="40" rx="999" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="1"/>
+<text x="1040" y="429" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">999 px</text>
+<line x1="720" y1="470" x2="720" y2="584" stroke="#E5E7EB" stroke-width="1"/>
+<text x="36" y="484" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">SPACING SCALE</text>
+<text x="740" y="484" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">ELEVATION</text>
+<text x="140" y="508" font-size="12" font-weight="500" fill="#6B7280">4 px</text>
+<rect x="196" y="500" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="196" y="500" width="12" height="8" rx="4" fill="#007AFF"/>
+<text x="140" y="524" font-size="12" font-weight="500" fill="#6B7280">8 px</text>
+<rect x="196" y="516" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="196" y="516" width="24" height="8" rx="4" fill="#007AFF"/>
+<text x="140" y="540" font-size="12" font-weight="500" fill="#6B7280">12 px</text>
+<rect x="196" y="532" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="196" y="532" width="36" height="8" rx="4" fill="#007AFF"/>
+<text x="140" y="556" font-size="12" font-weight="500" fill="#6B7280">16 px</text>
+<rect x="196" y="548" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="196" y="548" width="48" height="8" rx="4" fill="#007AFF"/>
+<text x="140" y="572" font-size="12" font-weight="500" fill="#6B7280">20 px</text>
+<rect x="196" y="564" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="196" y="564" width="60" height="8" rx="4" fill="#007AFF"/>
+<text x="420" y="508" font-size="12" font-weight="500" fill="#6B7280">24 px</text>
+<rect x="476" y="500" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="476" y="500" width="72" height="8" rx="4" fill="#007AFF"/>
+<text x="420" y="524" font-size="12" font-weight="500" fill="#6B7280">32 px</text>
+<rect x="476" y="516" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="476" y="516" width="96" height="8" rx="4" fill="#007AFF"/>
+<text x="420" y="540" font-size="12" font-weight="500" fill="#6B7280">40 px</text>
+<rect x="476" y="532" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="476" y="532" width="120" height="8" rx="4" fill="#007AFF"/>
+<text x="420" y="556" font-size="12" font-weight="500" fill="#6B7280">48 px</text>
+<rect x="476" y="548" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="476" y="548" width="144" height="8" rx="4" fill="#007AFF"/>
+<text x="420" y="572" font-size="12" font-weight="500" fill="#6B7280">64 px</text>
+<rect x="476" y="564" width="192" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="476" y="564" width="192" height="8" rx="4" fill="#007AFF"/>
+<rect x="740" y="504" width="120" height="52" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="752" y="535" font-size="12" font-weight="500" fill="#374151">Surface</text>
+<text x="800" y="578" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Low</text>
+<rect x="880" y="504" width="120" height="52" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowMd)"/>
+<text x="892" y="535" font-size="12" font-weight="500" fill="#374151">Surface</text>
+<text x="940" y="578" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Medium</text>
+<rect x="1020" y="504" width="120" height="52" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowLg)"/>
+<text x="1032" y="535" font-size="12" font-weight="500" fill="#374151">Surface</text>
+<text x="1080" y="578" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">High</text>
+</svg>

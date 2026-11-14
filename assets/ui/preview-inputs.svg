@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="600" viewBox="0 0 1200 600" font-family='-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Microsoft JhengHei", "Segoe UI", Roboto, "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif' fill="#111827">
+<title>Input components</title>
+<defs><linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#25D1FF"/><stop offset="100%" stop-color="#0066FF"/></linearGradient><filter id="shadowSm" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/><feOffset in="blur" dx="0" dy="1" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.08" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowMd" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/><feOffset in="blur" dx="0" dy="4" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.12" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowLg" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/><feOffset in="blur" dx="0" dy="10" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.16" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="arrowNeutral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+<rect width="1200" height="600" fill="#F9FAFB"/>
+<text x="24" y="38" font-size="24" font-weight="700" fill="#111827">Input components</text>
+<text x="24" y="60" font-size="13" font-weight="400" fill="#6B7280">Realistic fields, selection controls and validation states</text>
+<rect x="1012" y="24" width="164" height="28" rx="999" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<circle cx="1030" cy="38" r="4" fill="#007AFF"/>
+<text x="1042" y="42" font-size="12" font-weight="600" fill="#374151">FORM PREVIEW</text>
+<rect x="24" y="84" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="315" y="84" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="606" y="84" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="897" y="84" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="24" y="324" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="315" y="324" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="606" y="324" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="897" y="324" width="279" height="228" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="36" y="106" font-size="14" font-weight="600" fill="#111827">Text input states</text>
+<text x="36" y="134" font-size="12" font-weight="500" fill="#6B7280">Default</text>
+<rect x="100" y="116" width="191" height="28" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<text x="110" y="134" font-size="12" font-weight="400" fill="#374151">Alex Morgan</text>
+<text x="36" y="168" font-size="12" font-weight="500" fill="#6B7280">Hover</text>
+<rect x="100" y="150" width="191" height="28" rx="8" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1"/>
+<text x="110" y="168" font-size="12" font-weight="400" fill="#374151">Alex Morgan</text>
+<rect x="84" y="180" width="203" height="36" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.18"/>
+<text x="36" y="202" font-size="12" font-weight="500" fill="#6B7280">Focus</text>
+<rect x="100" y="184" width="191" height="28" rx="8" fill="#FFFFFF" stroke="#007AFF" stroke-width="2"/>
+<text x="110" y="202" font-size="12" font-weight="400" fill="#374151">Alex Morgan</text>
+<text x="36" y="236" font-size="12" font-weight="500" fill="#6B7280">Error</text>
+<rect x="100" y="218" width="191" height="28" rx="8" fill="#FFFFFF" stroke="#EF4444" stroke-width="1"/>
+<text x="110" y="236" font-size="12" font-weight="400" fill="#374151">Alex Morgan</text>
+<circle cx="279" cy="232" r="8" fill="#EF4444"/>
+<text x="279" y="236" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">!</text>
+<text x="36" y="270" font-size="12" font-weight="500" fill="#6B7280">Disabled</text>
+<rect x="100" y="252" width="191" height="28" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1" opacity="0.7"/>
+<text x="110" y="270" font-size="12" font-weight="400" fill="#9CA3AF">Unavailable</text>
+<text x="36" y="300" font-size="12" font-weight="400" fill="#9CA3AF">Validation uses the error token.</text>
+<text x="327" y="106" font-size="14" font-weight="600" fill="#111827">Text, search and numeric</text>
+<text x="327" y="124" font-size="12" font-weight="500" fill="#6B7280">Textarea</text>
+<rect x="327" y="130" width="255" height="54" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<text x="339" y="150" font-size="12" font-weight="400" fill="#374151">Tokens updated for release.</text>
+<text x="339" y="170" font-size="12" font-weight="400" fill="#6B7280">Reviewers notified.</text>
+<text x="327" y="202" font-size="12" font-weight="500" fill="#6B7280">Search</text>
+<rect x="327" y="208" width="255" height="28" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<circle cx="342" cy="221" r="5" fill="none" stroke="#9CA3AF" stroke-width="1.5"/><line x1="347" y1="226" x2="352" y2="231" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="360" y="226" font-size="12" font-weight="400" fill="#6B7280">Search components</text>
+<text x="327" y="254" font-size="12" font-weight="500" fill="#6B7280">Password</text>
+<rect x="327" y="260" width="120" height="32" rx="8" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1"/>
+<circle cx="343" cy="276" r="3" fill="#6B7280"/>
+<circle cx="355" cy="276" r="3" fill="#6B7280"/>
+<circle cx="367" cy="276" r="3" fill="#6B7280"/>
+<circle cx="379" cy="276" r="3" fill="#6B7280"/>
+<circle cx="391" cy="276" r="3" fill="#6B7280"/>
+<circle cx="431" cy="276" r="7" fill="none" stroke="#6B7280" stroke-width="1.5"/>
+<line x1="424" y1="276" x2="438" y2="276" stroke="#6B7280" stroke-width="1"/>
+<text x="459" y="254" font-size="12" font-weight="500" fill="#6B7280">Number</text>
+<rect x="459" y="260" width="123" height="32" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<text x="471" y="280" font-size="13" font-weight="500" fill="#374151">24</text>
+<path d="M564 270 L569 266 L574 270" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M564 284 L569 288 L574 284" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="618" y="106" font-size="14" font-weight="600" fill="#111827">Select dropdown</text>
+<text x="618" y="128" font-size="12" font-weight="500" fill="#6B7280">Framework</text>
+<rect x="614" y="132" width="263" height="44" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.18"/>
+<rect x="618" y="136" width="255" height="36" rx="8" fill="#FFFFFF" stroke="#007AFF" stroke-width="2"/>
+<text x="630" y="158" font-size="13" font-weight="500" fill="#374151">Design system</text>
+<path d="M850 151 L855 156 L860 151" fill="none" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="618" y="176" width="255" height="116" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowMd)"/>
+<rect x="622" y="180" width="247" height="26" rx="6" fill="#007AFF" fill-opacity="0.08"/>
+<text x="632" y="197" font-size="12" font-weight="600" fill="#005FCC">Design system</text>
+<path d="M850 193 L853 198 L860 187" fill="none" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="632" y="224" font-size="12" font-weight="400" fill="#374151">Component tokens</text>
+<text x="632" y="251" font-size="12" font-weight="400" fill="#374151">Platform themes</text>
+<text x="632" y="278" font-size="12" font-weight="400" fill="#374151">Runtime presets</text>
+<text x="618" y="304" font-size="12" font-weight="400" fill="#9CA3AF">Open panel with selected option</text>
+<text x="909" y="106" font-size="14" font-weight="600" fill="#111827">Selection controls</text>
+<text x="909" y="128" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">RADIO GROUP</text>
+<circle cx="921" cy="153" r="9" fill="#007AFF" stroke="#007AFF" stroke-width="2"/>
+<circle cx="921" cy="153" r="3" fill="#FFFFFF"/>
+<text x="940" y="157" font-size="13" font-weight="500" fill="#374151">System</text>
+<rect x="909" y="170" width="255" height="26" rx="6" fill="#F9FAFB"/>
+<circle cx="921" cy="183" r="9" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+<text x="940" y="187" font-size="13" font-weight="400" fill="#374151">Light</text>
+<circle cx="921" cy="213" r="9" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+<text x="940" y="217" font-size="13" font-weight="400" fill="#374151">Dark</text>
+<text x="909" y="240" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">CHECKBOX</text>
+<rect x="909" y="252" width="20" height="20" rx="4" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<text x="919" y="290" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Unchecked</text>
+<rect x="1000" y="252" width="20" height="20" rx="4" fill="#007AFF" stroke="#007AFF" stroke-width="1"/>
+<path d="M1005 262 L1008 267 L1015 256" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1010" y="290" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Checked</text>
+<rect x="1091" y="252" width="20" height="20" rx="4" fill="#FFFFFF" stroke="#007AFF" stroke-width="2"/>
+<line x1="1096" y1="262" x2="1106" y2="262" stroke="#007AFF" stroke-width="2" stroke-linecap="round"/>
+<text x="1101" y="290" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Mixed</text>
+<text x="36" y="346" font-size="14" font-weight="600" fill="#111827">Switch and slider</text>
+<text x="36" y="370" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">SWITCH</text>
+<text x="88" y="400" font-size="13" font-weight="500" fill="#374151">Notifications</text>
+<text x="272" y="400" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="end">Off</text>
+<rect x="36" y="384" width="44" height="24" rx="999" fill="#D1D5DB"/>
+<circle cx="48" cy="396" r="9" fill="#FFFFFF" filter="url(#shadowSm)"/>
+<text x="88" y="434" font-size="13" font-weight="500" fill="#374151">Auto sync</text>
+<text x="272" y="434" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="end">On</text>
+<rect x="36" y="418" width="44" height="24" rx="999" fill="#007AFF"/>
+<circle cx="68" cy="430" r="9" fill="#FFFFFF" filter="url(#shadowSm)"/>
+<text x="88" y="468" font-size="13" font-weight="500" fill="#374151">Beta access</text>
+<text x="272" y="468" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="end">Disabled</text>
+<rect x="36" y="452" width="44" height="24" rx="999" fill="#E5E7EB" stroke="#E5E7EB" stroke-width="1" opacity="0.65"/>
+<circle cx="48" cy="464" r="9" fill="#9CA3AF" filter="url(#shadowSm)"/>
+<text x="36" y="500" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">SLIDER</text>
+<text x="267" y="512" font-size="12" font-weight="600" fill="#007AFF" text-anchor="end">64%</text>
+<rect x="36" y="522" width="255" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="36" y="522" width="164" height="8" rx="4" fill="#007AFF"/>
+<circle cx="200" cy="526" r="8" fill="#FFFFFF" stroke="#007AFF" stroke-width="2" filter="url(#shadowSm)"/>
+<text x="327" y="346" font-size="14" font-weight="600" fill="#111827">Date picker</text>
+<rect x="327" y="360" width="255" height="172" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="327" y="382" font-size="14" font-weight="600" fill="#111827">June 2026</text>
+<path d="M341 374 L345 379 L349 374" fill="none" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M561 374 L565 379 L569 374" fill="none" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="345" y="400" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">S</text>
+<text x="381" y="400" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">M</text>
+<text x="417" y="400" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">T</text>
+<text x="453" y="400" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">W</text>
+<text x="489" y="400" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">T</text>
+<text x="525" y="400" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">F</text>
+<text x="561" y="400" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">S</text>
+<text x="345" y="424" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">1</text>
+<text x="381" y="424" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">2</text>
+<text x="417" y="424" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">3</text>
+<text x="453" y="424" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">4</text>
+<text x="489" y="424" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">5</text>
+<text x="525" y="424" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">6</text>
+<text x="561" y="424" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">7</text>
+<text x="345" y="450" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">8</text>
+<circle cx="381" cy="446" r="11" fill="none" stroke="#22D3EE" stroke-width="1.5"/>
+<text x="381" y="450" font-size="12" font-weight="500" fill="#374151" text-anchor="middle">9</text>
+<text x="417" y="450" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">10</text>
+<text x="453" y="450" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">11</text>
+<text x="489" y="450" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">12</text>
+<text x="525" y="450" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">13</text>
+<circle cx="561" cy="446" r="11" fill="#007AFF"/>
+<text x="561" y="450" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">14</text>
+<text x="345" y="476" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">15</text>
+<text x="381" y="476" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">16</text>
+<text x="417" y="476" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">17</text>
+<text x="453" y="476" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">18</text>
+<text x="489" y="476" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">19</text>
+<text x="525" y="476" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">20</text>
+<text x="561" y="476" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">21</text>
+<text x="345" y="502" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">22</text>
+<text x="381" y="502" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">23</text>
+<text x="417" y="502" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">24</text>
+<text x="453" y="502" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">25</text>
+<text x="489" y="502" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">26</text>
+<text x="525" y="502" font-size="12" font-weight="400" fill="#374151" text-anchor="middle">27</text>
+<text x="561" y="502" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">28</text>
+<text x="339" y="524" font-size="12" font-weight="500" fill="#6B7280">Selected 14 June 2026</text>
+<text x="618" y="346" font-size="14" font-weight="600" fill="#111827">File upload</text>
+<rect x="618" y="368" width="255" height="148" rx="12" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="4 4"/>
+<path d="M728 418 C728 408 736 402 745 402 C752 392 768 396 770 408 C780 408 784 414 784 422 H728 Z" fill="none" stroke="#007AFF" stroke-width="2" stroke-linejoin="round"/>
+<path d="M745 414 V398 M740 403 L745 398 L750 403" fill="none" stroke="#007AFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="745" y="448" font-size="16" font-weight="600" fill="#374151" text-anchor="middle">Drop files here</text>
+<text x="745" y="466" font-size="13" font-weight="400" fill="#6B7280" text-anchor="middle">or click to browse</text>
+<rect x="690" y="476" width="110" height="28" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<text x="745" y="494" font-size="12" font-weight="600" fill="#007AFF" text-anchor="middle">Choose file</text>
+<text x="745" y="532" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">Vectors and documents up to 10 MB</text>
+<text x="909" y="346" font-size="14" font-weight="600" fill="#111827">Field anatomy</text>
+<text x="909" y="370" font-size="12" font-weight="600" fill="#374151">Workspace name</text>
+<text x="1004" y="370" font-size="12" font-weight="600" fill="#EF4444">*</text>
+<rect x="905" y="378" width="263" height="44" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.18"/>
+<rect x="909" y="382" width="255" height="36" rx="8" fill="#FFFFFF" stroke="#007AFF" stroke-width="2"/>
+<text x="921" y="404" font-size="13" font-weight="400" fill="#374151">Opurom Design</text>
+<text x="909" y="434" font-size="12" font-weight="400" fill="#6B7280">Used in shared component previews.</text>
+<text x="909" y="456" font-size="12" font-weight="500" fill="#EF4444">Alias is already in use.</text>
+<rect x="909" y="466" width="255" height="32" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<text x="921" y="486" font-size="12" font-weight="400" fill="#6B7280">Read only</text>
+<rect x="909" y="506" width="255" height="32" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1" opacity="0.7"/>
+<text x="921" y="526" font-size="12" font-weight="400" fill="#9CA3AF">Disabled</text>
+<text x="24" y="578" font-size="12" font-weight="400" fill="#9CA3AF">All controls use token radii, borders, focus rings and 12 px labels.</text>
+</svg>

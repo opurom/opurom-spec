@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="560" viewBox="0 0 1200 560" font-family='-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Microsoft JhengHei", "Segoe UI", Roboto, "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif' fill="#111827">
+<title>Button states</title>
+<defs><linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#25D1FF"/><stop offset="100%" stop-color="#0066FF"/></linearGradient><filter id="shadowSm" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/><feOffset in="blur" dx="0" dy="1" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.08" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowMd" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/><feOffset in="blur" dx="0" dy="4" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.12" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowLg" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/><feOffset in="blur" dx="0" dy="10" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.16" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="arrowNeutral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+<rect width="1200" height="560" fill="#F9FAFB"/>
+<text x="24" y="38" font-size="24" font-weight="700" fill="#111827">Button states</text>
+<text x="24" y="60" font-size="13" font-weight="400" fill="#6B7280">Five variants across five interaction states</text>
+<rect x="1012" y="24" width="164" height="28" rx="999" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<circle cx="1030" cy="38" r="4" fill="#007AFF"/>
+<text x="1042" y="42" font-size="12" font-weight="600" fill="#374151">COMPONENT PREVIEW</text>
+<rect x="24" y="84" width="1152" height="360" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="260" y="112" font-size="12" font-weight="600" fill="#6B7280" text-anchor="middle">Default</text>
+<text x="456" y="112" font-size="12" font-weight="600" fill="#6B7280" text-anchor="middle">Hover</text>
+<text x="652" y="112" font-size="12" font-weight="600" fill="#6B7280" text-anchor="middle">Active</text>
+<text x="848" y="112" font-size="12" font-weight="600" fill="#6B7280" text-anchor="middle">Focus</text>
+<text x="1044" y="112" font-size="12" font-weight="600" fill="#6B7280" text-anchor="middle">Disabled</text>
+<line x1="36" y1="128" x2="1164" y2="128" stroke="#E5E7EB" stroke-width="1"/>
+<text x="36" y="169" font-size="14" font-weight="600" fill="#374151">Primary</text>
+<g><rect x="182" y="144" width="156" height="40" rx="8" fill="#007AFF" filter="url(#shadowSm)"/><text x="260.0" y="169.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Continue</text></g>
+<g><rect x="378" y="144" width="156" height="40" rx="8" fill="#005FCC" filter="url(#shadowMd)"/><text x="456.0" y="169.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Continue</text></g>
+<g><rect x="574" y="144" width="156" height="40" rx="8" fill="#005FCC"/><rect x="574" y="144" width="156" height="40" rx="8" fill="#111827" fill-opacity="0.1"/><text x="652.0" y="169.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Continue</text></g>
+<g><rect x="766" y="140" width="164" height="48" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.28"/><rect x="770" y="144" width="156" height="40" rx="8" fill="#005FCC" filter="url(#shadowSm)"/><text x="848.0" y="169.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Continue</text></g>
+<g opacity="0.5"><rect x="966" y="144" width="156" height="40" rx="8" fill="#D1D5DB"/><text x="1044.0" y="169.0" font-size="13" font-weight="600" fill="#6B7280" text-anchor="middle">Continue</text></g>
+<line x1="36" y1="194" x2="1164" y2="194" stroke="#F3F4F6" stroke-width="1"/>
+<text x="36" y="229" font-size="14" font-weight="600" fill="#374151">Secondary</text>
+<g><rect x="182" y="204" width="156" height="40" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1" filter="url(#shadowSm)"/><text x="260.0" y="229.0" font-size="13" font-weight="600" fill="#374151" text-anchor="middle">Cancel</text></g>
+<g><rect x="378" y="204" width="156" height="40" rx="8" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="1" filter="url(#shadowSm)"/><text x="456.0" y="229.0" font-size="13" font-weight="600" fill="#1F2937" text-anchor="middle">Cancel</text></g>
+<g><rect x="574" y="204" width="156" height="40" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1"/><rect x="574" y="204" width="156" height="40" rx="8" fill="#111827" fill-opacity="0.1"/><text x="652.0" y="229.0" font-size="13" font-weight="600" fill="#374151" text-anchor="middle">Cancel</text></g>
+<g><rect x="766" y="200" width="164" height="48" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.28"/><rect x="770" y="204" width="156" height="40" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1" filter="url(#shadowSm)"/><text x="848.0" y="229.0" font-size="13" font-weight="600" fill="#374151" text-anchor="middle">Cancel</text></g>
+<g opacity="0.5"><rect x="966" y="204" width="156" height="40" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/><text x="1044.0" y="229.0" font-size="13" font-weight="600" fill="#9CA3AF" text-anchor="middle">Cancel</text></g>
+<line x1="36" y1="254" x2="1164" y2="254" stroke="#F3F4F6" stroke-width="1"/>
+<text x="36" y="289" font-size="14" font-weight="600" fill="#374151">Ghost</text>
+<g><text x="260.0" y="289.0" font-size="13" font-weight="600" fill="#007AFF" text-anchor="middle">View details</text></g>
+<g><rect x="378" y="264" width="156" height="40" rx="8" fill="#007AFF" fill-opacity="0.08"/><text x="456.0" y="289.0" font-size="13" font-weight="600" fill="#005FCC" text-anchor="middle">View details</text></g>
+<g><rect x="574" y="264" width="156" height="40" rx="8" fill="#E5E7EB"/><text x="652.0" y="289.0" font-size="13" font-weight="600" fill="#005FCC" text-anchor="middle">View details</text></g>
+<g><rect x="766" y="260" width="164" height="48" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.28"/><text x="848.0" y="289.0" font-size="13" font-weight="600" fill="#007AFF" text-anchor="middle">View details</text></g>
+<g opacity="0.5"><text x="1044.0" y="289.0" font-size="13" font-weight="600" fill="#9CA3AF" text-anchor="middle">View details</text></g>
+<line x1="36" y1="314" x2="1164" y2="314" stroke="#F3F4F6" stroke-width="1"/>
+<text x="36" y="349" font-size="14" font-weight="600" fill="#374151">Text</text>
+<g><text x="260.0" y="349.0" font-size="13" font-weight="600" fill="#007AFF" text-anchor="middle">Learn more</text></g>
+<g><line x1="418.0" y1="354.0" x2="494.0" y2="354.0" stroke="#005FCC" stroke-width="1"/><text x="456.0" y="349.0" font-size="13" font-weight="600" fill="#005FCC" text-anchor="middle">Learn more</text></g>
+<g><rect x="574" y="324" width="156" height="40" rx="8" fill="#007AFF" fill-opacity="0.08"/><text x="652.0" y="349.0" font-size="13" font-weight="600" fill="#005FCC" text-anchor="middle">Learn more</text></g>
+<g><rect x="766" y="320" width="164" height="48" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.28"/><text x="848.0" y="349.0" font-size="13" font-weight="600" fill="#007AFF" text-anchor="middle">Learn more</text></g>
+<g opacity="0.5"><text x="1044.0" y="349.0" font-size="13" font-weight="600" fill="#9CA3AF" text-anchor="middle">Learn more</text></g>
+<line x1="36" y1="374" x2="1164" y2="374" stroke="#F3F4F6" stroke-width="1"/>
+<text x="36" y="409" font-size="14" font-weight="600" fill="#374151">Danger</text>
+<g><rect x="182" y="384" width="156" height="40" rx="8" fill="#EF4444" filter="url(#shadowSm)"/><text x="260.0" y="409.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Delete</text></g>
+<g><rect x="378" y="384" width="156" height="40" rx="8" fill="#EF4444" filter="url(#shadowMd)"/><text x="456.0" y="409.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Delete</text></g>
+<g><rect x="574" y="384" width="156" height="40" rx="8" fill="#EF4444"/><rect x="574" y="384" width="156" height="40" rx="8" fill="#111827" fill-opacity="0.1"/><text x="652.0" y="409.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Delete</text></g>
+<g><rect x="766" y="380" width="164" height="48" rx="12" fill="none" stroke="#EF4444" stroke-width="3" opacity="0.28"/><rect x="770" y="384" width="156" height="40" rx="8" fill="#EF4444" filter="url(#shadowSm)"/><text x="848.0" y="409.0" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Delete</text></g>
+<g opacity="0.5"><rect x="966" y="384" width="156" height="40" rx="8" fill="#F3F4F6"/><text x="1044.0" y="409.0" font-size="13" font-weight="600" fill="#9CA3AF" text-anchor="middle">Delete</text></g>
+<text x="36" y="432" font-size="12" font-weight="400" fill="#9CA3AF">Token fills, borders, focus rings and disabled opacity stay consistent.</text>
+<rect x="24" y="456" width="1152" height="80" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="36" y="480" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">ICON BUTTONS</text>
+<g><rect x="180" y="470" width="36" height="36" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1" filter="url(#shadowSm)"/><path d="M191 488 H205 M198 481 V495" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/></g>
+<text x="198" y="524" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Default</text>
+<g><rect x="252" y="470" width="36" height="36" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1" filter="url(#shadowSm)"/><circle cx="269" cy="487" r="7" fill="none" stroke="#007AFF" stroke-width="1.5"/><line x1="274" y1="492" x2="279" y2="497" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round"/></g>
+<text x="270" y="524" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Hover</text>
+<g><rect x="320" y="466" width="44" height="44" rx="12" fill="none" stroke="#007AFF" stroke-width="3" opacity="0.28"/><rect x="324" y="470" width="36" height="36" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/><path d="M335 488 L340 493 L349 482" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="342" y="524" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Focus</text>
+<g opacity="0.5"><rect x="396" y="470" width="36" height="36" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/><path d="M409 483 L419 493 M419 483 L409 493" fill="none" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></g>
+<text x="414" y="524" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Disabled</text>
+<line x1="700" y1="468" x2="700" y2="524" stroke="#E5E7EB" stroke-width="1"/>
+<text x="724" y="480" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">FLOATING ACTION BUTTON</text>
+<rect x="940" y="470" width="52" height="52" rx="999" fill="#007AFF" filter="url(#shadowMd)"/>
+<path d="M957 496 H975 M966 487 V505" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+<text x="1004" y="498" font-size="14" font-weight="600" fill="#374151">Primary action</text>
+<text x="1004" y="518" font-size="12" font-weight="400" fill="#9CA3AF">FAB with elevation</text>
+</svg>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="420" viewBox="0 0 1200 420" font-family='-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Microsoft JhengHei", "Segoe UI", Roboto, "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif' fill="#111827">
+<title>Other components</title>
+<defs><linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#25D1FF"/><stop offset="100%" stop-color="#0066FF"/></linearGradient><filter id="shadowSm" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/><feOffset in="blur" dx="0" dy="1" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.08" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowMd" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/><feOffset in="blur" dx="0" dy="4" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.12" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowLg" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/><feOffset in="blur" dx="0" dy="10" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.16" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="arrowNeutral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+<rect width="1200" height="420" fill="#F9FAFB"/>
+<text x="24" y="38" font-size="24" font-weight="700" fill="#111827">Other components</text>
+<text x="24" y="60" font-size="13" font-weight="400" fill="#6B7280">Dividers, disclosure, progress paths and toolbar actions</text>
+<rect x="1012" y="24" width="164" height="28" rx="999" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<circle cx="1030" cy="38" r="4" fill="#007AFF"/>
+<text x="1042" y="42" font-size="12" font-weight="600" fill="#374151">COMPONENT PREVIEW</text>
+<rect x="24" y="84" width="376" height="128" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="36" y="106" font-size="14" font-weight="600" fill="#111827">Divider</text>
+<text x="36" y="128" font-size="12" font-weight="500" fill="#9CA3AF">Plain</text>
+<line x1="36" y1="140" x2="388" y2="140" stroke="#E5E7EB" stroke-width="1"/>
+<text x="36" y="166" font-size="12" font-weight="500" fill="#9CA3AF">With text</text>
+<line x1="36" y1="184" x2="152" y2="184" stroke="#E5E7EB" stroke-width="1"/>
+<text x="212" y="188" font-size="12" font-weight="400" fill="#6B7280" text-anchor="middle">or continue with</text>
+<line x1="272" y1="184" x2="388" y2="184" stroke="#E5E7EB" stroke-width="1"/>
+<rect x="24" y="224" width="376" height="164" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="36" y="246" font-size="14" font-weight="600" fill="#111827">Collapse / Accordion</text>
+<rect x="36" y="260" width="352" height="40" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+<text x="48" y="285" font-size="13" font-weight="500" fill="#374151">Token layers</text>
+<text x="360" y="285" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="end">3</text>
+<path d="M368 277 L372 282 L376 277" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="36" y="308" width="352" height="64" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="48" y="330" font-size="13" font-weight="600" fill="#007AFF">Component states</text>
+<path d="M368 329 L372 324 L376 329" fill="none" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="48" y1="340" x2="376" y2="340" stroke="#E5E7EB" stroke-width="1"/>
+<text x="48" y="360" font-size="12" font-weight="400" fill="#4B5563">Default, Hover, Active, Focus, Disabled</text>
+<rect x="300" y="348" width="76" height="20" rx="999" fill="#007AFF" fill-opacity="0.08"/>
+<text x="338.0" y="362.0" font-size="12" font-weight="600" fill="#005FCC" text-anchor="middle">5 states</text>
+<rect x="412" y="84" width="376" height="128" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="424" y="106" font-size="14" font-weight="600" fill="#111827">Steps</text>
+<text x="424" y="128" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">COMPLETED / CURRENT / PENDING</text>
+<line x1="472" y1="164" x2="728" y2="164" stroke="#E5E7EB" stroke-width="2"/>
+<line x1="472" y1="164" x2="600" y2="164" stroke="#10B981" stroke-width="2"/>
+<circle cx="472" cy="164" r="14" fill="#10B981"/>
+<path d="M466 164 L470 169 L478 158" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="600" cy="164" r="19" fill="none" stroke="#007AFF" stroke-width="2" opacity="0.18"/>
+<circle cx="600" cy="164" r="14" fill="#007AFF"/>
+<text x="600" y="168" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+<circle cx="728" cy="164" r="14" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+<text x="728" y="168" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">3</text>
+<text x="472" y="194" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">Draft</text>
+<text x="472" y="208" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">Completed</text>
+<text x="600" y="194" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">Review</text>
+<text x="600" y="208" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">Current</text>
+<text x="728" y="194" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">Ship</text>
+<text x="728" y="208" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="middle">Pending</text>
+<rect x="412" y="224" width="376" height="164" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="424" y="246" font-size="14" font-weight="600" fill="#111827">Timeline</text>
+<line x1="448" y1="276" x2="448" y2="368" stroke="#E5E7EB" stroke-width="2"/>
+<circle cx="448" cy="286" r="8" fill="#10B981"/>
+<path d="M444 286 L446 291 L452 280" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="448" cy="324" r="8" fill="#007AFF"/>
+<circle cx="448" cy="362" r="8" fill="#D1D5DB"/>
+<text x="472" y="290" font-size="13" font-weight="600" fill="#374151">Spec created</text>
+<text x="748" y="290" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">09:10</text>
+<text x="472" y="328" font-size="13" font-weight="600" fill="#374151">Tokens approved</text>
+<text x="748" y="328" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">10:45</text>
+<text x="472" y="366" font-size="13" font-weight="500" fill="#6B7280">UI review</text>
+<text x="748" y="366" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">12:20</text>
+<rect x="800" y="84" width="376" height="304" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="812" y="106" font-size="14" font-weight="600" fill="#111827">Toolbar</text>
+<rect x="812" y="124" width="352" height="48" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="818" y="130" width="24" height="28" rx="6" fill="#007AFF" fill-opacity="0.08"/>
+<text x="830" y="149" font-size="13" font-weight="700" fill="#005FCC" text-anchor="middle">B</text>
+<text x="866" y="149" font-size="13" font-weight="600" fill="#4B5563" text-anchor="middle">I</text>
+<text x="898" y="149" font-size="13" font-weight="600" fill="#4B5563" text-anchor="middle">U</text>
+<line x1="916" y1="132" x2="916" y2="164" stroke="#E5E7EB" stroke-width="1"/>
+<line x1="932" y1="140" x2="948" y2="140" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+<line x1="932" y1="148" x2="944" y2="148" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+<line x1="932" y1="156" x2="948" y2="156" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+<path d="M968 140 H988 M968 148 H984 M968 156 H988" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+<path d="M1004 142 L1010 148 L1004 154 M1010 148 H996" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="1028" y1="132" x2="1028" y2="164" stroke="#E5E7EB" stroke-width="1"/>
+<circle cx="1043" cy="143" r="2" fill="#4B5563"/><circle cx="1043" cy="153" r="2" fill="#4B5563"/><circle cx="1053" cy="143" r="2" fill="#4B5563"/><circle cx="1053" cy="153" r="2" fill="#4B5563"/>
+<path d="M1071 142 H1077 L1079 145 H1089 V155 H1071 Z" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linejoin="round"/>
+<circle cx="1106" cy="148" r="2" fill="#4B5563"/><circle cx="1112" cy="148" r="2" fill="#4B5563"/><circle cx="1118" cy="148" r="2" fill="#4B5563"/>
+<text x="812" y="196" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">ICON BUTTONS AND SEPARATORS</text>
+<text x="812" y="212" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">CANVAS CONTROLS</text>
+<rect x="812" y="224" width="352" height="48" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<path d="M829 248 H839 M834 243 V253" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round"/>
+<text x="870" y="252" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">100%</text>
+<path d="M902 244 L910 252 M910 244 L902 252" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="928" y1="232" x2="928" y2="264" stroke="#E5E7EB" stroke-width="1"/>
+<rect x="940" y="234" width="64" height="28" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<text x="972" y="252" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">Fit</text>
+<line x1="1016" y1="232" x2="1016" y2="264" stroke="#E5E7EB" stroke-width="1"/>
+<circle cx="1031" cy="243" r="2" fill="#007AFF"/><circle cx="1031" cy="253" r="2" fill="#007AFF"/><circle cx="1041" cy="243" r="2" fill="#007AFF"/><circle cx="1041" cy="253" r="2" fill="#007AFF"/>
+<text x="1062" y="252" font-size="12" font-weight="600" fill="#007AFF">Grid</text>
+<line x1="1107" y1="243" x2="1125" y2="243" stroke="#4B5563" stroke-width="1.5"/><line x1="1107" y1="253" x2="1125" y2="253" stroke="#4B5563" stroke-width="1.5"/><circle cx="1113" cy="243" r="3" fill="#FFFFFF" stroke="#4B5563" stroke-width="1.5"/><circle cx="1121" cy="253" r="3" fill="#FFFFFF" stroke="#4B5563" stroke-width="1.5"/>
+<text x="812" y="296" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">STATES</text>
+<rect x="812" y="320" width="100" height="36" rx="8" fill="#007AFF" fill-opacity="0.08"/>
+<text x="862" y="342" font-size="12" font-weight="600" fill="#005FCC" text-anchor="middle">Active</text>
+<rect x="924" y="320" width="100" height="36" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="1"/>
+<text x="974" y="342" font-size="12" font-weight="600" fill="#374151" text-anchor="middle">Hover</text>
+<rect x="1036" y="320" width="100" height="36" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<text x="1086" y="342" font-size="12" font-weight="600" fill="#9CA3AF" text-anchor="middle">Disabled</text>
+<text x="24" y="404" font-size="12" font-weight="400" fill="#9CA3AF">Shared separators use the neutral border token.</text>
+</svg>

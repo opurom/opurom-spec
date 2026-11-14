@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1200" height="560" viewBox="0 0 1200 560" font-family='-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Microsoft JhengHei", "Segoe UI", Roboto, "Noto Sans CJK SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif' fill="#111827">
+<title>Navigation</title>
+<defs><linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#25D1FF"/><stop offset="100%" stop-color="#0066FF"/></linearGradient><filter id="shadowSm" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/><feOffset in="blur" dx="0" dy="1" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.08" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowMd" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/><feOffset in="blur" dx="0" dy="4" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.12" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="shadowLg" x="-30%" y="-30%" width="160%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blur"/><feOffset in="blur" dx="0" dy="10" result="offset"/><feFlood flood-color="#111827" flood-opacity="0.16" result="color"/><feComposite in="color" in2="offset" operator="in" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="arrowNeutral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0 0 L8 4 L0 8 Z" fill="#9CA3AF"/></marker></defs>
+<rect width="1200" height="560" fill="#F9FAFB"/>
+<text x="24" y="38" font-size="24" font-weight="700" fill="#111827">Navigation</text>
+<text x="24" y="60" font-size="13" font-weight="400" fill="#6B7280">Bars, tabs, breadcrumbs, menus and desktop dock</text>
+<rect x="1012" y="24" width="164" height="28" rx="999" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<circle cx="1030" cy="38" r="4" fill="#007AFF"/>
+<text x="1042" y="42" font-size="12" font-weight="600" fill="#374151">NAVIGATION PREVIEW</text>
+<rect x="24" y="84" width="1152" height="60" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<rect x="36" y="96" width="32" height="32" rx="8" fill="url(#brandGradient)"/>
+<circle cx="52" cy="112" r="8" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<text x="80" y="110" font-size="16" font-weight="700" fill="#111827">OPUROM</text>
+<text x="80" y="128" font-size="12" font-weight="400" fill="#6B7280">Design system</text>
+<text x="620" y="118" font-size="13" font-weight="400" fill="#4B5563">Overview</text>
+<text x="740" y="118" font-size="13" font-weight="600" fill="#007AFF">Components</text>
+<text x="860" y="118" font-size="13" font-weight="400" fill="#4B5563">Tokens</text>
+<rect x="728" y="140" width="96" height="3" rx="4" fill="url(#brandGradient)"/>
+<path d="M1072 119 H1088 M1074 117 V112 C1074 105 1086 105 1086 112 V117 M1078 122 H1082" fill="none" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="1136" cy="114" r="16" fill="#007AFF"/>
+<text x="1136" y="118" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">AM</text>
+<rect x="24" y="156" width="260" height="380" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="36" y="178" font-size="14" font-weight="600" fill="#111827">Workspace</text>
+<rect x="244" y="168" width="28" height="18" rx="999" fill="url(#brandGradient)"/>
+<text x="258" y="181" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Pro</text>
+<rect x="36" y="194" width="236" height="32" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<circle cx="51" cy="209" r="5" fill="none" stroke="#9CA3AF" stroke-width="1.5"/><line x1="56" y1="214" x2="61" y2="219" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="68" y="214" font-size="12" font-weight="400" fill="#9CA3AF">Search</text>
+<text x="36" y="248" font-size="12" font-weight="600" fill="#6B7280" letter-spacing="0.6">NAVIGATION</text>
+<rect x="36" y="260" width="236" height="32" rx="8" fill="#FFFFFF"/>
+<circle cx="51" cy="271" r="2" fill="#4B5563"/><circle cx="51" cy="281" r="2" fill="#4B5563"/><circle cx="61" cy="271" r="2" fill="#4B5563"/><circle cx="61" cy="281" r="2" fill="#4B5563"/>
+<text x="76" y="281" font-size="13" font-weight="400" fill="#374151">Overview</text>
+<rect x="36" y="300" width="236" height="32" rx="8" fill="#007AFF" fill-opacity="0.08"/>
+<rect x="36" y="300" width="4" height="32" rx="4" fill="#007AFF"/>
+<circle cx="51" cy="311" r="2" fill="#007AFF"/><circle cx="51" cy="321" r="2" fill="#007AFF"/><circle cx="61" cy="311" r="2" fill="#007AFF"/><circle cx="61" cy="321" r="2" fill="#007AFF"/>
+<text x="76" y="321" font-size="13" font-weight="600" fill="#005FCC">Components</text>
+<rect x="36" y="340" width="236" height="32" rx="8" fill="#F9FAFB"/>
+<line x1="47" y1="351" x2="65" y2="351" stroke="#4B5563" stroke-width="1.5"/><line x1="47" y1="361" x2="65" y2="361" stroke="#4B5563" stroke-width="1.5"/><circle cx="53" cy="351" r="3" fill="#FFFFFF" stroke="#4B5563" stroke-width="1.5"/><circle cx="61" cy="361" r="3" fill="#FFFFFF" stroke="#4B5563" stroke-width="1.5"/>
+<text x="76" y="361" font-size="13" font-weight="400" fill="#374151">Tokens</text>
+<rect x="36" y="380" width="236" height="32" rx="8" fill="#FFFFFF"/>
+<path d="M56 389 C51 387 47 389 47 389 V404 C47 404 51 402 56 404 C61 402 65 404 65 404 V389 C65 389 61 387 56 389 Z M56 389 V404" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="76" y="401" font-size="13" font-weight="400" fill="#374151">Patterns</text>
+<rect x="36" y="420" width="236" height="32" rx="8" fill="#FFFFFF"/>
+<path d="M56 427 L64 431 V437 C64 443 56 446 56 446 C56 446 48 443 48 437 V431 Z" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="76" y="441" font-size="13" font-weight="400" fill="#374151">Accessibility</text>
+<rect x="36" y="460" width="236" height="32" rx="8" fill="#FFFFFF"/>
+<circle cx="56" cy="476" r="8" fill="none" stroke="#4B5563" stroke-width="1.5"/><path d="M56 472 V476 L60 478" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="76" y="481" font-size="13" font-weight="400" fill="#374151">Changelog</text>
+<rect x="36" y="492" width="236" height="32" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<circle cx="52" cy="508" r="10" fill="#007AFF"/>
+<text x="52" y="512" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">AM</text>
+<text x="70" y="512" font-size="12" font-weight="500" fill="#374151">Alex Morgan</text>
+<rect x="296" y="156" width="552" height="128" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="308" y="178" font-size="14" font-weight="600" fill="#111827">Tabs</text>
+<text x="724" y="180" font-size="12" font-weight="500" fill="#9CA3AF">Active underline</text>
+<text x="308" y="214" font-size="13" font-weight="600" fill="#007AFF">Overview</text>
+<text x="420" y="214" font-size="13" font-weight="400" fill="#6B7280">Tokens</text>
+<text x="532" y="214" font-size="13" font-weight="400" fill="#6B7280">Patterns</text>
+<text x="644" y="214" font-size="13" font-weight="400" fill="#6B7280">A11y</text>
+<rect x="308" y="230" width="96" height="4" rx="4" fill="url(#brandGradient)"/>
+<line x1="308" y1="238" x2="836" y2="238" stroke="#E5E7EB" stroke-width="1"/>
+<text x="308" y="266" font-size="13" font-weight="500" fill="#374151">Component coverage</text>
+<rect x="308" y="276" width="200" height="6" rx="4" fill="#E5E7EB"/>
+<rect x="308" y="276" width="184" height="6" rx="4" fill="#007AFF"/>
+<text x="704" y="282" font-size="12" font-weight="600" fill="#007AFF">92%</text>
+<rect x="296" y="296" width="552" height="72" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="308" y="318" font-size="14" font-weight="600" fill="#111827">Breadcrumb</text>
+<text x="420" y="326" font-size="13" font-weight="400" fill="#6B7280">Home</text>
+<text x="490" y="326" font-size="13" font-weight="400" fill="#6B7280">Design system</text>
+<text x="620" y="326" font-size="13" font-weight="400" fill="#6B7280">Components</text>
+<text x="740" y="326" font-size="13" font-weight="600" fill="#111827">Buttons</text>
+<text x="470" y="326" font-size="13" font-weight="400" fill="#D1D5DB">/</text>
+<text x="600" y="326" font-size="13" font-weight="400" fill="#D1D5DB">/</text>
+<text x="720" y="326" font-size="13" font-weight="400" fill="#D1D5DB">/</text>
+<text x="308" y="354" font-size="12" font-weight="400" fill="#9CA3AF">Current page is emphasized</text>
+<rect x="296" y="380" width="552" height="156" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="308" y="402" font-size="14" font-weight="600" fill="#111827">Desktop dock</text>
+<text x="308" y="422" font-size="12" font-weight="400" fill="#6B7280">Frosted translucent pill with active indicator</text>
+<rect x="308" y="436" width="528" height="84" rx="12" fill="#F3F4F6"/>
+<circle cx="360" cy="478" r="40" fill="#22D3EE" fill-opacity="0.12"/>
+<circle cx="790" cy="478" r="48" fill="#007AFF" fill-opacity="0.08"/>
+<rect x="368" y="450" width="408" height="56" rx="999" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" fill-opacity="0.72" filter="url(#shadowMd)"/>
+<line x1="396" y1="451" x2="748" y2="451" stroke="#FFFFFF" stroke-width="1"/>
+<path d="M400 478 L408 470 L416 478 M402 478 V486 H414 V478" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="458" y="464" width="28" height="28" rx="8" fill="url(#brandGradient)"/>
+<circle cx="467" cy="473" r="2" fill="#FFFFFF"/><circle cx="467" cy="483" r="2" fill="#FFFFFF"/><circle cx="477" cy="473" r="2" fill="#FFFFFF"/><circle cx="477" cy="483" r="2" fill="#FFFFFF"/>
+<line x1="528" y1="486" x2="528" y2="478" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/><line x1="536" y1="486" x2="536" y2="472" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/><line x1="544" y1="486" x2="544" y2="476" stroke="#4B5563" stroke-width="2" stroke-linecap="round"/>
+<path d="M591 472 H597 L599 475 H609 V485 H591 Z" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M656 483 H672 M658 481 V476 C658 469 670 469 670 476 V481 M662 486 H666" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="728" cy="474" r="4" fill="none" stroke="#4B5563" stroke-width="1.5"/><path d="M721 486 C722 480 734 480 735 486" fill="none" stroke="#4B5563" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="472" cy="512" r="3" fill="#007AFF"/>
+<rect x="860" y="156" width="316" height="144" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="872" y="178" font-size="14" font-weight="600" fill="#111827">Mobile bottom tab bar</text>
+<rect x="872" y="196" width="292" height="92" rx="12" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1"/>
+<text x="884" y="220" font-size="13" font-weight="600" fill="#374151">Dashboard</text>
+<rect x="884" y="230" width="120" height="8" rx="4" fill="#E5E7EB"/>
+<rect x="884" y="242" width="180" height="8" rx="4" fill="#F3F4F6"/>
+<rect x="872" y="252" width="292" height="36" rx="8" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+<line x1="872" y1="252" x2="1164" y2="252" stroke="#E5E7EB" stroke-width="1"/>
+<path d="M900 264 L908 256 L916 264 M902 264 V272 H914 V264" fill="none" stroke="#007AFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="908" y="284" font-size="12" font-weight="500" fill="#007AFF" text-anchor="middle">Home</text>
+<circle cx="979" cy="263" r="7" fill="none" stroke="#9CA3AF" stroke-width="1.5"/><line x1="984" y1="268" x2="989" y2="273" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="980" y="284" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Search</text>
+<path d="M1044 269 H1060 M1046 267 V262 C1046 255 1058 255 1058 262 V267 M1050 272 H1054" fill="none" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1052" y="284" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Alerts</text>
+<circle cx="1124" cy="260" r="4" fill="none" stroke="#9CA3AF" stroke-width="1.5"/><path d="M1117 272 C1118 266 1130 266 1131 272" fill="none" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/>
+<text x="1124" y="284" font-size="12" font-weight="500" fill="#9CA3AF" text-anchor="middle">Profile</text>
+<circle cx="1060" cy="258" r="4" fill="#EF4444"/>
+<rect x="860" y="312" width="316" height="112" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="872" y="334" font-size="14" font-weight="600" fill="#111827">Dropdown menu</text>
+<rect x="872" y="342" width="292" height="76" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowMd)"/>
+<circle cx="888" cy="358" r="10" fill="#007AFF"/>
+<text x="906" y="362" font-size="12" font-weight="600" fill="#374151">Alex Morgan</text>
+<text x="906" y="376" font-size="12" font-weight="400" fill="#9CA3AF">Signed in</text>
+<line x1="884" y1="384" x2="1152" y2="384" stroke="#E5E7EB" stroke-width="1"/>
+<text x="884" y="398" font-size="12" font-weight="400" fill="#374151">Profile</text>
+<text x="1140" y="398" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">Cmd P</text>
+<text x="884" y="414" font-size="12" font-weight="400" fill="#374151">Settings</text>
+<text x="1140" y="414" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">Cmd ,</text>
+<rect x="860" y="436" width="316" height="100" rx="16" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowSm)"/>
+<text x="872" y="458" font-size="14" font-weight="600" fill="#111827">Context menu</text>
+<rect x="872" y="468" width="292" height="56" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" filter="url(#shadowMd)"/>
+<text x="884" y="482" font-size="12" font-weight="400" fill="#374151">Copy</text>
+<text x="1140" y="482" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">Cmd C</text>
+<text x="884" y="498" font-size="12" font-weight="400" fill="#374151">Paste</text>
+<text x="1140" y="498" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">Cmd V</text>
+<line x1="884" y1="504" x2="1152" y2="504" stroke="#E5E7EB" stroke-width="1"/>
+<text x="884" y="518" font-size="12" font-weight="500" fill="#EF4444">Delete</text>
+<text x="1140" y="518" font-size="12" font-weight="400" fill="#9CA3AF" text-anchor="end">Del</text>
+</svg>
