@@ -76,11 +76,12 @@ otherwise. No layer may require fields beyond this document.
   native effect pipeline, so the software framebuffer and display-list commands
   both render the same translucent lamina; documents without it emit no effect
   commands and stay byte-identical. Stylesheet targets MUST lower `glass` to the
-  Stylesheet targets MUST lower `glass` to the normative liquid-glass lamina in
-  `DEFAULT_UI_SYSTEM.md` section 2.9 (or the normative refinement that overrides
-  it): a backdrop blur chain, a translucent frosted lamina, a specular top edge
-  and a darker lower interior. A dark theme swaps only the lamina tint, border
-  and specular colour, leaving the blur chain unchanged.
+  authoritative v2 channels in `DEFAULT_UI_GLASS_REFINEMENT.md` section 2,
+  inlining the composed values because mini-program stylesheets cannot resolve
+  the DOM emitter's custom properties: the compact or desktop backdrop blur, a
+  translucent lamina, the tier2 shadow with its highlight and thickness edges,
+  and the glass border. A dark theme swaps only the lamina and border; the blur
+  and every other channel stay mode-independent.
 
 ### System font stack
 
